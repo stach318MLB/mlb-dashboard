@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MLB Prop Model — 2025 Full Season Apples-to-Apples Replay</title>
+<style>
+  body {
+    background: #0A1620;
+    color: #B7D7E5;
+    font-family: 'Consolas', 'Menlo', 'Courier New', monospace;
+    margin: 0; padding: 30px;
+  }
+  h1 {
+    color: #3CFFAB; font-weight: 600; letter-spacing: 2px;
+    margin: 0 0 4px 0; font-size: 24px;
+  }
+  .subtitle {
+    color: #7090A0; font-size: 12px; margin-bottom: 30px;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .panel {
+    background: #0E2030; border: 1px solid #1A3548;
+    border-radius: 4px; padding: 20px; margin-bottom: 20px;
+  }
+  .panel-title {
+    color: #7090A0; font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .card {
+    background: #0A1620; border: 1px solid #1A3548;
+    border-radius: 4px; padding: 16px;
+  }
+  .card-label {
+    color: #7090A0; font-size: 11px; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .card-value {
+    color: #3CFFAB; font-size: 28px; font-weight: 600; line-height: 1.2;
+  }
+  .card-sub { color: #7090A0; font-size: 11px; margin-top: 6px; }
+  .strategy-3mode {
+    padding: 14px 0; border-bottom: 1px solid #1A3548;
+  }
+  .strategy-3mode:last-child { border-bottom: none; }
+  .strategy-3mode-name {
+    color: #3CFFAB; font-weight: 600; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .strategy-3mode-cells {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  }
+  .mode-cell {
+    background: #0A1620; border: 1px solid #1A3548;
+    border-radius: 4px; padding: 12px;
+  }
+  .mode-label {
+    color: #7090A0; font-size: 10px; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .mode-units { font-size: 22px; font-weight: 600; }
+  .mode-stats {
+    color: #7090A0; font-size: 11px; margin-top: 4px;
+  }
+  .dim { color: #7090A0; font-size: 10px; }
+  .model-block {
+    background: #0A1620; border: 1px solid #1A3548;
+    border-radius: 4px; padding: 16px; margin-bottom: 12px;
+  }
+  .model-header {
+    color: #3CFFAB; font-size: 14px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 12px; padding-bottom: 8px;
+    border-bottom: 1px solid #1A3548;
+  }
+  .model-table { width: 100%; border-collapse: collapse; }
+  .model-table th {
+    text-align: left; padding: 8px 6px; font-weight: normal;
+  }
+  .cell {
+    padding: 8px 6px; vertical-align: top;
+    border-right: 1px solid #1A3548;
+  }
+  .cell:last-child { border-right: none; }
+  .cell-units { font-size: 22px; font-weight: 600; }
+  .cell-stats { color: #7090A0; font-size: 11px; margin-top: 4px; }
+  .caveat {
+    color: #FF5470; font-size: 11px; padding: 10px;
+    background: rgba(255, 84, 112, 0.08);
+    border: 1px solid rgba(255, 84, 112, 0.4);
+    border-radius: 4px; margin-bottom: 18px;
+  }
+  .caveat strong { color: #FF5470; letter-spacing: 1px; }
+  .footer {
+    color: #7090A0; font-size: 10px; text-align: right;
+    margin-top: 30px; letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+  <h1>MLB PROP MODEL — 2025 FULL SEASON REPLAY</h1>
+  <div class="subtitle">APPLES-TO-APPLES · DAY-BY-DAY · 3 ODDS MODES</div>
+
+  <div class="caveat">
+    <strong>NON-APPLES PIECE:</strong> American odds estimated (real 2025 prop odds don&#x27;t exist in DB).
+    All other pieces are apples-to-apples (model trained 2022-2024 / tested 2025,
+    day-by-day features with no leakage, real-equivalent lines, real game
+    outcomes). The "Most conservative" column ($0.50 flat = -200 American) is a
+    HARD FLOOR — definitely worse than any reasonable real-world odds.
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Headline · Median Odds Estimate · No-limit Aggregation</div>
+    <div class="grid">
+      
+      <div class="card">
+        <div class="card-label">RECORD</div>
+        <div class="card-value" style="color:#3CFFAB">40,433W-22,672L</div>
+        <div class="card-sub">63,105 bets placed</div>
+      </div>
+    
+      
+      <div class="card">
+        <div class="card-label">WIN RATE</div>
+        <div class="card-value" style="color:#3CFFAB">64.1%</div>
+        <div class="card-sub">Breakeven: 52.4% @ -110</div>
+      </div>
+    
+      
+      <div class="card">
+        <div class="card-label">NET P&amp;L</div>
+        <div class="card-value" style="color:#3CFFAB">+15991.55u</div>
+        <div class="card-sub">1 unit per bet</div>
+      </div>
+    
+      
+      <div class="card">
+        <div class="card-label">ROI</div>
+        <div class="card-value" style="color:#3CFFAB">+25.34%</div>
+        <div class="card-sub">Return on investment</div>
+      </div>
+    
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Three Strategies × Three Odds Modes</div>
+    
+      <div class="strategy-3mode">
+        <div class="strategy-3mode-name">No limit (all picks)</div>
+        <div class="strategy-3mode-cells">
+          
+          <div class="mode-cell">
+            <div class="mode-label">Median (best case)</div>
+            <div class="mode-units" style="color:#3CFFAB">+15991.55u</div>
+            <div class="mode-stats">
+              <span>63,105 bets</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+25.34% ROI</span>
+              <span class="dim">·</span>
+              <span>64.1% WR</span>
+            </div>
+          </div>
+        
+          <div class="mode-cell">
+            <div class="mode-label">Conservative</div>
+            <div class="mode-units" style="color:#3CFFAB">+3652.48u</div>
+            <div class="mode-stats">
+              <span>63,105 bets</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+5.79% ROI</span>
+              <span class="dim">·</span>
+              <span>64.1% WR</span>
+            </div>
+          </div>
+        
+          <div class="mode-cell">
+            <div class="mode-label">Most conservative (floor)</div>
+            <div class="mode-units" style="color:#FF5470">-2455.50u</div>
+            <div class="mode-stats">
+              <span>63,105 bets</span>
+              <span class="dim">·</span>
+              <span style="color:#FF5470">-3.89% ROI</span>
+              <span class="dim">·</span>
+              <span>64.1% WR</span>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="strategy-3mode">
+        <div class="strategy-3mode-name">Strategy A: top 5/day</div>
+        <div class="strategy-3mode-cells">
+          
+          <div class="mode-cell">
+            <div class="mode-label">Median (best case)</div>
+            <div class="mode-units" style="color:#3CFFAB">+374.34u</div>
+            <div class="mode-stats">
+              <span>920 bets</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+40.69% ROI</span>
+              <span class="dim">·</span>
+              <span>72.4% WR</span>
+            </div>
+          </div>
+        
+          <div class="mode-cell">
+            <div class="mode-label">Conservative</div>
+            <div class="mode-units" style="color:#3CFFAB">+155.51u</div>
+            <div class="mode-stats">
+              <span>920 bets</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+16.90% ROI</span>
+              <span class="dim">·</span>
+              <span>72.4% WR</span>
+            </div>
+          </div>
+        
+          <div class="mode-cell">
+            <div class="mode-label">Most conservative (floor)</div>
+            <div class="mode-units" style="color:#3CFFAB">+79.00u</div>
+            <div class="mode-stats">
+              <span>920 bets</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+8.59% ROI</span>
+              <span class="dim">·</span>
+              <span>72.4% WR</span>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="strategy-3mode">
+        <div class="strategy-3mode-name">Strategy B: top 1/model/day</div>
+        <div class="strategy-3mode-cells">
+          
+          <div class="mode-cell">
+            <div class="mode-label">Median (best case)</div>
+            <div class="mode-units" style="color:#3CFFAB">+222.21u</div>
+            <div class="mode-stats">
+              <span>650 bets</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+34.19% ROI</span>
+              <span class="dim">·</span>
+              <span>71.8% WR</span>
+            </div>
+          </div>
+        
+          <div class="mode-cell">
+            <div class="mode-label">Conservative</div>
+            <div class="mode-units" style="color:#3CFFAB">+98.61u</div>
+            <div class="mode-stats">
+              <span>650 bets</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+15.17% ROI</span>
+              <span class="dim">·</span>
+              <span>71.8% WR</span>
+            </div>
+          </div>
+        
+          <div class="mode-cell">
+            <div class="mode-label">Most conservative (floor)</div>
+            <div class="mode-units" style="color:#3CFFAB">+50.50u</div>
+            <div class="mode-stats">
+              <span>650 bets</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+7.77% ROI</span>
+              <span class="dim">·</span>
+              <span>71.8% WR</span>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Per-Model · By Strategy (median odds)</div>
+    
+      <div class="model-block">
+        <div class="model-header">Hits</div>
+        <table class="model-table">
+          <thead>
+            <tr>
+              <th class="dim">No limit</th>
+              <th class="dim">Strategy A (top 5/day)</th>
+              <th class="dim">Strategy B (top 1/model/day)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              
+          <td class="cell">
+            <div class="cell-units" style="color:#3CFFAB">+3617.70u</div>
+            <div class="cell-stats">
+              <span>18673-10564</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+12.4%</span>
+              <span class="dim">·</span>
+              <span>63.9% WR</span>
+              <span class="dim">·</span>
+              <span>n=29,237</span>
+            </div>
+          </td>
+        
+          <td class="cell">
+            <div class="cell-units" style="color:#3CFFAB">+0.00u</div>
+            <div class="cell-stats">
+              <span>0-0</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+0.0%</span>
+              <span class="dim">·</span>
+              <span>0.0% WR</span>
+              <span class="dim">·</span>
+              <span>n=0</span>
+            </div>
+          </td>
+        
+          <td class="cell">
+            <div class="cell-units" style="color:#3CFFAB">+24.94u</div>
+            <div class="cell-stats">
+              <span>127-57</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+13.6%</span>
+              <span class="dim">·</span>
+              <span>69.0% WR</span>
+              <span class="dim">·</span>
+              <span>n=184</span>
+            </div>
+          </td>
+        
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+      <div class="model-block">
+        <div class="model-header">Total Bases</div>
+        <table class="model-table">
+          <thead>
+            <tr>
+              <th class="dim">No limit</th>
+              <th class="dim">Strategy A (top 5/day)</th>
+              <th class="dim">Strategy B (top 1/model/day)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              
+          <td class="cell">
+            <div class="cell-units" style="color:#3CFFAB">+11481.00u</div>
+            <div class="cell-stats">
+              <span>19045-10417</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+39.0%</span>
+              <span class="dim">·</span>
+              <span>64.6% WR</span>
+              <span class="dim">·</span>
+              <span>n=29,462</span>
+            </div>
+          </td>
+        
+          <td class="cell">
+            <div class="cell-units" style="color:#3CFFAB">+135.65u</div>
+            <div class="cell-stats">
+              <span>176-63</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+56.8%</span>
+              <span class="dim">·</span>
+              <span>73.6% WR</span>
+              <span class="dim">·</span>
+              <span>n=239</span>
+            </div>
+          </td>
+        
+          <td class="cell">
+            <div class="cell-units" style="color:#3CFFAB">+102.50u</div>
+            <div class="cell-stats">
+              <span>135-49</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+55.7%</span>
+              <span class="dim">·</span>
+              <span>73.4% WR</span>
+              <span class="dim">·</span>
+              <span>n=184</span>
+            </div>
+          </td>
+        
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+      <div class="model-block">
+        <div class="model-header">HR/RBI/Run (HRR)</div>
+        <table class="model-table">
+          <thead>
+            <tr>
+              <th class="dim">No limit</th>
+              <th class="dim">Strategy A (top 5/day)</th>
+              <th class="dim">Strategy B (top 1/model/day)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              
+          <td class="cell">
+            <div class="cell-units" style="color:#3CFFAB">+876.44u</div>
+            <div class="cell-stats">
+              <span>2611-1642</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+20.6%</span>
+              <span class="dim">·</span>
+              <span>61.4% WR</span>
+              <span class="dim">·</span>
+              <span>n=4,253</span>
+            </div>
+          </td>
+        
+          <td class="cell">
+            <div class="cell-units" style="color:#3CFFAB">+221.03u</div>
+            <div class="cell-stats">
+              <span>397-150</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+40.4%</span>
+              <span class="dim">·</span>
+              <span>72.6% WR</span>
+              <span class="dim">·</span>
+              <span>n=547</span>
+            </div>
+          </td>
+        
+          <td class="cell">
+            <div class="cell-units" style="color:#3CFFAB">+80.44u</div>
+            <div class="cell-stats">
+              <span>136-47</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+44.0%</span>
+              <span class="dim">·</span>
+              <span>74.3% WR</span>
+              <span class="dim">·</span>
+              <span>n=183</span>
+            </div>
+          </td>
+        
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+      <div class="model-block">
+        <div class="model-header">SK (Pitcher K)</div>
+        <table class="model-table">
+          <thead>
+            <tr>
+              <th class="dim">No limit</th>
+              <th class="dim">Strategy A (top 5/day)</th>
+              <th class="dim">Strategy B (top 1/model/day)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              
+          <td class="cell">
+            <div class="cell-units" style="color:#3CFFAB">+11.90u</div>
+            <div class="cell-stats">
+              <span>13-0</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+91.6%</span>
+              <span class="dim">·</span>
+              <span>100.0% WR</span>
+              <span class="dim">·</span>
+              <span>n=13</span>
+            </div>
+          </td>
+        
+          <td class="cell">
+            <div class="cell-units" style="color:#3CFFAB">+10.99u</div>
+            <div class="cell-stats">
+              <span>12-0</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+91.6%</span>
+              <span class="dim">·</span>
+              <span>100.0% WR</span>
+              <span class="dim">·</span>
+              <span>n=12</span>
+            </div>
+          </td>
+        
+          <td class="cell">
+            <div class="cell-units" style="color:#3CFFAB">+10.99u</div>
+            <div class="cell-stats">
+              <span>12-0</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+91.6%</span>
+              <span class="dim">·</span>
+              <span>100.0% WR</span>
+              <span class="dim">·</span>
+              <span>n=12</span>
+            </div>
+          </td>
+        
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+      <div class="model-block">
+        <div class="model-header">Outs (Pitcher)</div>
+        <table class="model-table">
+          <thead>
+            <tr>
+              <th class="dim">No limit</th>
+              <th class="dim">Strategy A (top 5/day)</th>
+              <th class="dim">Strategy B (top 1/model/day)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              
+          <td class="cell">
+            <div class="cell-units" style="color:#3CFFAB">+4.51u</div>
+            <div class="cell-stats">
+              <span>91-49</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+3.2%</span>
+              <span class="dim">·</span>
+              <span>65.0% WR</span>
+              <span class="dim">·</span>
+              <span>n=140</span>
+            </div>
+          </td>
+        
+          <td class="cell">
+            <div class="cell-units" style="color:#3CFFAB">+6.66u</div>
+            <div class="cell-stats">
+              <span>81-41</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+5.5%</span>
+              <span class="dim">·</span>
+              <span>66.4% WR</span>
+              <span class="dim">·</span>
+              <span>n=122</span>
+            </div>
+          </td>
+        
+          <td class="cell">
+            <div class="cell-units" style="color:#3CFFAB">+3.33u</div>
+            <div class="cell-stats">
+              <span>57-30</span>
+              <span class="dim">·</span>
+              <span style="color:#3CFFAB">+3.8%</span>
+              <span class="dim">·</span>
+              <span>65.5% WR</span>
+              <span class="dim">·</span>
+              <span>n=87</span>
+            </div>
+          </td>
+        
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+  </div>
+
+  <div class="footer">
+    Generated 2026-05-01 10:50 ·
+    source: holdout_predictions_2025 (day-by-day) ·
+    grading: real game outcomes, estimated odds across 3 modes
+  </div>
+</body>
+</html>
