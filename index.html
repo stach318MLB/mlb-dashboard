@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MLB Locked Picks &mdash; May 28, 2026</title>
+<title>MLB Locked Picks &mdash; May 29, 2026</title>
 <style>
 
 :root {
@@ -23,8 +23,13 @@ html, body {
   background: var(--c-bg); color: var(--c-text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 15px; line-height: 1.45;
+  /* Prevent rogue horizontal scroll on narrow viewports */
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 .wrap { max-width: 1200px; margin: 0 auto; padding: 18px 16px 40px; }
+/* Word-wrap defaults for long names/labels on narrow viewports */
+table.dash td, .stat-strip { word-break: break-word; overflow-wrap: anywhere; }
 
 h1 { font-size: 22px; margin: 0 0 4px; letter-spacing: -0.01em; }
 h2 { font-size: 17px; margin: 28px 0 10px; letter-spacing: -0.005em; font-weight: 600; }
@@ -132,15 +137,130 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
   .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 }
 
+
+/* ==== Tab nav ==== */
+.tab-nav {
+  display: flex; gap: 4px;
+  border-bottom: 2px solid var(--c-border);
+  margin: 8px 0 18px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.tab-nav button {
+  background: none; border: none;
+  padding: 10px 18px;
+  font-size: 15px; font-weight: 600;
+  color: var(--c-muted); cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+}
+.tab-nav button.active {
+  color: var(--c-text);
+  border-bottom-color: var(--c-pos);
+}
+.tab-nav button:hover { color: var(--c-text); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ==== Sidecar tab ==== */
+.sc-intro {
+  background: #f7f9fc; border: 1px solid var(--c-border);
+  border-radius: 8px; padding: 12px 14px;
+  margin-bottom: 18px; font-size: 14px; line-height: 1.5;
+}
+.sc-intro p { margin: 0 0 6px; }
+.sc-intro p:last-child { margin-bottom: 0; }
+
+.sc-prop-card {
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+.sc-prop-h { margin: 0; font-size: 18px; }
+.sc-prop-status {
+  font-size: 12px; color: var(--c-muted);
+  text-transform: uppercase; letter-spacing: 0.04em;
+  margin-top: 2px; margin-bottom: 12px;
+}
+.sc-h4 {
+  font-size: 13px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: #555; margin: 16px 0 6px;
+}
+.sc-empty {
+  color: var(--c-muted); font-style: italic;
+  padding: 12px; background: #fafafa; border-radius: 6px;
+  font-size: 13px; margin: 6px 0;
+}
+.sc-notes {
+  font-size: 12px; color: var(--c-muted);
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px dashed var(--c-border-soft);
+  line-height: 1.5;
+}
+
+/* Status glyphs */
+.sc-good { color: var(--c-pos); font-weight: 700; }
+.sc-warn { color: #f1a325; font-weight: 700; }
+.sc-bad  { color: var(--c-neg); font-weight: 700; }
+.sc-muted { color: var(--c-muted); }
+.sc-pending { color: var(--c-muted); }
+
+/* Mobile collapse */
+@media (max-width: 720px) {
+  .sc-prop-card { padding: 12px 10px; margin-bottom: 14px; }
+  .sc-prop-h { font-size: 16px; }
+  .sc-intro { font-size: 13px; padding: 10px; }
+  .tab-nav button { padding: 8px 12px; font-size: 14px; }
+  /* Stacked-card sidecar strategy table on mobile */
+  table.sc-strat-table thead,
+  table.sc-picks-table thead { display: none; }
+  table.sc-strat-table, table.sc-strat-table tbody,
+  table.sc-strat-table tr, table.sc-strat-table td,
+  table.sc-picks-table, table.sc-picks-table tbody,
+  table.sc-picks-table tr, table.sc-picks-table td {
+    display: block; width: 100%;
+  }
+  table.sc-strat-table tr, table.sc-picks-table tr {
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    margin-bottom: 6px; padding: 6px 8px;
+    background: var(--c-bg);
+  }
+  table.sc-strat-table td, table.sc-picks-table td {
+    border: none; padding: 2px 0;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  table.sc-strat-table td::before, table.sc-picks-table td::before {
+    content: attr(data-label);
+    color: var(--c-muted); font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    margin-right: 8px;
+  }
+  table.sc-strat-table .sc-strat,
+  table.sc-picks-table .player { font-weight: 700; }
+}
+
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <h1>TODAY'S LOCKED PICKS &mdash; May 28, 2026 (6am ET)</h1>
-  <div class="subtitle">Last updated: 11:00 ET on May 28, 2026</div>
+  <h1>TODAY'S LOCKED PICKS &mdash; May 29, 2026 (6am ET)</h1>
+  <div class="subtitle">Last updated: 06:46 ET on May 29, 2026</div>
 
-  
+  <!-- Tab navigation -->
+  <nav class="tab-nav" role="tablist">
+    <button class="active" data-tab="tab-production" role="tab">Production (6 models)</button>
+    <button data-tab="tab-sidecar" role="tab">Experimental Sidecar</button>
+  </nav>
+
+  <!-- PRODUCTION TAB -->
+  <section id="tab-production" class="tab-panel active" role="tabpanel">
+
+    
     <table class="dash picks">
       <thead>
         <tr>
@@ -164,129 +284,129 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         <tr class="">
           <td class="num" data-label="#">1</td>
           <td data-label="Model"><span class="chip" style="background:#1e6fd9">Outs</span></td>
-          <td class="player-cell player" data-label="Player">Grayson Rodriguez</td>
-          <td data-label="Team">LAA</td>
-          <td data-label="Time">1:10 PM</td>
-          <td class="num" data-label="Line">16.5</td>
-          <td data-label="Dir"><span class="dir dir-under">&#9660;</span>Under</td>
-          <td class="num" data-label="Odds">+108</td>
-          <td data-label="Best Book"></td>
+          <td class="player-cell player" data-label="Player">Taj Bradley</td>
+          <td data-label="Team">MIN</td>
+          <td data-label="Time">6:45 PM</td>
+          <td class="num" data-label="Line">17.5</td>
+          <td data-label="Dir"><span class="dir dir-over">&#9650;</span>Over</td>
+          <td class="num" data-label="Odds">-102</td>
+          <td data-label="Best Book">Draftkings -102</td>
           <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Edge">32.2pp</td>
-          <td class="num" data-label="EV">+0.669</td>
-          <td class="num" data-label="Kelly">0.298</td>
+          <td class="num" data-label="Edge">20.8pp</td>
+          <td class="num" data-label="EV">+0.413</td>
+          <td class="num" data-label="Kelly">0.213</td>
         </tr>
         
         <tr class="">
           <td class="num" data-label="#">2</td>
           <td data-label="Model"><span class="chip" style="background:#1e6fd9">Outs</span></td>
-          <td class="player-cell player" data-label="Player">Grayson Rodriguez</td>
-          <td data-label="Team">LAA</td>
-          <td data-label="Time">1:10 PM</td>
+          <td class="player-cell player" data-label="Player">Max Meyer</td>
+          <td data-label="Team">MIA</td>
+          <td data-label="Time">7:10 PM</td>
           <td class="num" data-label="Line">17.5</td>
-          <td data-label="Dir"><span class="dir dir-under">&#9660;</span>Under</td>
-          <td class="num" data-label="Odds">-125</td>
-          <td data-label="Best Book">Fanduel +108</td>
+          <td data-label="Dir"><span class="dir dir-over">&#9650;</span>Over</td>
+          <td class="num" data-label="Odds">-104</td>
+          <td data-label="Best Book">Draftkings -101</td>
           <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Edge">29.3pp</td>
-          <td class="num" data-label="EV">+0.527</td>
-          <td class="num" data-label="Kelly">0.366</td>
+          <td class="num" data-label="Edge">20.4pp</td>
+          <td class="num" data-label="EV">+0.399</td>
+          <td class="num" data-label="Kelly">0.212</td>
         </tr>
         
         <tr class="">
           <td class="num" data-label="#">3</td>
           <td data-label="Model"><span class="chip" style="background:#1e6fd9">Outs</span></td>
-          <td class="player-cell player" data-label="Player">Spencer Arrighetti</td>
-          <td data-label="Team">HOU</td>
-          <td data-label="Time">8:05 PM</td>
-          <td class="num" data-label="Line">16.5</td>
+          <td class="player-cell player" data-label="Player">Grant Holmes</td>
+          <td data-label="Team">ATL</td>
+          <td data-label="Time">6:40 PM</td>
+          <td class="num" data-label="Line">15.5</td>
           <td data-label="Dir"><span class="dir dir-over">&#9650;</span>Over</td>
-          <td class="num" data-label="Odds">+105</td>
-          <td data-label="Best Book">Novig +105</td>
+          <td class="num" data-label="Odds">+135</td>
+          <td data-label="Best Book"></td>
           <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Edge">22.9pp</td>
-          <td class="num" data-label="EV">+0.470</td>
-          <td class="num" data-label="Kelly">0.219</td>
+          <td class="num" data-label="Edge">12.7pp</td>
+          <td class="num" data-label="EV">+0.297</td>
+          <td class="num" data-label="Kelly">0.094</td>
         </tr>
         
         <tr class="">
           <td class="num" data-label="#">4</td>
           <td data-label="Model"><span class="chip" style="background:#1e9d4a">Hits</span></td>
-          <td class="player-cell player" data-label="Player">Zach McKinstry</td>
-          <td data-label="Team">DET</td>
-          <td data-label="Time">1:10 PM</td>
+          <td class="player-cell player" data-label="Player">Nicky Lopez</td>
+          <td data-label="Team">TEX</td>
+          <td data-label="Time">8:05 PM</td>
           <td class="num" data-label="Line">0.5</td>
           <td data-label="Dir"><span class="dir dir-under">&#9660;</span>Under</td>
-          <td class="num" data-label="Odds">+130</td>
-          <td data-label="Best Book">Fanatics +130</td>
+          <td class="num" data-label="Odds">+110</td>
+          <td data-label="Best Book">Fanatics +110</td>
           <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Edge">28.4pp</td>
-          <td class="num" data-label="EV">+0.654</td>
-          <td class="num" data-label="Kelly">0.219</td>
+          <td class="num" data-label="Edge">37.1pp</td>
+          <td class="num" data-label="EV">+0.778</td>
+          <td class="num" data-label="Kelly">0.337</td>
         </tr>
         
         <tr class="">
           <td class="num" data-label="#">5</td>
           <td data-label="Model"><span class="chip" style="background:#1e9d4a">Hits</span></td>
-          <td class="player-cell player" data-label="Player">Randal Grichuk</td>
-          <td data-label="Team">CWS</td>
-          <td data-label="Time">2:10 PM</td>
+          <td class="player-cell player" data-label="Player">Nick Castellanos</td>
+          <td data-label="Team">SD</td>
+          <td data-label="Time">6:45 PM</td>
           <td class="num" data-label="Line">0.5</td>
           <td data-label="Dir"><span class="dir dir-under">&#9660;</span>Under</td>
-          <td class="num" data-label="Odds">+135</td>
-          <td data-label="Best Book">Betmgm +140</td>
+          <td class="num" data-label="Odds">+150</td>
+          <td data-label="Best Book">Draftkings +146</td>
           <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Edge">24.2pp</td>
-          <td class="num" data-label="EV">+0.570</td>
-          <td class="num" data-label="Kelly">0.180</td>
+          <td class="num" data-label="Edge">29.6pp</td>
+          <td class="num" data-label="EV">+0.741</td>
+          <td class="num" data-label="Kelly">0.198</td>
         </tr>
         
         <tr class="">
           <td class="num" data-label="#">6</td>
           <td data-label="Model"><span class="chip" style="background:#7a3fc2">SK</span></td>
-          <td class="player-cell player" data-label="Player">Payton Tolle</td>
-          <td data-label="Team">BOS</td>
-          <td data-label="Time">4:10 PM</td>
-          <td class="num" data-label="Line">8.5</td>
-          <td data-label="Dir"><span class="dir dir-over">&#9650;</span>Over</td>
-          <td class="num" data-label="Odds">+950</td>
+          <td class="player-cell player" data-label="Player">Jared Jones</td>
+          <td data-label="Team">PIT</td>
+          <td data-label="Time">6:45 PM</td>
+          <td class="num" data-label="Line">3.5</td>
+          <td data-label="Dir"><span class="dir dir-under">&#9660;</span>Under</td>
+          <td class="num" data-label="Odds">+265</td>
           <td data-label="Best Book"></td>
           <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Edge">11.2pp</td>
-          <td class="num" data-label="EV">+1.174</td>
-          <td class="num" data-label="Kelly">0.012</td>
+          <td class="num" data-label="Edge">31.8pp</td>
+          <td class="num" data-label="EV">+1.160</td>
+          <td class="num" data-label="Kelly">0.120</td>
         </tr>
         
         <tr class="">
           <td class="num" data-label="#">7</td>
           <td data-label="Model"><span class="chip" style="background:#7a3fc2">SK</span></td>
-          <td class="player-cell player" data-label="Player">Payton Tolle</td>
-          <td data-label="Team">BOS</td>
-          <td data-label="Time">4:10 PM</td>
+          <td class="player-cell player" data-label="Player">Trevor Rogers</td>
+          <td data-label="Team">BAL</td>
+          <td data-label="Time">7:05 PM</td>
           <td class="num" data-label="Line">7.5</td>
           <td data-label="Dir"><span class="dir dir-over">&#9650;</span>Over</td>
-          <td class="num" data-label="Odds">+410</td>
+          <td class="num" data-label="Odds">+1120</td>
           <td data-label="Best Book"></td>
           <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Edge">19.3pp</td>
-          <td class="num" data-label="EV">+0.986</td>
-          <td class="num" data-label="Kelly">0.047</td>
+          <td class="num" data-label="Edge">7.1pp</td>
+          <td class="num" data-label="EV">+0.870</td>
+          <td class="num" data-label="Kelly">0.006</td>
         </tr>
         
         <tr class="">
           <td class="num" data-label="#">8</td>
           <td data-label="Model"><span class="chip" style="background:#e07a1e">TB</span></td>
-          <td class="player-cell player" data-label="Player">Ernie Clement</td>
-          <td data-label="Team">TOR</td>
-          <td data-label="Time">6:35 PM</td>
-          <td class="num" data-label="Line">3.5</td>
-          <td data-label="Dir"><span class="dir dir-over">&#9650;</span>Over</td>
-          <td class="num" data-label="Odds">+750</td>
+          <td class="player-cell player" data-label="Player">Starling Marte</td>
+          <td data-label="Team">KC</td>
+          <td data-label="Time">8:05 PM</td>
+          <td class="num" data-label="Line">0.5</td>
+          <td data-label="Dir"><span class="dir dir-under">&#9660;</span>Under</td>
+          <td class="num" data-label="Odds">+135</td>
           <td data-label="Best Book"></td>
           <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Edge">7.1pp</td>
-          <td class="num" data-label="EV">+0.603</td>
-          <td class="num" data-label="Kelly">0.009</td>
+          <td class="num" data-label="Edge">19.3pp</td>
+          <td class="num" data-label="EV">+0.454</td>
+          <td class="num" data-label="Kelly">0.143</td>
         </tr>
         
         <tr class="">
@@ -294,39 +414,39 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
           <td data-label="Model"><span class="chip" style="background:#cc2e2e">BK</span></td>
           <td class="player-cell player" data-label="Player">Donovan Walton</td>
           <td data-label="Team">LAA</td>
-          <td data-label="Time">1:10 PM</td>
+          <td data-label="Time">7:10 PM</td>
           <td class="num" data-label="Line">0.5</td>
           <td data-label="Dir"><span class="dir dir-over">&#9650;</span>Over</td>
           <td class="num" data-label="Odds">-130</td>
           <td data-label="Best Book">Betmgm -130</td>
           <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Edge">9.5pp</td>
-          <td class="num" data-label="EV">+0.168</td>
-          <td class="num" data-label="Kelly">0.123</td>
+          <td class="num" data-label="Edge">11.7pp</td>
+          <td class="num" data-label="EV">+0.207</td>
+          <td class="num" data-label="Kelly">0.152</td>
         </tr>
         
         <tr class="">
           <td class="num" data-label="#">10</td>
           <td data-label="Model"><span class="chip" style="background:#0f9a99">HRR</span></td>
-          <td class="player-cell player" data-label="Player">Dansby Swanson</td>
-          <td data-label="Team">CHC</td>
-          <td data-label="Time">6:40 PM</td>
-          <td class="num" data-label="Line">2.5</td>
-          <td data-label="Dir"><span class="dir dir-over">&#9650;</span>Over</td>
-          <td class="num" data-label="Odds">+375</td>
-          <td data-label="Best Book"></td>
+          <td class="player-cell player" data-label="Player">Riley Greene</td>
+          <td data-label="Team">DET</td>
+          <td data-label="Time">7:40 PM</td>
+          <td class="num" data-label="Line">1.5</td>
+          <td data-label="Dir"><span class="dir dir-under">&#9660;</span>Under</td>
+          <td class="num" data-label="Odds">+105</td>
+          <td data-label="Best Book">Fanatics +105</td>
           <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Edge">7.4pp</td>
-          <td class="num" data-label="EV">+0.349</td>
-          <td class="num" data-label="Kelly">0.020</td>
+          <td class="num" data-label="Edge">9.7pp</td>
+          <td class="num" data-label="EV">+0.199</td>
+          <td class="num" data-label="Kelly">0.092</td>
         </tr>
         
       </tbody>
     </table>
     
 
-  <h2>Today's running tally</h2>
-  
+    <h2>Today's running tally</h2>
+    
     <div class="stat-strip">
       <div class="stat"><span class="lbl">n</span><span class="val">10</span></div>
       <div class="stat"><span class="lbl">W</span><span class="val" style="color:var(--c-pos)">0</span></div>
@@ -337,21 +457,21 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
     </div>
     
 
-  <h2>Season totals (since April 8, 2026)</h2>
-  
+    <h2>Season totals (since April 8, 2026)</h2>
+    
     <div class="stat-strip">
-      <div class="stat"><span class="lbl">Graded</span><span class="val">20</span></div>
-      <div class="stat"><span class="lbl">W</span><span class="val" style="color:var(--c-pos)">8</span></div>
-      <div class="stat"><span class="lbl">L</span><span class="val" style="color:var(--c-neg)">12</span></div>
-      <div class="stat"><span class="lbl">WR</span><span class="val">40.00%</span></div>
-      <div class="stat"><span class="lbl">Units</span><span class="val" style="color:var(--c-pos)">+15.80u</span></div>
-      <div class="stat"><span class="lbl">ROI</span><span class="val" style="color:var(--c-pos)">+79.01%</span></div>
+      <div class="stat"><span class="lbl">Graded</span><span class="val">25</span></div>
+      <div class="stat"><span class="lbl">W</span><span class="val" style="color:var(--c-pos)">11</span></div>
+      <div class="stat"><span class="lbl">L</span><span class="val" style="color:var(--c-neg)">14</span></div>
+      <div class="stat"><span class="lbl">WR</span><span class="val">44.00%</span></div>
+      <div class="stat"><span class="lbl">Units</span><span class="val" style="color:var(--c-pos)">+16.73u</span></div>
+      <div class="stat"><span class="lbl">ROI</span><span class="val" style="color:var(--c-pos)">+66.93%</span></div>
       <div class="stat"><span class="lbl">Void/Push</span><span class="val" style="color:var(--c-muted)">0</span></div>
     </div>
     
 
-  <h2 style="margin-top:18px;">Per-model breakdown</h2>
-  
+    <h2 style="margin-top:18px;">Per-model breakdown</h2>
+    
     <div class="table-scroll">
       <table class="dash">
         <thead>
@@ -368,12 +488,12 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         <tbody>
         <tr>
           <td><span class="chip" style="background:#1e6fd9">Outs</span></td>
-          <td class="num" data-label="n">6</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">4</td>
+          <td class="num" data-label="n">9</td>
+          <td class="num" data-label="W" style="color:var(--c-pos)">7</td>
           <td class="num" data-label="L" style="color:var(--c-neg)">2</td>
-          <td class="num" data-label="WR">66.67%</td>
-          <td class="num" data-label="Units" style="color:var(--c-pos); font-weight:600;">+1.88u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-pos)">+31.38%</td>
+          <td class="num" data-label="WR">77.78%</td>
+          <td class="num" data-label="Units" style="color:var(--c-pos); font-weight:600;">+4.81u</td>
+          <td class="num" data-label="ROI" style="color:var(--c-pos)">+53.47%</td>
         </tr>
         
         <tr>
@@ -388,12 +508,12 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         
         <tr>
           <td><span class="chip" style="background:#7a3fc2">SK</span></td>
-          <td class="num" data-label="n">4</td>
+          <td class="num" data-label="n">6</td>
           <td class="num" data-label="W" style="color:var(--c-pos)">2</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">2</td>
-          <td class="num" data-label="WR">50.00%</td>
-          <td class="num" data-label="Units" style="color:var(--c-pos); font-weight:600;">+17.82u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-pos)">+445.50%</td>
+          <td class="num" data-label="L" style="color:var(--c-neg)">4</td>
+          <td class="num" data-label="WR">33.33%</td>
+          <td class="num" data-label="Units" style="color:var(--c-pos); font-weight:600;">+15.82u</td>
+          <td class="num" data-label="ROI" style="color:var(--c-pos)">+263.67%</td>
         </tr>
         
         <tr>
@@ -430,8 +550,8 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
     </div>
     
 
-  <h2>Last 7 days</h2>
-  
+    <h2>Last 7 days</h2>
+    
     <div class="table-scroll">
       <table class="dash">
         <thead>
@@ -447,13 +567,23 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         </thead>
         <tbody>
         <tr>
-          <td>Thu May 28</td>
+          <td>Fri May 29</td>
           <td class="num" data-label="n">10</td>
           <td class="num" data-label="W" style="color:var(--c-pos)">0</td>
           <td class="num" data-label="L" style="color:var(--c-neg)">0</td>
           <td class="num" data-label="Pending" style="color:var(--c-muted)">10</td>
           <td class="num" data-label="Units" style="color:var(--c-muted); font-weight:600;">+0.00u</td>
           <td class="num" data-label="ROI" style="color:var(--c-muted)">&mdash;</td>
+        </tr>
+        
+        <tr>
+          <td>Thu May 28</td>
+          <td class="num" data-label="n">10</td>
+          <td class="num" data-label="W" style="color:var(--c-pos)">3</td>
+          <td class="num" data-label="L" style="color:var(--c-neg)">2</td>
+          <td class="num" data-label="Pending" style="color:var(--c-muted)">5</td>
+          <td class="num" data-label="Units" style="color:var(--c-pos); font-weight:600;">+0.93u</td>
+          <td class="num" data-label="ROI" style="color:var(--c-pos)">+18.60%</td>
         </tr>
         
         <tr>
@@ -480,6 +610,147 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
     </div>
     
 
+  </section>
+
+  <!-- EXPERIMENTAL SIDECAR TAB -->
+  <section id="tab-sidecar" class="tab-panel" role="tabpanel">
+    
+      <div class="sc-intro">
+        <p><strong>Experimental sidecar tracking.</strong> These models run in
+        parallel with the locked 6-model production but their picks are NOT
+        bet automatically. Each prop tracks 5 selection strategies in parallel
+        — after ~30 days of forward data, the winning strategy ships to
+        production (or model is deprecated).</p>
+        <p>Decision points: HR &mdash; 2026-07-01. Steals &mdash; pending.
+        Pitcher Walks &mdash; pending.</p>
+      </div>
+      
+      <div class="sc-prop-card" style="border-left:4px solid #cc6600;">
+        <h3 class="sc-prop-h">HR (Home Runs)</h3>
+        <div class="sc-prop-status">Tracking — decision 2026-07-01</div>
+
+        <h4 class="sc-h4">Per-strategy running totals</h4>
+        
+    <div class="table-scroll">
+      <table class="dash sc-strat-table">
+        <thead>
+          <tr>
+            <th>Strategy</th>
+            <th class="num">n</th>
+            <th class="num">W</th>
+            <th class="num">WR</th>
+            <th class="num">Units</th>
+            <th class="num">ROI</th>
+            <th class="num">Backtest</th>
+            <th class="center">vs BT</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td class="sc-strat" data-label="Strategy">Over cap=3 EV</td>
+              <td class="num" data-label="n">1</td>
+              <td class="num" data-label="W">0</td>
+              <td class="num" data-label="WR">0.0%</td>
+              <td class="num" data-label="Units">+0.00u</td>
+              <td class="num" data-label="ROI">+0.00%</td>
+              <td class="num" data-label="Backtest">+91%</td>
+              <td class="center" data-label="Status"><span class="sc-warn">&#9888;</span></td>
+            </tr>
+        
+            <tr>
+              <td class="sc-strat" data-label="Strategy">Over cap=5 EV</td>
+              <td class="num" data-label="n">1</td>
+              <td class="num" data-label="W">0</td>
+              <td class="num" data-label="WR">0.0%</td>
+              <td class="num" data-label="Units">+0.00u</td>
+              <td class="num" data-label="ROI">+0.00%</td>
+              <td class="num" data-label="Backtest">+63%</td>
+              <td class="center" data-label="Status"><span class="sc-warn">&#9888;</span></td>
+            </tr>
+        
+            <tr>
+              <td class="sc-strat" data-label="Strategy">Over skip-1 (ranks 2-3)</td>
+              <td class="num" data-label="n">0</td>
+              <td class="num" data-label="W">0</td>
+              <td class="num" data-label="WR">—</td>
+              <td class="num" data-label="Units">+0.00u</td>
+              <td class="num" data-label="ROI">&mdash;</td>
+              <td class="num" data-label="Backtest">+105%</td>
+              <td class="center" data-label="Status"><span class="sc-muted">&mdash;</span></td>
+            </tr>
+        
+            <tr>
+              <td class="sc-strat" data-label="Strategy">Under cap=5 EV</td>
+              <td class="num" data-label="n">0</td>
+              <td class="num" data-label="W">0</td>
+              <td class="num" data-label="WR">—</td>
+              <td class="num" data-label="Units">+0.00u</td>
+              <td class="num" data-label="ROI">&mdash;</td>
+              <td class="num" data-label="Backtest">+3%</td>
+              <td class="center" data-label="Status"><span class="sc-muted">&mdash;</span></td>
+            </tr>
+        
+            <tr>
+              <td class="sc-strat" data-label="Strategy">Parlay ranks 1+3</td>
+              <td class="num" data-label="n">0</td>
+              <td class="num" data-label="W">0</td>
+              <td class="num" data-label="WR">—</td>
+              <td class="num" data-label="Units">+0.00u</td>
+              <td class="num" data-label="ROI">&mdash;</td>
+              <td class="num" data-label="Backtest">+361%</td>
+              <td class="center" data-label="Status"><span class="sc-muted">&mdash;</span></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+        <h4 class="sc-h4">Today's picks (2026-05-29)</h4>
+        
+    <div class="table-scroll">
+      <table class="dash sc-picks-table">
+        <thead>
+          <tr>
+            <th>Pick</th>
+            <th>Player</th>
+            <th class="num">Odds</th>
+            <th class="num">Prob</th>
+            <th class="num">Edge</th>
+            <th class="center">Result</th>
+            <th class="num">PnL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Pick">OVER #1</td>
+            <td data-label="Player" class="player">Willson Contreras</td>
+            <td class="num" data-label="Odds">525</td>
+            <td class="num" data-label="Prob">0.2406</td>
+            <td class="num" data-label="Edge">0.0806</td>
+            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
+            <td class="num" data-label="PnL">&mdash;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+        <div class="sc-notes">Strong-filter recommended: Over edge≥0.08 + prob 0.20-0.50 + cap=5 EV. All Phase D validation passed.</div>
+      </div>
+        <div class="sc-prop-card" style="border-left:4px solid #1e6fd9;">
+          <h3 class="sc-prop-h">Steals</h3>
+          <div class="sc-prop-status">Pending sidecar setup (handled in separate chat)</div>
+          <p class="sc-empty">No tracker data yet — sidecar runs at 6am ET daily.
+             First data appears after the first scheduled run completes.</p>
+          <div class="sc-notes">Steals V7 shipped 5/26, but cross-year revealed true WR=21% / +10-15%/pick. Sidecar config TBD by the steals build chat.</div>
+        </div>
+        <div class="sc-prop-card" style="border-left:4px solid #7a3fc2;">
+          <h3 class="sc-prop-h">Pitcher Walks</h3>
+          <div class="sc-prop-status">Pending sidecar setup (handled in separate chat)</div>
+          <p class="sc-empty">No tracker data yet — sidecar runs at 6am ET daily.
+             First data appears after the first scheduled run completes.</p>
+          <div class="sc-notes">V2 baseline, V3/V5 rejected (selection bias). 5 strong-filter slices identified in PITCHER_WALKS_STATUS_2026_05_27.md.</div>
+        </div>
+  </section>
+
   <div class="footer">
     <div><strong>Strategy:</strong> 6am ET lock, ROI_Weighted_EV at cap=10, drop SK/HRR day games.
     Per-model: Outs EV / Hits EV_skip1 / SK EV / TB cap20 / BK cap20 / HRR cap10.</div>
@@ -488,5 +759,25 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
   </div>
 
 </div>
+
+<script>
+// Simple tab switcher (no framework, no localStorage)
+document.addEventListener('click', function(ev) {
+  var btn = ev.target.closest('.tab-nav button[data-tab]');
+  if (!btn) return;
+  var target = btn.getAttribute('data-tab');
+  // Remove active from all in nav + panels
+  document.querySelectorAll('.tab-nav button').forEach(function(b) {
+    b.classList.remove('active');
+  });
+  document.querySelectorAll('.tab-panel').forEach(function(p) {
+    p.classList.remove('active');
+  });
+  btn.classList.add('active');
+  var panel = document.getElementById(target);
+  if (panel) panel.classList.add('active');
+});
+</script>
+
 </body>
 </html>
