@@ -249,7 +249,7 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
 <div class="wrap">
 
   <h1>TODAY'S LOCKED PICKS &mdash; May 30, 2026 (6am ET)</h1>
-  <div class="subtitle">Last updated: 06:08 ET on May 30, 2026</div>
+  <div class="subtitle">Last updated: 11:01 ET on May 30, 2026</div>
 
   <!-- Tab navigation -->
   <nav class="tab-nav" role="tablist">
@@ -658,7 +658,7 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         <tbody>
             <tr>
               <td class="sc-strat" data-label="Strategy">Over cap=3 EV</td>
-              <td class="num" data-label="n">1</td>
+              <td class="num" data-label="n">2</td>
               <td class="num" data-label="W">0</td>
               <td class="num" data-label="WR">0.0%</td>
               <td class="num" data-label="Units">+0.00u</td>
@@ -669,7 +669,7 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         
             <tr>
               <td class="sc-strat" data-label="Strategy">Over cap=5 EV</td>
-              <td class="num" data-label="n">1</td>
+              <td class="num" data-label="n">2</td>
               <td class="num" data-label="W">0</td>
               <td class="num" data-label="WR">0.0%</td>
               <td class="num" data-label="Units">+0.00u</td>
@@ -691,13 +691,13 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         
             <tr>
               <td class="sc-strat" data-label="Strategy">Under cap=5 EV</td>
-              <td class="num" data-label="n">0</td>
+              <td class="num" data-label="n">1</td>
               <td class="num" data-label="W">0</td>
-              <td class="num" data-label="WR">—</td>
+              <td class="num" data-label="WR">0.0%</td>
               <td class="num" data-label="Units">+0.00u</td>
-              <td class="num" data-label="ROI">&mdash;</td>
+              <td class="num" data-label="ROI">+0.00%</td>
               <td class="num" data-label="Backtest">+3%</td>
-              <td class="center" data-label="Status"><span class="sc-muted">&mdash;</span></td>
+              <td class="center" data-label="Status"><span class="sc-warn">&#9888;</span></td>
             </tr>
         
             <tr>
@@ -715,7 +715,43 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
     </div>
 
         <h4 class="sc-h4">Today's picks (2026-05-30)</h4>
-        <p class="sc-empty">No picks generated for today yet.</p>
+        
+    <div class="table-scroll">
+      <table class="dash sc-picks-table">
+        <thead>
+          <tr>
+            <th>Pick</th>
+            <th>Player</th>
+            <th class="num">Odds</th>
+            <th class="num">Prob</th>
+            <th class="num">Edge</th>
+            <th class="center">Result</th>
+            <th class="num">PnL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Pick">OVER #1</td>
+            <td data-label="Player" class="player">Jonathan Aranda</td>
+            <td class="num" data-label="Odds">700</td>
+            <td class="num" data-label="Prob">0.2121</td>
+            <td class="num" data-label="Edge">0.0871</td>
+            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
+            <td class="num" data-label="PnL">&mdash;</td>
+          </tr>
+        
+          <tr>
+            <td data-label="Pick">UNDER #1</td>
+            <td data-label="Player" class="player">Ronald Acuña Jr.</td>
+            <td class="num" data-label="Odds">-350</td>
+            <td class="num" data-label="Prob">0.8885</td>
+            <td class="num" data-label="Edge">0.1107</td>
+            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
+            <td class="num" data-label="PnL">&mdash;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
         <div class="sc-notes">Strong-filter recommended: Over edge≥0.08 + prob 0.20-0.50 + cap=5 EV. All Phase D validation passed.</div>
       </div>
