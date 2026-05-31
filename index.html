@@ -249,7 +249,7 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
 <div class="wrap">
 
   <h1>TODAY'S LOCKED PICKS &mdash; May 31, 2026 (6am ET)</h1>
-  <div class="subtitle">Last updated: 13:43 ET on May 31, 2026</div>
+  <div class="subtitle">Last updated: 14:23 ET on May 31, 2026</div>
 
   <!-- Tab navigation -->
   <nav class="tab-nav" role="tablist">
@@ -715,8 +715,8 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
           <div class="sc-notes">Steals V7 shipped 5/26, but cross-year revealed true WR=21% / +10-15%/pick. Sidecar config TBD by the steals build chat.</div>
         </div>
       <div class="sc-prop-card" style="border-left:4px solid #0f9a99;">
-        <h3 class="sc-prop-h">HR-RR V2 (K=4 N=6 Closed-Form Parlays)</h3>
-        <div class="sc-prop-status">Sidecar started 2026-05-30 — decision 2026-06-30</div>
+        <h3 class="sc-prop-h">HR-RR V2 (K=3 + K=4 N=6 Combined Closed-Form Parlays)</h3>
+        <div class="sc-prop-status">Sidecar started 2026-05-30 — decision 2026-06-30 (K=4 alone), K=3 added 2026-05-31 after combined audit passed</div>
 
         <h4 class="sc-h4">Per-strategy running totals</h4>
         
@@ -735,6 +735,17 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
           </tr>
         </thead>
         <tbody>
+            <tr>
+              <td class="sc-strat" data-label="Strategy">K=3 N=6 closed-form</td>
+              <td class="num" data-label="n">0</td>
+              <td class="num" data-label="W">0</td>
+              <td class="num" data-label="WR">—</td>
+              <td class="num" data-label="Units">+0.00u</td>
+              <td class="num" data-label="ROI">&mdash;</td>
+              <td class="num" data-label="Backtest">+1868%</td>
+              <td class="center" data-label="Status"><span class="sc-muted">&mdash;</span></td>
+            </tr>
+        
             <tr>
               <td class="sc-strat" data-label="Strategy">K=4 N=6 closed-form</td>
               <td class="num" data-label="n">0</td>
@@ -918,7 +929,7 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
       </table>
     </div>
 
-        <div class="sc-notes">Closed-form ranker beat HR-RR (+1,620% ROI prod) by 1.8× return at 75% capital after testing 11 ML architectures. P(beat HR-RR) = 89% via bootstrap. Cross-year LOYO 2022-2026 STABLE. See hr_rr_v2/HR_RR_V2_REPLICATION_GUIDE.md.</div>
+        <div class="sc-notes">Closed-form ranker beat HR-RR (+1,620% ROI prod) after testing 11 ML architectures. K=3+K=4 combined audit: P(&gt;0)=100%, P(beat HR-RR)&gt;89%, cross-year LOYO 2022-2026 STABLE all years positive. Combined: +20.96u/day at 0.70u/day stake = 2.9× HR-RR daily return at 1.6× stake. See hr_rr_v2/HR_RR_V2_REPLICATION_GUIDE.md.</div>
       </div>
         <div class="sc-prop-card" style="border-left:4px solid #7a3fc2;">
           <h3 class="sc-prop-h">Pitcher Walks</h3>
