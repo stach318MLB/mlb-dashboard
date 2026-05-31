@@ -200,6 +200,20 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
   border-top: 1px dashed var(--c-border-soft);
   line-height: 1.5;
 }
+.sc-pool-help {
+  font-size: 12px; color: var(--c-muted);
+  margin: 0 0 6px; font-style: italic;
+}
+table.sc-pool-table {
+  font-size: 13px;
+  background: #fafcff;
+}
+table.sc-pool-table thead th {
+  background: #eef4fb;
+}
+table.sc-pool-table tbody tr:nth-child(odd) {
+  background: #f7faff;
+}
 
 /* Status glyphs */
 .sc-good { color: var(--c-pos); font-weight: 700; }
@@ -249,7 +263,7 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
 <div class="wrap">
 
   <h1>TODAY'S LOCKED PICKS &mdash; May 31, 2026 (6am ET)</h1>
-  <div class="subtitle">Last updated: 14:29 ET on May 31, 2026</div>
+  <div class="subtitle">Last updated: 14:34 ET on May 31, 2026</div>
 
   <!-- Tab navigation -->
   <nav class="tab-nav" role="tablist">
@@ -601,6 +615,8 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         <h3 class="sc-prop-h">HR (Home Runs)</h3>
         <div class="sc-prop-status">Tracking — decision 2026-07-01</div>
 
+        
+
         <h4 class="sc-h4">Per-strategy running totals</h4>
         
     <div class="table-scroll">
@@ -718,6 +734,94 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         <h3 class="sc-prop-h">HR-RR V2 (K=3 + K=4 N=6 Combined Closed-Form Parlays)</h3>
         <div class="sc-prop-status">Sidecar started 2026-05-30 — decision 2026-06-30 (K=4 alone), K=3 added 2026-05-31 after combined audit passed</div>
 
+        
+    <h4 class="sc-h4">Today's player pool (2026-05-31)</h4>
+    <p class="sc-pool-help">All parlay legs are drawn from these 6 players,
+       ranked by closed-form expected value (hr_v2_prob × payout − loss).</p>
+    <div class="table-scroll">
+      <table class="dash sc-pool-table">
+        <thead>
+          <tr>
+            <th class="num">#</th>
+            <th>Player</th>
+            <th>Team</th>
+            <th>Game time (UTC)</th>
+            <th class="num">HR prob</th>
+            <th class="num">Best odds</th>
+            <th>Source</th>
+            <th class="num">Closed EV</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num" data-label="#">1</td>
+            <td class="player" data-label="Player">Xander Bogaerts</td>
+            <td data-label="Team">SD</td>
+            <td data-label="Game time (UTC)">05-31 17:35</td>
+            <td class="num" data-label="HR prob">21.9%</td>
+            <td class="num" data-label="Best odds">+700</td>
+            <td data-label="Source">Pikkit median</td>
+            <td class="num" data-label="Closed EV">+0.750</td>
+          </tr>
+        
+          <tr>
+            <td class="num" data-label="#">2</td>
+            <td class="player" data-label="Player">Jacob Young</td>
+            <td data-label="Team">WSH</td>
+            <td data-label="Game time (UTC)">05-31 17:35</td>
+            <td class="num" data-label="HR prob">10.7%</td>
+            <td class="num" data-label="Best odds">+1150</td>
+            <td data-label="Source">Pikkit median</td>
+            <td class="num" data-label="Closed EV">+0.336</td>
+          </tr>
+        
+          <tr>
+            <td class="num" data-label="#">3</td>
+            <td class="player" data-label="Player">Nick Kurtz</td>
+            <td data-label="Team">OAK</td>
+            <td data-label="Game time (UTC)">05-31 20:05</td>
+            <td class="num" data-label="HR prob">24.2%</td>
+            <td class="num" data-label="Best odds">+400</td>
+            <td data-label="Source">Pikkit median</td>
+            <td class="num" data-label="Closed EV">+0.212</td>
+          </tr>
+        
+          <tr>
+            <td class="num" data-label="#">4</td>
+            <td class="player" data-label="Player">Brooks Lee</td>
+            <td data-label="Team">MIN</td>
+            <td data-label="Game time (UTC)">05-31 17:35</td>
+            <td class="num" data-label="HR prob">11.8%</td>
+            <td class="num" data-label="Best odds">+850</td>
+            <td data-label="Source">Pikkit median</td>
+            <td class="num" data-label="Closed EV">+0.123</td>
+          </tr>
+        
+          <tr>
+            <td class="num" data-label="#">5</td>
+            <td class="player" data-label="Player">Tristan Gray</td>
+            <td data-label="Team">MIN</td>
+            <td data-label="Game time (UTC)">05-31 17:35</td>
+            <td class="num" data-label="HR prob">12.4%</td>
+            <td class="num" data-label="Best odds">+801</td>
+            <td data-label="Source">Pikkit median</td>
+            <td class="num" data-label="Closed EV">+0.119</td>
+          </tr>
+        
+          <tr>
+            <td class="num" data-label="#">6</td>
+            <td class="player" data-label="Player">Christian Yelich</td>
+            <td data-label="Team">MIL</td>
+            <td data-label="Game time (UTC)">05-31 18:10</td>
+            <td class="num" data-label="HR prob">13.7%</td>
+            <td class="num" data-label="Best odds">+660</td>
+            <td data-label="Source">Pikkit median</td>
+            <td class="num" data-label="Closed EV">+0.041</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
         <h4 class="sc-h4">Per-strategy running totals</h4>
         
     <div class="table-scroll">
@@ -778,46 +882,6 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         <tbody>
           <tr>
             <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Xander Bogaerts + Nicky Lopez + Jacob Young</td>
-            <td class="num" data-label="Odds">259900</td>
-            <td class="num" data-label="Prob">0.001552</td>
-            <td class="num" data-label="Edge">0.001167</td>
-            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
-            <td class="num" data-label="PnL">&mdash;</td>
-          </tr>
-        
-          <tr>
-            <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Xander Bogaerts + Nicky Lopez + Nick Kurtz</td>
-            <td class="num" data-label="Odds">103900</td>
-            <td class="num" data-label="Prob">0.003522</td>
-            <td class="num" data-label="Edge">0.00256</td>
-            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
-            <td class="num" data-label="PnL">&mdash;</td>
-          </tr>
-        
-          <tr>
-            <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Xander Bogaerts + Nicky Lopez + Brooks Lee</td>
-            <td class="num" data-label="Odds">197500</td>
-            <td class="num" data-label="Prob">0.001717</td>
-            <td class="num" data-label="Edge">0.001211</td>
-            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
-            <td class="num" data-label="PnL">&mdash;</td>
-          </tr>
-        
-          <tr>
-            <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Xander Bogaerts + Nicky Lopez + Tristan Gray</td>
-            <td class="num" data-label="Odds">187308</td>
-            <td class="num" data-label="Prob">0.001803</td>
-            <td class="num" data-label="Edge">0.001269</td>
-            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
-            <td class="num" data-label="PnL">&mdash;</td>
-          </tr>
-        
-          <tr>
-            <td data-label="Pick">PARLAY</td>
             <td data-label="Player" class="player">Xander Bogaerts + Jacob Young + Nick Kurtz</td>
             <td class="num" data-label="Odds">49900</td>
             <td class="num" data-label="Prob">0.005668</td>
@@ -848,6 +912,16 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         
           <tr>
             <td data-label="Pick">PARLAY</td>
+            <td data-label="Player" class="player">Xander Bogaerts + Jacob Young + Christian Yelich</td>
+            <td class="num" data-label="Odds">75900</td>
+            <td class="num" data-label="Prob">0.003201</td>
+            <td class="num" data-label="Edge">0.001886</td>
+            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
+            <td class="num" data-label="PnL">&mdash;</td>
+          </tr>
+        
+          <tr>
+            <td data-label="Pick">PARLAY</td>
             <td data-label="Player" class="player">Xander Bogaerts + Nick Kurtz + Brooks Lee</td>
             <td class="num" data-label="Odds">37900</td>
             <td class="num" data-label="Prob">0.006272</td>
@@ -868,6 +942,16 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         
           <tr>
             <td data-label="Pick">PARLAY</td>
+            <td data-label="Player" class="player">Xander Bogaerts + Nick Kurtz + Christian Yelich</td>
+            <td class="num" data-label="Odds">30300</td>
+            <td class="num" data-label="Prob">0.007265</td>
+            <td class="num" data-label="Edge">0.003975</td>
+            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
+            <td class="num" data-label="PnL">&mdash;</td>
+          </tr>
+        
+          <tr>
+            <td data-label="Pick">PARLAY</td>
             <td data-label="Player" class="player">Xander Bogaerts + Brooks Lee + Tristan Gray</td>
             <td class="num" data-label="Odds">68376</td>
             <td class="num" data-label="Prob">0.003211</td>
@@ -878,60 +962,20 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         
           <tr>
             <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Nicky Lopez + Jacob Young + Nick Kurtz</td>
-            <td class="num" data-label="Odds">162400</td>
-            <td class="num" data-label="Prob">0.001721</td>
-            <td class="num" data-label="Edge">0.001105</td>
+            <td data-label="Player" class="player">Xander Bogaerts + Brooks Lee + Christian Yelich</td>
+            <td class="num" data-label="Odds">57660</td>
+            <td class="num" data-label="Prob">0.003542</td>
+            <td class="num" data-label="Edge">0.001811</td>
             <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
             <td class="num" data-label="PnL">&mdash;</td>
           </tr>
         
           <tr>
             <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Nicky Lopez + Jacob Young + Brooks Lee</td>
-            <td class="num" data-label="Odds">308650</td>
-            <td class="num" data-label="Prob">0.000839</td>
-            <td class="num" data-label="Edge">0.000515</td>
-            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
-            <td class="num" data-label="PnL">&mdash;</td>
-          </tr>
-        
-          <tr>
-            <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Nicky Lopez + Jacob Young + Tristan Gray</td>
-            <td class="num" data-label="Odds">292725</td>
-            <td class="num" data-label="Prob">0.000881</td>
-            <td class="num" data-label="Edge">0.000539</td>
-            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
-            <td class="num" data-label="PnL">&mdash;</td>
-          </tr>
-        
-          <tr>
-            <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Nicky Lopez + Nick Kurtz + Brooks Lee</td>
-            <td class="num" data-label="Odds">123400</td>
-            <td class="num" data-label="Prob">0.001904</td>
-            <td class="num" data-label="Edge">0.001094</td>
-            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
-            <td class="num" data-label="PnL">&mdash;</td>
-          </tr>
-        
-          <tr>
-            <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Nicky Lopez + Nick Kurtz + Tristan Gray</td>
-            <td class="num" data-label="Odds">117030</td>
-            <td class="num" data-label="Prob">0.001999</td>
-            <td class="num" data-label="Edge">0.001145</td>
-            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
-            <td class="num" data-label="PnL">&mdash;</td>
-          </tr>
-        
-          <tr>
-            <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Nicky Lopez + Brooks Lee + Tristan Gray</td>
-            <td class="num" data-label="Odds">222447</td>
-            <td class="num" data-label="Prob">0.000975</td>
-            <td class="num" data-label="Edge">0.000525</td>
+            <td data-label="Player" class="player">Xander Bogaerts + Tristan Gray + Christian Yelich</td>
+            <td class="num" data-label="Odds">54681</td>
+            <td class="num" data-label="Prob">0.003719</td>
+            <td class="num" data-label="Edge">0.001894</td>
             <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
             <td class="num" data-label="PnL">&mdash;</td>
           </tr>
@@ -958,10 +1002,40 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         
           <tr>
             <td data-label="Pick">PARLAY</td>
+            <td data-label="Player" class="player">Jacob Young + Nick Kurtz + Christian Yelich</td>
+            <td class="num" data-label="Odds">47400</td>
+            <td class="num" data-label="Prob">0.00355</td>
+            <td class="num" data-label="Edge">0.001444</td>
+            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
+            <td class="num" data-label="PnL">&mdash;</td>
+          </tr>
+        
+          <tr>
+            <td data-label="Pick">PARLAY</td>
             <td data-label="Player" class="player">Jacob Young + Brooks Lee + Tristan Gray</td>
             <td class="num" data-label="Odds">106894</td>
             <td class="num" data-label="Prob">0.001569</td>
             <td class="num" data-label="Edge">0.000634</td>
+            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
+            <td class="num" data-label="PnL">&mdash;</td>
+          </tr>
+        
+          <tr>
+            <td data-label="Pick">PARLAY</td>
+            <td data-label="Player" class="player">Jacob Young + Brooks Lee + Christian Yelich</td>
+            <td class="num" data-label="Odds">90150</td>
+            <td class="num" data-label="Prob">0.001731</td>
+            <td class="num" data-label="Edge">0.000623</td>
+            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
+            <td class="num" data-label="PnL">&mdash;</td>
+          </tr>
+        
+          <tr>
+            <td data-label="Pick">PARLAY</td>
+            <td data-label="Player" class="player">Jacob Young + Tristan Gray + Christian Yelich</td>
+            <td class="num" data-label="Odds">85495</td>
+            <td class="num" data-label="Prob">0.001817</td>
+            <td class="num" data-label="Edge">0.000649</td>
             <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
             <td class="num" data-label="PnL">&mdash;</td>
           </tr>
@@ -978,60 +1052,30 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         
           <tr>
             <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Xander Bogaerts + Nicky Lopez + Jacob Young + Nick Kurtz</td>
-            <td class="num" data-label="Odds">1299900</td>
-            <td class="num" data-label="Prob">0.000376</td>
-            <td class="num" data-label="Edge">0.000299</td>
+            <td data-label="Player" class="player">Nick Kurtz + Brooks Lee + Christian Yelich</td>
+            <td class="num" data-label="Odds">36000</td>
+            <td class="num" data-label="Prob">0.003928</td>
+            <td class="num" data-label="Edge">0.001157</td>
             <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
             <td class="num" data-label="PnL">&mdash;</td>
           </tr>
         
           <tr>
             <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Xander Bogaerts + Nicky Lopez + Jacob Young + Brooks Lee</td>
-            <td class="num" data-label="Odds">2469900</td>
-            <td class="num" data-label="Prob">0.000184</td>
-            <td class="num" data-label="Edge">0.000143</td>
+            <td data-label="Player" class="player">Nick Kurtz + Tristan Gray + Christian Yelich</td>
+            <td class="num" data-label="Odds">34138</td>
+            <td class="num" data-label="Prob">0.004124</td>
+            <td class="num" data-label="Edge">0.001203</td>
             <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
             <td class="num" data-label="PnL">&mdash;</td>
           </tr>
         
           <tr>
             <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Xander Bogaerts + Nicky Lopez + Jacob Young + Tristan Gray</td>
-            <td class="num" data-label="Odds">2342500</td>
-            <td class="num" data-label="Prob">0.000193</td>
-            <td class="num" data-label="Edge">0.00015</td>
-            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
-            <td class="num" data-label="PnL">&mdash;</td>
-          </tr>
-        
-          <tr>
-            <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Xander Bogaerts + Nicky Lopez + Nick Kurtz + Brooks Lee</td>
-            <td class="num" data-label="Odds">987900</td>
-            <td class="num" data-label="Prob">0.000416</td>
-            <td class="num" data-label="Edge">0.000315</td>
-            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
-            <td class="num" data-label="PnL">&mdash;</td>
-          </tr>
-        
-          <tr>
-            <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Xander Bogaerts + Nicky Lopez + Nick Kurtz + Tristan Gray</td>
-            <td class="num" data-label="Odds">936940</td>
-            <td class="num" data-label="Prob">0.000437</td>
-            <td class="num" data-label="Edge">0.00033</td>
-            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
-            <td class="num" data-label="PnL">&mdash;</td>
-          </tr>
-        
-          <tr>
-            <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Xander Bogaerts + Nicky Lopez + Brooks Lee + Tristan Gray</td>
-            <td class="num" data-label="Odds">1780276</td>
-            <td class="num" data-label="Prob">0.000213</td>
-            <td class="num" data-label="Edge">0.000157</td>
+            <td data-label="Player" class="player">Brooks Lee + Tristan Gray + Christian Yelich</td>
+            <td class="num" data-label="Odds">64952</td>
+            <td class="num" data-label="Prob">0.002011</td>
+            <td class="num" data-label="Edge">0.000473</td>
             <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
             <td class="num" data-label="PnL">&mdash;</td>
           </tr>
@@ -1058,10 +1102,40 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         
           <tr>
             <td data-label="Pick">PARLAY</td>
+            <td data-label="Player" class="player">Xander Bogaerts + Jacob Young + Nick Kurtz + Christian Yelich</td>
+            <td class="num" data-label="Odds">379900</td>
+            <td class="num" data-label="Prob">0.000776</td>
+            <td class="num" data-label="Edge">0.000513</td>
+            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
+            <td class="num" data-label="PnL">&mdash;</td>
+          </tr>
+        
+          <tr>
+            <td data-label="Pick">PARLAY</td>
             <td data-label="Player" class="player">Xander Bogaerts + Jacob Young + Brooks Lee + Tristan Gray</td>
             <td class="num" data-label="Odds">855850</td>
             <td class="num" data-label="Prob">0.000343</td>
             <td class="num" data-label="Edge">0.000226</td>
+            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
+            <td class="num" data-label="PnL">&mdash;</td>
+          </tr>
+        
+          <tr>
+            <td data-label="Pick">PARLAY</td>
+            <td data-label="Player" class="player">Xander Bogaerts + Jacob Young + Brooks Lee + Christian Yelich</td>
+            <td class="num" data-label="Odds">721900</td>
+            <td class="num" data-label="Prob">0.000379</td>
+            <td class="num" data-label="Edge">0.00024</td>
+            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
+            <td class="num" data-label="PnL">&mdash;</td>
+          </tr>
+        
+          <tr>
+            <td data-label="Pick">PARLAY</td>
+            <td data-label="Player" class="player">Xander Bogaerts + Jacob Young + Tristan Gray + Christian Yelich</td>
+            <td class="num" data-label="Odds">684660</td>
+            <td class="num" data-label="Prob">0.000397</td>
+            <td class="num" data-label="Edge">0.000251</td>
             <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
             <td class="num" data-label="PnL">&mdash;</td>
           </tr>
@@ -1078,40 +1152,30 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
         
           <tr>
             <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Nicky Lopez + Jacob Young + Nick Kurtz + Brooks Lee</td>
-            <td class="num" data-label="Odds">1543650</td>
-            <td class="num" data-label="Prob">0.000203</td>
-            <td class="num" data-label="Edge">0.000139</td>
+            <td data-label="Player" class="player">Xander Bogaerts + Nick Kurtz + Brooks Lee + Christian Yelich</td>
+            <td class="num" data-label="Odds">288700</td>
+            <td class="num" data-label="Prob">0.000859</td>
+            <td class="num" data-label="Edge">0.000513</td>
             <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
             <td class="num" data-label="PnL">&mdash;</td>
           </tr>
         
           <tr>
             <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Nicky Lopez + Jacob Young + Nick Kurtz + Tristan Gray</td>
-            <td class="num" data-label="Odds">1464025</td>
-            <td class="num" data-label="Prob">0.000214</td>
-            <td class="num" data-label="Edge">0.000145</td>
+            <td data-label="Player" class="player">Xander Bogaerts + Nick Kurtz + Tristan Gray + Christian Yelich</td>
+            <td class="num" data-label="Odds">273804</td>
+            <td class="num" data-label="Prob">0.000902</td>
+            <td class="num" data-label="Edge">0.000537</td>
             <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
             <td class="num" data-label="PnL">&mdash;</td>
           </tr>
         
           <tr>
             <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Nicky Lopez + Jacob Young + Brooks Lee + Tristan Gray</td>
-            <td class="num" data-label="Odds">2781738</td>
-            <td class="num" data-label="Prob">0.000104</td>
-            <td class="num" data-label="Edge">6.8e-05</td>
-            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
-            <td class="num" data-label="PnL">&mdash;</td>
-          </tr>
-        
-          <tr>
-            <td data-label="Pick">PARLAY</td>
-            <td data-label="Player" class="player">Nicky Lopez + Nick Kurtz + Brooks Lee + Tristan Gray</td>
-            <td class="num" data-label="Odds">1112635</td>
-            <td class="num" data-label="Prob">0.000236</td>
-            <td class="num" data-label="Edge">0.000146</td>
+            <td data-label="Player" class="player">Xander Bogaerts + Brooks Lee + Tristan Gray + Christian Yelich</td>
+            <td class="num" data-label="Odds">520318</td>
+            <td class="num" data-label="Prob">0.00044</td>
+            <td class="num" data-label="Edge">0.000248</td>
             <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
             <td class="num" data-label="PnL">&mdash;</td>
           </tr>
@@ -1122,6 +1186,46 @@ table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
             <td class="num" data-label="Odds">534869</td>
             <td class="num" data-label="Prob">0.00038</td>
             <td class="num" data-label="Edge">0.000194</td>
+            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
+            <td class="num" data-label="PnL">&mdash;</td>
+          </tr>
+        
+          <tr>
+            <td data-label="Pick">PARLAY</td>
+            <td data-label="Player" class="player">Jacob Young + Nick Kurtz + Brooks Lee + Christian Yelich</td>
+            <td class="num" data-label="Odds">451150</td>
+            <td class="num" data-label="Prob">0.00042</td>
+            <td class="num" data-label="Edge">0.000198</td>
+            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
+            <td class="num" data-label="PnL">&mdash;</td>
+          </tr>
+        
+          <tr>
+            <td data-label="Pick">PARLAY</td>
+            <td data-label="Player" class="player">Jacob Young + Nick Kurtz + Tristan Gray + Christian Yelich</td>
+            <td class="num" data-label="Odds">427875</td>
+            <td class="num" data-label="Prob">0.000441</td>
+            <td class="num" data-label="Edge">0.000207</td>
+            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
+            <td class="num" data-label="PnL">&mdash;</td>
+          </tr>
+        
+          <tr>
+            <td data-label="Pick">PARLAY</td>
+            <td data-label="Player" class="player">Jacob Young + Brooks Lee + Tristan Gray + Christian Yelich</td>
+            <td class="num" data-label="Odds">813052</td>
+            <td class="num" data-label="Prob">0.000215</td>
+            <td class="num" data-label="Edge">9.2e-05</td>
+            <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
+            <td class="num" data-label="PnL">&mdash;</td>
+          </tr>
+        
+          <tr>
+            <td data-label="Pick">PARLAY</td>
+            <td data-label="Player" class="player">Nick Kurtz + Brooks Lee + Tristan Gray + Christian Yelich</td>
+            <td class="num" data-label="Odds">325161</td>
+            <td class="num" data-label="Prob">0.000488</td>
+            <td class="num" data-label="Edge">0.00018</td>
             <td class="center" data-label="Result"><span class="sc-pending">&#9201;</span></td>
             <td class="num" data-label="PnL">&mdash;</td>
           </tr>
