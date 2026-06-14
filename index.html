@@ -1,1031 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MLB Locked Picks &mdash; June 14, 2026</title>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MLB Prop Model | stach318MLB</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
+:root{--bg:#090d12;--surface:#0f1520;--border:#1a2535;--green:#00ff88;--red:#ff3b5c;--gold:#f5c842;--blue:#3b82f6;--purple:#a855f7;--text:#e2e8f0;--muted:#64748b;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+header{position:sticky;top:0;z-index:10;padding:0 2rem;border-bottom:1px solid var(--border);background:rgba(9,13,18,.95);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.08em;background:linear-gradient(135deg,#00ff88,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hm{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);text-align:right;}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:6px;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(1.3);}}
+main{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:2rem;display:flex;flex-direction:column;gap:2rem;}
+.st{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;}
+.st::after{content:'';flex:1;height:1px;background:var(--border);}
+.kg{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:1rem;}
+.kc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;position:relative;overflow:hidden;}
+.kc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent,var(--green));}
+.kl{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:.5rem;}
+.kv{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:.04em;line-height:1;color:var(--accent,var(--green));}
+.ks{font-size:.72rem;color:var(--muted);margin-top:.3rem;}
+.sb{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem 1.4rem;display:flex;align-items:center;gap:1rem;font-family:'DM Mono',monospace;font-size:.78rem;}
+.tc{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+@media(max-width:900px){.tc{grid-template-columns:1fr;}}
+.cc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem;}
+.cc canvas{max-height:240px;}
+.tbl{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.tbl table{width:100%;border-collapse:collapse;font-size:.82rem;}
+.tbl thead th{background:rgba(0,0,0,.3);padding:.7rem 1rem;text-align:left;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;white-space:nowrap;}
+.tbl tbody tr{border-top:1px solid var(--border);}
+.tbl td{padding:.65rem 1rem;white-space:nowrap;}
+.badge{display:inline-block;padding:.2rem .55rem;border-radius:4px;font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;}
+.badge.green{background:rgba(0,255,136,.12);color:var(--green);}
+.badge.red{background:rgba(255,59,92,.12);color:var(--red);}
+.badge.blue{background:rgba(59,130,246,.12);color:var(--blue);}
+.badge.purple{background:rgba(168,85,247,.12);color:var(--purple);}
+.badge.gold{background:rgba(245,200,66,.12);color:var(--gold);}
+.badge.muted{background:rgba(100,116,139,.12);color:var(--muted);}
+.cbar{display:flex;align-items:center;gap:.5rem;}
+.cfill{height:4px;border-radius:2px;background:linear-gradient(90deg,var(--green),var(--blue));min-width:4px;}
+.mono{font-family:'DM Mono',monospace;}.sm{font-size:.75rem;}.muted{color:var(--muted);}.green{color:var(--green);}.gold{color:var(--gold);}
+.empty{text-align:center;color:var(--muted);padding:2rem!important;font-size:.8rem;}
+.btg{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;}
+.bt-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem;text-align:center;}
+.bt-card::after{content:'';display:block;height:3px;margin-top:.8rem;background:linear-gradient(90deg,var(--green),var(--blue));border-radius:2px;}
+.bt-period{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:.5rem;}
+.bt-wr{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--green);line-height:1;}
+.bt-stats{font-size:.7rem;color:var(--muted);margin-top:.4rem;}
+footer{text-align:center;padding:2rem;font-family:'DM Mono',monospace;font-size:.66rem;color:var(--muted);border-top:1px solid var(--border);}
 
-:root {
-  --c-bg: #ffffff;
-  --c-text: #1a1a1a;
-  --c-muted: #777777;
-  --c-border: #e6e6e6;
-  --c-border-soft: #f0f0f0;
-  --c-card: #fafafa;
-  --c-pos: #1e9d4a;
-  --c-neg: #cc2e2e;
-  --c-accent: #1a1a1a;
+@media(max-width:768px){
+main{padding:1rem;gap:1.2rem;}
+header{height:auto;padding:.75rem 1rem;flex-direction:column;align-items:flex-start;gap:.3rem;}
+.hm{text-align:left;font-size:.65rem;}
+.logo{font-size:1.3rem;}
+.kc{padding:1rem 1.2rem;}
+.kv{font-size:1.8rem;}
+.kg{grid-template-columns:repeat(2,1fr);}
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.tbl table{min-width:480px;}
+.tbl thead th{padding:.6rem .7rem;font-size:.58rem;}
+.tbl td{padding:.55rem .7rem;font-size:.78rem;}
+.tc{grid-template-columns:1fr;}
+.st{font-size:.85rem;}
+.cbar{flex-wrap:wrap;}
+.btg{grid-template-columns:repeat(2,1fr);}
+.sb{flex-direction:column;align-items:flex-start;gap:.4rem;}
 }
-* { box-sizing: border-box; }
-html, body {
-  margin: 0; padding: 0;
-  background: var(--c-bg); color: var(--c-text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 15px; line-height: 1.45;
-  /* Prevent rogue horizontal scroll on narrow viewports */
-  overflow-x: hidden;
-  -webkit-text-size-adjust: 100%;
+@media(max-width:400px){
+.kg{grid-template-columns:1fr 1fr;}
+.kv{font-size:1.5rem;}
+.tbl table{min-width:380px;}
 }
-.wrap { max-width: 1200px; margin: 0 auto; padding: 18px 16px 40px; }
-/* Word-wrap defaults for long names/labels on narrow viewports */
-table.dash td, .stat-strip { word-break: break-word; overflow-wrap: anywhere; }
-
-h1 { font-size: 22px; margin: 0 0 4px; letter-spacing: -0.01em; }
-h2 { font-size: 17px; margin: 28px 0 10px; letter-spacing: -0.005em; font-weight: 600; }
-.subtitle { color: var(--c-muted); font-size: 13px; margin-bottom: 14px; }
-
-/* Stat strip */
-.stat-strip {
-  display: flex; flex-wrap: wrap; gap: 6px 18px;
-  background: var(--c-card); border: 1px solid var(--c-border);
-  border-radius: 8px; padding: 10px 14px; margin-bottom: 8px;
-  font-size: 14px;
-}
-.stat-strip .stat { white-space: nowrap; }
-.stat-strip .stat .lbl { color: var(--c-muted); margin-right: 4px; }
-.stat-strip .stat .val { font-weight: 600; }
-
-/* Model chip */
-.chip {
-  display: inline-block;
-  padding: 2px 8px; border-radius: 999px;
-  color: white; font-size: 12px; font-weight: 600;
-  letter-spacing: 0.02em;
-  min-width: 38px; text-align: center;
-}
-
-/* Direction arrow */
-.dir { font-size: 12px; vertical-align: middle; margin-right: 3px; }
-.dir-over { color: var(--c-pos); }
-.dir-under { color: var(--c-neg); }
-
-/* Status */
-.status { font-weight: 700; }
-.status-won { color: var(--c-pos); }
-.status-lost { color: var(--c-neg); }
-.status-pending, .status-void, .status-push { color: var(--c-muted); }
-
-/* Tables */
-table.dash {
-  width: 100%; border-collapse: collapse;
-  background: var(--c-bg);
-  border: 1px solid var(--c-border); border-radius: 8px;
-  overflow: hidden;
-}
-table.dash th, table.dash td {
-  padding: 8px 10px; text-align: left; font-size: 14px;
-  border-bottom: 1px solid var(--c-border-soft);
-}
-table.dash th {
-  background: #f7f7f7; font-weight: 600; font-size: 12px;
-  text-transform: uppercase; letter-spacing: 0.04em; color: #444;
-}
-table.dash tr:last-child td { border-bottom: none; }
-table.dash td.num, table.dash th.num { text-align: right; font-variant-numeric: tabular-nums; }
-table.dash td.center, table.dash th.center { text-align: center; }
-table.dash .player { font-weight: 600; }
-
-/* Per-pick row highlight */
-table.picks tr.row-won td { background: rgba(30, 157, 74, 0.05); }
-table.picks tr.row-lost td { background: rgba(204, 46, 46, 0.04); }
-table.picks tr.row-notbet td { background: #fafafa; color: #888; }
-table.picks tr.row-notbet td.player-cell { color: #555; }
-
-/* Match-status badges */
-.match-badge {
-  display: inline-block;
-  padding: 1px 6px;
-  border-radius: 3px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  margin-left: 6px;
-  vertical-align: middle;
-}
-.match-multi   { background: #e3f2fd; color: #1565c0; }
-.match-line    { background: #fff3e0; color: #c2691e; }
-.match-notbet  { background: #f0f0f0; color: #999; }
-.match-pending { background: #fffbe6; color: #997a00; }
-
-/* Secondary "Model Performance" section */
-.section-secondary {
-  margin-top: 24px;
-  padding: 12px 14px;
-  border: 1px dashed var(--c-border);
-  border-radius: 8px;
-  background: #fbfbfb;
-}
-.section-secondary h3 {
-  margin: 0 0 8px;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--c-muted);
-  font-weight: 600;
-}
-.section-secondary .help {
-  font-size: 12px;
-  color: var(--c-muted);
-  margin-bottom: 8px;
-}
-
-/* Footer */
-.footer {
-  margin-top: 28px; padding-top: 16px;
-  border-top: 1px solid var(--c-border);
-  color: var(--c-muted); font-size: 12px;
-  line-height: 1.6;
-}
-.footer a { color: var(--c-muted); text-decoration: underline; }
-
-/* Mobile: collapse tables to cards */
-@media (max-width: 720px) {
-  body { font-size: 14px; }
-  .wrap { padding: 12px 10px 30px; }
-  h1 { font-size: 19px; }
-  .stat-strip { gap: 4px 12px; padding: 8px 10px; font-size: 13px; }
-
-  /* Picks table -> stacked cards */
-  table.picks thead { display: none; }
-  table.picks, table.picks tbody, table.picks tr, table.picks td {
-    display: block; width: 100%;
-  }
-  table.picks tr {
-    border: 1px solid var(--c-border);
-    border-radius: 8px;
-    margin-bottom: 8px;
-    padding: 8px 10px;
-    background: var(--c-bg);
-  }
-  table.picks tr.row-won { border-left: 3px solid var(--c-pos); }
-  table.picks tr.row-lost { border-left: 3px solid var(--c-neg); }
-  table.picks td {
-    border: none; padding: 2px 0;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  table.picks td::before {
-    content: attr(data-label);
-    color: var(--c-muted); font-size: 12px;
-    text-transform: uppercase; letter-spacing: 0.04em;
-    margin-right: 8px;
-  }
-  table.picks td.player-cell { font-size: 15px; font-weight: 600; }
-  table.picks td.player-cell::before { content: ""; }
-
-  /* Other tables -> compact horizontal scroll */
-  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-}
+</style></head><body>
+<header>
+  <div class="logo">&#9918; MLB Prop Model</div>
+  <div class="hm"><div><span class="dot"></span>stach318MLB <a href="hc.html" style="margin-left:1.2rem;font-size:.7rem;letter-spacing:.06em;color:#ffb800;text-decoration:none;border-bottom:1px solid #ffb800;padding-bottom:1px">HC &rarr;</a> <a href="mx.html" style="margin-left:.6rem;font-size:.7rem;letter-spacing:.06em;color:#9c27b0;text-decoration:none;border-bottom:1px solid #9c27b0;padding-bottom:1px">Mixed &rarr;</a> <a href="running_list.html" style="margin-left:.6rem;font-size:.7rem;letter-spacing:.06em;color:var(--green);text-decoration:none;border-bottom:1px solid var(--green);padding-bottom:1px">All Bets &rarr;</a> <a href="hr.html" style="margin-left:.6rem;font-size:.7rem;letter-spacing:.06em;color:var(--green);text-decoration:none;border-bottom:1px solid var(--green);padding-bottom:1px">HR Picks &rarr;</a> <a href="future_models.html" style="margin-left:.6rem;font-size:.7rem;letter-spacing:.06em;color:var(--gold,#ffb800);text-decoration:none;border-bottom:1px solid var(--gold,#ffb800);padding-bottom:1px">Future Models &rarr;</a></div><div>Updated June 14, 2026 07:04 AM</div></div>
+</header><main>
+<section><div class="st">2026 Season Performance <span style="font-size:.7rem;color:var(--muted);font-family:'DM Mono',monospace">Tracking from Apr 7</span></div><div class="kg">
+<div class="kc" style="--accent:var(--green)"><div class="kl">Record</div><div class="kv">632W-415L</div><div class="ks">1047 bets placed</div></div>
+<div class="kc" style="--accent:#00ff88"><div class="kl">Win Rate</div><div class="kv">60.4%</div><div class="ks">Breakeven: 55.0%</div></div>
+<div class="kc" style="--accent:#00ff88"><div class="kl">Net P&amp;L</div><div class="kv">+81.42u</div><div class="ks">1 unit per bet</div></div>
+<div class="kc" style="--accent:#00ff88"><div class="kl">ROI</div><div class="kv">7.8%</div><div class="ks">Return on investment</div></div>
+</div></section>
+<div class="tc"><div class="cc"><div class="st" style="font-size:.85rem">Bankroll Curve</div><canvas id="bkC"></canvas></div><div class="cc"><div class="st" style="font-size:.85rem">Monthly Win Rate</div><canvas id="mC"></canvas></div></div>
 
 
-/* ==== Tab nav ==== */
-.tab-nav {
-  display: flex; gap: 4px;
-  border-bottom: 2px solid var(--c-border);
-  margin: 8px 0 18px;
-  overflow-x: auto; -webkit-overflow-scrolling: touch;
-}
-.tab-nav button {
-  background: none; border: none;
-  padding: 10px 18px;
-  font-size: 15px; font-weight: 600;
-  color: var(--c-muted); cursor: pointer;
-  border-bottom: 3px solid transparent;
-  margin-bottom: -2px;
-  white-space: nowrap;
-}
-.tab-nav button.active {
-  color: var(--c-text);
-  border-bottom-color: var(--c-pos);
-}
-.tab-nav button:hover { color: var(--c-text); }
-.tab-panel { display: none; }
-.tab-panel.active { display: block; }
 
-/* ==== Sidecar tab ==== */
-.sc-intro {
-  background: #f7f9fc; border: 1px solid var(--c-border);
-  border-radius: 8px; padding: 12px 14px;
-  margin-bottom: 18px; font-size: 14px; line-height: 1.5;
-}
-.sc-intro p { margin: 0 0 6px; }
-.sc-intro p:last-child { margin-bottom: 0; }
 
-.sc-prop-card {
-  background: var(--c-bg);
-  border: 1px solid var(--c-border);
-  border-radius: 10px;
-  padding: 14px 16px;
-  margin-bottom: 18px;
-}
-.sc-prop-h { margin: 0; font-size: 18px; }
-.sc-prop-status {
-  font-size: 12px; color: var(--c-muted);
-  text-transform: uppercase; letter-spacing: 0.04em;
-  margin-top: 2px; margin-bottom: 12px;
-}
-.sc-h4 {
-  font-size: 13px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.04em;
-  color: #555; margin: 16px 0 6px;
-}
-.sc-empty {
-  color: var(--c-muted); font-style: italic;
-  padding: 12px; background: #fafafa; border-radius: 6px;
-  font-size: 13px; margin: 6px 0;
-}
-.sc-notes {
-  font-size: 12px; color: var(--c-muted);
-  margin-top: 10px; padding-top: 10px;
-  border-top: 1px dashed var(--c-border-soft);
-  line-height: 1.5;
-}
-.sc-pool-help {
-  font-size: 12px; color: var(--c-muted);
-  margin: 0 0 6px; font-style: italic;
-}
-table.sc-pool-table {
-  font-size: 13px;
-  background: #fafcff;
-}
-table.sc-pool-table thead th {
-  background: #eef4fb;
-}
-table.sc-pool-table tbody tr:nth-child(odd) {
-  background: #f7faff;
-}
 
-/* Status glyphs */
-.sc-good { color: var(--c-pos); font-weight: 700; }
-.sc-warn { color: #f1a325; font-weight: 700; }
-.sc-bad  { color: var(--c-neg); font-weight: 700; }
-.sc-muted { color: var(--c-muted); }
-.sc-pending { color: var(--c-muted); }
-
-/* Mobile collapse */
-@media (max-width: 720px) {
-  .sc-prop-card { padding: 12px 10px; margin-bottom: 14px; }
-  .sc-prop-h { font-size: 16px; }
-  .sc-intro { font-size: 13px; padding: 10px; }
-  .tab-nav button { padding: 8px 12px; font-size: 14px; }
-  /* Stacked-card sidecar strategy table on mobile */
-  table.sc-strat-table thead,
-  table.sc-picks-table thead { display: none; }
-  table.sc-strat-table, table.sc-strat-table tbody,
-  table.sc-strat-table tr, table.sc-strat-table td,
-  table.sc-picks-table, table.sc-picks-table tbody,
-  table.sc-picks-table tr, table.sc-picks-table td {
-    display: block; width: 100%;
-  }
-  table.sc-strat-table tr, table.sc-picks-table tr {
-    border: 1px solid var(--c-border);
-    border-radius: 6px;
-    margin-bottom: 6px; padding: 6px 8px;
-    background: var(--c-bg);
-  }
-  table.sc-strat-table td, table.sc-picks-table td {
-    border: none; padding: 2px 0;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  table.sc-strat-table td::before, table.sc-picks-table td::before {
-    content: attr(data-label);
-    color: var(--c-muted); font-size: 11px;
-    text-transform: uppercase; letter-spacing: 0.04em;
-    margin-right: 8px;
-  }
-  table.sc-strat-table .sc-strat,
-  table.sc-picks-table .player { font-weight: 700; }
-}
-
-</style>
-</head>
-<body>
-<div class="wrap">
-
-  <h1>TODAY'S LOCKED PICKS &mdash; June 14, 2026 (6am ET)</h1>
-  <div class="subtitle">Last updated: 06:05 ET on Jun 14, 2026</div>
-
-  <!-- Tab navigation -->
-  <nav class="tab-nav" role="tablist">
-    <button class="active" data-tab="tab-production" role="tab">Production (6 models)</button>
-    <button data-tab="tab-sidecar" role="tab">Experimental Sidecar</button>
-    <button data-tab="tab-hr30" role="tab">HR Top 30</button>
-  </nav>
-
-  <!-- PRODUCTION TAB -->
-  <section id="tab-production" class="tab-panel active" role="tabpanel">
-
-    
-    <table class="dash picks">
-      <thead>
-        <tr>
-          <th class="num">#</th>
-          <th>Model</th>
-          <th>Player</th>
-          <th>Team</th>
-          <th>Time</th>
-          <th class="num">Line</th>
-          <th>Dir</th>
-          <th class="num">Odds</th>
-          <th class="num">Pikkit Taken</th>
-          <th class="num">Actual P&amp;L</th>
-          <th class="num">Model P&amp;L</th>
-          <th class="num">Edge</th>
-          <th class="num">EV</th>
-        </tr>
-      </thead>
-      <tbody>
-        
-        <tr class="">
-          <td class="num" data-label="#">1</td>
-          <td data-label="Model"><span class="chip" style="background:#1e6fd9">Outs</span></td>
-          <td class="player-cell player" data-label="Player">Gavin Williams<span class="match-badge match-pending">PENDING MATCH</span></td>
-          <td data-label="Team">CLE</td>
-          <td data-label="Time">1:40 PM</td>
-          <td class="num" data-label="Line">17.5</td>
-          <td data-label="Dir"><span class="dir dir-over">&#9650;</span>Over</td>
-          <td class="num" data-label="Odds">-117</td>
-          <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Actual P&amp;L"><span style="color:var(--c-muted)">pending</span></td>
-          <td class="num" data-label="Model P&amp;L" style="color:var(--c-muted)"><span style="color:var(--c-muted)">—</span></td>
-          <td class="num" data-label="Edge">13.9pp</td>
-          <td class="num" data-label="EV">+0.257</td>
-        </tr>
-        
-        <tr class="">
-          <td class="num" data-label="#">2</td>
-          <td data-label="Model"><span class="chip" style="background:#1e6fd9">Outs</span></td>
-          <td class="player-cell player" data-label="Player">Freddy Peralta<span class="match-badge match-pending">PENDING MATCH</span></td>
-          <td data-label="Team">NYM</td>
-          <td data-label="Time">1:40 PM</td>
-          <td class="num" data-label="Line">18.5</td>
-          <td data-label="Dir"><span class="dir dir-under">&#9660;</span>Under</td>
-          <td class="num" data-label="Odds">-164</td>
-          <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Actual P&amp;L"><span style="color:var(--c-muted)">pending</span></td>
-          <td class="num" data-label="Model P&amp;L" style="color:var(--c-muted)"><span style="color:var(--c-muted)">—</span></td>
-          <td class="num" data-label="Edge">15.1pp</td>
-          <td class="num" data-label="EV">+0.243</td>
-        </tr>
-        
-        <tr class="">
-          <td class="num" data-label="#">3</td>
-          <td data-label="Model"><span class="chip" style="background:#1e9d4a">Hits</span></td>
-          <td class="player-cell player" data-label="Player">Ty France<span class="match-badge match-pending">PENDING MATCH</span></td>
-          <td data-label="Team">SD</td>
-          <td data-label="Time">1:35 PM</td>
-          <td class="num" data-label="Line">0.5</td>
-          <td data-label="Dir"><span class="dir dir-under">&#9660;</span>Under</td>
-          <td class="num" data-label="Odds">+190</td>
-          <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Actual P&amp;L"><span style="color:var(--c-muted)">pending</span></td>
-          <td class="num" data-label="Model P&amp;L" style="color:var(--c-muted)"><span style="color:var(--c-muted)">—</span></td>
-          <td class="num" data-label="Edge">29.3pp</td>
-          <td class="num" data-label="EV">+0.850</td>
-        </tr>
-        
-        <tr class="">
-          <td class="num" data-label="#">4</td>
-          <td data-label="Model"><span class="chip" style="background:#1e9d4a">Hits</span></td>
-          <td class="player-cell player" data-label="Player">Kyle Karros<span class="match-badge match-pending">PENDING MATCH</span></td>
-          <td data-label="Team">COL</td>
-          <td data-label="Time">3:05 PM</td>
-          <td class="num" data-label="Line">0.5</td>
-          <td data-label="Dir"><span class="dir dir-under">&#9660;</span>Under</td>
-          <td class="num" data-label="Odds">+190</td>
-          <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Actual P&amp;L"><span style="color:var(--c-muted)">pending</span></td>
-          <td class="num" data-label="Model P&amp;L" style="color:var(--c-muted)"><span style="color:var(--c-muted)">—</span></td>
-          <td class="num" data-label="Edge">27.8pp</td>
-          <td class="num" data-label="EV">+0.807</td>
-        </tr>
-        
-        <tr class="">
-          <td class="num" data-label="#">5</td>
-          <td data-label="Model"><span class="chip" style="background:#1e9d4a">Hits</span></td>
-          <td class="player-cell player" data-label="Player">Rhys Hoskins<span class="match-badge match-pending">PENDING MATCH</span></td>
-          <td data-label="Team">CLE</td>
-          <td data-label="Time">1:40 PM</td>
-          <td class="num" data-label="Line">0.5</td>
-          <td data-label="Dir"><span class="dir dir-under">&#9660;</span>Under</td>
-          <td class="num" data-label="Odds">+134</td>
-          <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Actual P&amp;L"><span style="color:var(--c-muted)">pending</span></td>
-          <td class="num" data-label="Model P&amp;L" style="color:var(--c-muted)"><span style="color:var(--c-muted)">—</span></td>
-          <td class="num" data-label="Edge">34.0pp</td>
-          <td class="num" data-label="EV">+0.795</td>
-        </tr>
-        
-        <tr class="">
-          <td class="num" data-label="#">6</td>
-          <td data-label="Model"><span class="chip" style="background:#7a3fc2">SK</span></td>
-          <td class="player-cell player" data-label="Player">Emmet Sheehan<span class="match-badge match-pending">PENDING MATCH</span></td>
-          <td data-label="Team">LAD</td>
-          <td data-label="Time">&mdash;</td>
-          <td class="num" data-label="Line">7.5</td>
-          <td data-label="Dir"><span class="dir dir-over">&#9650;</span>Over</td>
-          <td class="num" data-label="Odds">+440</td>
-          <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Actual P&amp;L"><span style="color:var(--c-muted)">pending</span></td>
-          <td class="num" data-label="Model P&amp;L" style="color:var(--c-muted)"><span style="color:var(--c-muted)">—</span></td>
-          <td class="num" data-label="Edge">12.6pp</td>
-          <td class="num" data-label="EV">+0.679</td>
-        </tr>
-        
-        <tr class="">
-          <td class="num" data-label="#">7</td>
-          <td data-label="Model"><span class="chip" style="background:#7a3fc2">SK</span></td>
-          <td class="player-cell player" data-label="Player">Nathan Eovaldi<span class="match-badge match-pending">PENDING MATCH</span></td>
-          <td data-label="Team">TEX</td>
-          <td data-label="Time">7:20 PM</td>
-          <td class="num" data-label="Line">5.5</td>
-          <td data-label="Dir"><span class="dir dir-over">&#9650;</span>Over</td>
-          <td class="num" data-label="Odds">+147</td>
-          <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Actual P&amp;L"><span style="color:var(--c-muted)">pending</span></td>
-          <td class="num" data-label="Model P&amp;L" style="color:var(--c-muted)"><span style="color:var(--c-muted)">—</span></td>
-          <td class="num" data-label="Edge">12.1pp</td>
-          <td class="num" data-label="EV">+0.298</td>
-        </tr>
-        
-        <tr class="">
-          <td class="num" data-label="#">8</td>
-          <td data-label="Model"><span class="chip" style="background:#7a3fc2">SK</span></td>
-          <td class="player-cell player" data-label="Player">Nathan Eovaldi<span class="match-badge match-pending">PENDING MATCH</span></td>
-          <td data-label="Team">TEX</td>
-          <td data-label="Time">7:20 PM</td>
-          <td class="num" data-label="Line">4.5</td>
-          <td data-label="Dir"><span class="dir dir-over">&#9650;</span>Over</td>
-          <td class="num" data-label="Odds">-144</td>
-          <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Actual P&amp;L"><span style="color:var(--c-muted)">pending</span></td>
-          <td class="num" data-label="Model P&amp;L" style="color:var(--c-muted)"><span style="color:var(--c-muted)">—</span></td>
-          <td class="num" data-label="Edge">8.2pp</td>
-          <td class="num" data-label="EV">+0.138</td>
-        </tr>
-        
-        <tr class="">
-          <td class="num" data-label="#">9</td>
-          <td data-label="Model"><span class="chip" style="background:#e07a1e">TB</span></td>
-          <td class="player-cell player" data-label="Player">Willi Castro<span class="match-badge match-pending">PENDING MATCH</span></td>
-          <td data-label="Team">COL</td>
-          <td data-label="Time">3:05 PM</td>
-          <td class="num" data-label="Line">1.5</td>
-          <td data-label="Dir"><span class="dir dir-under">&#9660;</span>Under</td>
-          <td class="num" data-label="Odds">-100</td>
-          <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Actual P&amp;L"><span style="color:var(--c-muted)">pending</span></td>
-          <td class="num" data-label="Model P&amp;L" style="color:var(--c-muted)"><span style="color:var(--c-muted)">—</span></td>
-          <td class="num" data-label="Edge">33.1pp</td>
-          <td class="num" data-label="EV">+0.663</td>
-        </tr>
-        
-        <tr class="">
-          <td class="num" data-label="#">10</td>
-          <td data-label="Model"><span class="chip" style="background:#e07a1e">TB</span></td>
-          <td class="player-cell player" data-label="Player">Tyler Soderstrom<span class="match-badge match-pending">PENDING MATCH</span></td>
-          <td data-label="Team">OAK</td>
-          <td data-label="Time">3:05 PM</td>
-          <td class="num" data-label="Line">2.5</td>
-          <td data-label="Dir"><span class="dir dir-under">&#9660;</span>Under</td>
-          <td class="num" data-label="Odds">-140</td>
-          <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Actual P&amp;L"><span style="color:var(--c-muted)">pending</span></td>
-          <td class="num" data-label="Model P&amp;L" style="color:var(--c-muted)"><span style="color:var(--c-muted)">—</span></td>
-          <td class="num" data-label="Edge">19.5pp</td>
-          <td class="num" data-label="EV">+0.335</td>
-        </tr>
-        
-        <tr class="">
-          <td class="num" data-label="#">11</td>
-          <td data-label="Model"><span class="chip" style="background:#e07a1e">TB</span></td>
-          <td class="player-cell player" data-label="Player">James Wood<span class="match-badge match-pending">PENDING MATCH</span></td>
-          <td data-label="Team">WSH</td>
-          <td data-label="Time">1:35 PM</td>
-          <td class="num" data-label="Line">3.5</td>
-          <td data-label="Dir"><span class="dir dir-over">&#9650;</span>Over</td>
-          <td class="num" data-label="Odds">+255</td>
-          <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Actual P&amp;L"><span style="color:var(--c-muted)">pending</span></td>
-          <td class="num" data-label="Model P&amp;L" style="color:var(--c-muted)"><span style="color:var(--c-muted)">—</span></td>
-          <td class="num" data-label="Edge">6.2pp</td>
-          <td class="num" data-label="EV">+0.222</td>
-        </tr>
-        
-        <tr class="">
-          <td class="num" data-label="#">12</td>
-          <td data-label="Model"><span class="chip" style="background:#0f9a99">HRR</span></td>
-          <td class="player-cell player" data-label="Player">Jarren Duran<span class="match-badge match-pending">PENDING MATCH</span></td>
-          <td data-label="Team">BOS</td>
-          <td data-label="Time">7:20 PM</td>
-          <td class="num" data-label="Line">1.5</td>
-          <td data-label="Dir"><span class="dir dir-under">&#9660;</span>Under</td>
-          <td class="num" data-label="Odds">+118</td>
-          <td class="num" data-label="Pikkit Taken">&mdash;</td>
-          <td class="num" data-label="Actual P&amp;L"><span style="color:var(--c-muted)">pending</span></td>
-          <td class="num" data-label="Model P&amp;L" style="color:var(--c-muted)"><span style="color:var(--c-muted)">—</span></td>
-          <td class="num" data-label="Edge">9.9pp</td>
-          <td class="num" data-label="EV">+0.216</td>
-        </tr>
-        
-      </tbody>
-    </table>
-    
-
-    <h2>Today's running tally (placed bets)</h2>
-    
-    <div class="stat-strip">
-      <div class="stat"><span class="lbl">Placed</span><span class="val">0</span></div>
-      <div class="stat"><span class="lbl">W</span><span class="val" style="color:var(--c-pos)">0</span></div>
-      <div class="stat"><span class="lbl">L</span><span class="val" style="color:var(--c-neg)">0</span></div>
-      <div class="stat"><span class="lbl">Pending</span><span class="val">0</span></div>
-      <div class="stat"><span class="lbl">Not Bet</span><span class="val" style="color:var(--c-muted)">0</span></div>
-      <div class="stat"><span class="lbl">Units</span><span class="val" style="color:var(--c-muted)">+0.00u</span></div>
-      <div class="stat"><span class="lbl">ROI</span><span class="val" style="color:var(--c-muted)">&mdash;</span></div>
-    </div>
-    
-
-    <h2>Season totals (placed bets, since April 8, 2026)</h2>
-    
-    <div class="stat-strip">
-      <div class="stat"><span class="lbl">Placed</span><span class="val">125</span></div>
-      <div class="stat"><span class="lbl">W</span><span class="val" style="color:var(--c-pos)">41</span></div>
-      <div class="stat"><span class="lbl">L</span><span class="val" style="color:var(--c-neg)">84</span></div>
-      <div class="stat"><span class="lbl">WR</span><span class="val">32.80%</span></div>
-      <div class="stat"><span class="lbl">Units</span><span class="val" style="color:var(--c-pos)">+12.55u</span></div>
-      <div class="stat"><span class="lbl">ROI</span><span class="val" style="color:var(--c-pos)">+10.04%</span></div>
-      <div class="stat"><span class="lbl">At Risk</span><span class="val" style="color:var(--c-muted)">166.24u</span></div>
-    </div>
-    
-
-    <h2 style="margin-top:18px;">Per-model breakdown (placed bets)</h2>
-    
-    <div class="table-scroll">
-      <table class="dash">
-        <thead>
-          <tr>
-            <th>Model</th>
-            <th class="num">Placed</th>
-            <th class="num">W</th>
-            <th class="num">L</th>
-            <th class="num">WR</th>
-            <th class="num">Units</th>
-            <th class="num">ROI</th>
-          </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td><span class="chip" style="background:#1e6fd9">Outs</span></td>
-          <td class="num" data-label="n">38</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">24</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">14</td>
-          <td class="num" data-label="WR">63.16%</td>
-          <td class="num" data-label="Units" style="color:var(--c-pos); font-weight:600;">+12.18u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-pos)">+32.06%</td>
-        </tr>
-        
-        <tr>
-          <td><span class="chip" style="background:#1e9d4a">Hits</span></td>
-          <td class="num" data-label="n">30</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">5</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">25</td>
-          <td class="num" data-label="WR">16.67%</td>
-          <td class="num" data-label="Units" style="color:var(--c-neg); font-weight:600;">-14.10u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-neg)">-47.01%</td>
-        </tr>
-        
-        <tr>
-          <td><span class="chip" style="background:#7a3fc2">SK</span></td>
-          <td class="num" data-label="n">19</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">3</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">16</td>
-          <td class="num" data-label="WR">15.79%</td>
-          <td class="num" data-label="Units" style="color:var(--c-pos); font-weight:600;">+9.90u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-pos)">+52.11%</td>
-        </tr>
-        
-        <tr>
-          <td><span class="chip" style="background:#e07a1e">TB</span></td>
-          <td class="num" data-label="n">18</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">4</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">14</td>
-          <td class="num" data-label="WR">22.22%</td>
-          <td class="num" data-label="Units" style="color:var(--c-neg); font-weight:600;">-4.29u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-neg)">-23.83%</td>
-        </tr>
-        
-        <tr>
-          <td><span class="chip" style="background:#cc2e2e">BK</span></td>
-          <td class="num" data-label="n">9</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">3</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">6</td>
-          <td class="num" data-label="WR">33.33%</td>
-          <td class="num" data-label="Units" style="color:var(--c-pos); font-weight:600;">+9.70u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-pos)">+107.78%</td>
-        </tr>
-        
-        <tr>
-          <td><span class="chip" style="background:#0f9a99">HRR</span></td>
-          <td class="num" data-label="n">11</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">2</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">9</td>
-          <td class="num" data-label="WR">18.18%</td>
-          <td class="num" data-label="Units" style="color:var(--c-neg); font-weight:600;">-0.84u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-neg)">-7.63%</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    
-
-    <h2>Last 7 days (placed bets)</h2>
-    
-    <div class="table-scroll">
-      <table class="dash">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th class="num">n</th>
-            <th class="num">W</th>
-            <th class="num">L</th>
-            <th class="num">Pending</th>
-            <th class="num">Units</th>
-            <th class="num">ROI</th>
-          </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>Sun Jun 14</td>
-          <td class="num" data-label="n">12</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">0</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">0</td>
-          <td class="num" data-label="Pending" style="color:var(--c-muted)">0</td>
-          <td class="num" data-label="Units" style="color:var(--c-muted); font-weight:600;">+0.00u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-muted)">&mdash;</td>
-        </tr>
-        
-        <tr>
-          <td>Sat Jun 13</td>
-          <td class="num" data-label="n">10</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">1</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">0</td>
-          <td class="num" data-label="Pending" style="color:var(--c-muted)">7</td>
-          <td class="num" data-label="Units" style="color:var(--c-pos); font-weight:600;">+0.77u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-pos)">+76.90%</td>
-        </tr>
-        
-        <tr>
-          <td>Fri Jun 12</td>
-          <td class="num" data-label="n">12</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">2</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">1</td>
-          <td class="num" data-label="Pending" style="color:var(--c-muted)">9</td>
-          <td class="num" data-label="Units" style="color:var(--c-pos); font-weight:600;">+3.43u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-pos)">+114.35%</td>
-        </tr>
-        
-        <tr>
-          <td>Thu Jun 11</td>
-          <td class="num" data-label="n">11</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">1</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">6</td>
-          <td class="num" data-label="Pending" style="color:var(--c-muted)">2</td>
-          <td class="num" data-label="Units" style="color:var(--c-neg); font-weight:600;">-4.59u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-neg)">-65.58%</td>
-        </tr>
-        
-        <tr>
-          <td>Wed Jun 10</td>
-          <td class="num" data-label="n">12</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">0</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">9</td>
-          <td class="num" data-label="Pending" style="color:var(--c-muted)">3</td>
-          <td class="num" data-label="Units" style="color:var(--c-neg); font-weight:600;">-9.00u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-neg)">-100.00%</td>
-        </tr>
-        
-        <tr>
-          <td>Tue Jun 9</td>
-          <td class="num" data-label="n">11</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">1</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">5</td>
-          <td class="num" data-label="Pending" style="color:var(--c-muted)">5</td>
-          <td class="num" data-label="Units" style="color:var(--c-neg); font-weight:600;">-3.14u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-neg)">-52.38%</td>
-        </tr>
-        
-        <tr>
-          <td>Mon Jun 8</td>
-          <td class="num" data-label="n">11</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">0</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">1</td>
-          <td class="num" data-label="Pending" style="color:var(--c-muted)">7</td>
-          <td class="num" data-label="Units" style="color:var(--c-neg); font-weight:600;">-1.00u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-neg)">-100.00%</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    
-
-    <!-- Secondary: model performance (theoretical) -->
-    <div class="section-secondary">
-      <h3>Model Performance (theoretical &mdash; if every locked pick had been bet)</h3>
-      <p class="help">These numbers grade every pick the model locked at 6am, regardless of whether you placed it. Use them to evaluate the model; the headline numbers above are your actual P&amp;L.</p>
-
-      <div style="margin-bottom:6px; font-size:12px; color:var(--c-muted); text-transform:uppercase; letter-spacing:0.04em;">Today (theoretical)</div>
-      
-    <div class="stat-strip" style="background:#fbfbfb">
-      <div class="stat"><span class="lbl">Locked</span><span class="val">12</span></div>
-      <div class="stat"><span class="lbl">W</span><span class="val" style="color:var(--c-pos)">0</span></div>
-      <div class="stat"><span class="lbl">L</span><span class="val" style="color:var(--c-neg)">0</span></div>
-      <div class="stat"><span class="lbl">Pending</span><span class="val">12</span></div>
-      <div class="stat"><span class="lbl">Units</span><span class="val" style="color:var(--c-muted)">+0.00u</span></div>
-      <div class="stat"><span class="lbl">ROI</span><span class="val" style="color:var(--c-muted)">&mdash;</span></div>
-    </div>
-    
-
-      <div style="margin-top:12px; margin-bottom:6px; font-size:12px; color:var(--c-muted); text-transform:uppercase; letter-spacing:0.04em;">Season (theoretical)</div>
-      
-    <div class="stat-strip" style="background:#fbfbfb">
-      <div class="stat"><span class="lbl">Locked</span><span class="val">183</span></div>
-      <div class="stat"><span class="lbl">W</span><span class="val" style="color:var(--c-pos)">68</span></div>
-      <div class="stat"><span class="lbl">L</span><span class="val" style="color:var(--c-neg)">115</span></div>
-      <div class="stat"><span class="lbl">WR</span><span class="val">37.16%</span></div>
-      <div class="stat"><span class="lbl">Units</span><span class="val" style="color:var(--c-pos)">+20.53u</span></div>
-      <div class="stat"><span class="lbl">ROI</span><span class="val" style="color:var(--c-pos)">+11.22%</span></div>
-    </div>
-    
-
-      <div style="margin-top:12px; margin-bottom:6px; font-size:12px; color:var(--c-muted); text-transform:uppercase; letter-spacing:0.04em;">Per-model (theoretical)</div>
-      
-    <div class="table-scroll">
-      <table class="dash">
-        <thead>
-          <tr>
-            <th>Model</th>
-            <th class="num">Locked</th>
-            <th class="num">W</th>
-            <th class="num">L</th>
-            <th class="num">WR</th>
-            <th class="num">Units</th>
-            <th class="num">ROI</th>
-          </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td><span class="chip" style="background:#1e6fd9">Outs</span></td>
-          <td class="num" data-label="n">47</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">29</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">18</td>
-          <td class="num" data-label="WR">61.70%</td>
-          <td class="num" data-label="Units" style="color:var(--c-pos); font-weight:600;">+11.99u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-pos)">+25.50%</td>
-        </tr>
-        
-        <tr>
-          <td><span class="chip" style="background:#1e9d4a">Hits</span></td>
-          <td class="num" data-label="n">43</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">10</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">33</td>
-          <td class="num" data-label="WR">23.26%</td>
-          <td class="num" data-label="Units" style="color:var(--c-neg); font-weight:600;">-13.73u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-neg)">-31.92%</td>
-        </tr>
-        
-        <tr>
-          <td><span class="chip" style="background:#7a3fc2">SK</span></td>
-          <td class="num" data-label="n">35</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">6</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">29</td>
-          <td class="num" data-label="WR">17.14%</td>
-          <td class="num" data-label="Units" style="color:var(--c-pos); font-weight:600;">+1.62u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-pos)">+4.63%</td>
-        </tr>
-        
-        <tr>
-          <td><span class="chip" style="background:#e07a1e">TB</span></td>
-          <td class="num" data-label="n">31</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">13</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">18</td>
-          <td class="num" data-label="WR">41.94%</td>
-          <td class="num" data-label="Units" style="color:var(--c-pos); font-weight:600;">+4.61u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-pos)">+14.86%</td>
-        </tr>
-        
-        <tr>
-          <td><span class="chip" style="background:#cc2e2e">BK</span></td>
-          <td class="num" data-label="n">10</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">4</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">6</td>
-          <td class="num" data-label="WR">40.00%</td>
-          <td class="num" data-label="Units" style="color:var(--c-pos); font-weight:600;">+15.16u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-pos)">+151.60%</td>
-        </tr>
-        
-        <tr>
-          <td><span class="chip" style="background:#0f9a99">HRR</span></td>
-          <td class="num" data-label="n">17</td>
-          <td class="num" data-label="W" style="color:var(--c-pos)">6</td>
-          <td class="num" data-label="L" style="color:var(--c-neg)">11</td>
-          <td class="num" data-label="WR">35.29%</td>
-          <td class="num" data-label="Units" style="color:var(--c-pos); font-weight:600;">+0.89u</td>
-          <td class="num" data-label="ROI" style="color:var(--c-pos)">+5.23%</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    
-    </div>
-
-  </section>
-
-  <!-- EXPERIMENTAL SIDECAR TAB -->
-  <section id="tab-sidecar" class="tab-panel" role="tabpanel">
-    
-      <div class="sc-intro">
-        <p><strong>Experimental sidecar tracking.</strong> These models run in
-        parallel with the locked 6-model production but their picks are NOT
-        bet automatically. Each prop tracks 5 selection strategies in parallel
-        — after ~30 days of forward data, the winning strategy ships to
-        production (or model is deprecated).</p>
-        <p>Decision points: HR &mdash; 2026-07-01. HR-RR V2 &mdash; 2026-06-30
-        after 30 days of live PnL.</p>
-      </div>
-      
-      <div class="sc-prop-card" style="border-left:4px solid #cc6600;">
-        <h3 class="sc-prop-h">HR (Home Runs)</h3>
-        <div class="sc-prop-status">Tracking — decision 2026-07-01</div>
-
-        
-
-        <h4 class="sc-h4">Per-strategy running totals</h4>
-        
-    <div class="table-scroll">
-      <table class="dash sc-strat-table">
-        <thead>
-          <tr>
-            <th>Strategy</th>
-            <th class="num">n</th>
-            <th class="num">W</th>
-            <th class="num">WR</th>
-            <th class="num">Units</th>
-            <th class="num">ROI</th>
-            <th class="num">Backtest</th>
-            <th class="center">vs BT</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr>
-              <td class="sc-strat" data-label="Strategy">Over cap=3 EV</td>
-              <td class="num" data-label="n">26</td>
-              <td class="num" data-label="W">17</td>
-              <td class="num" data-label="WR">65.4%</td>
-              <td class="num" data-label="Units">+69.32u</td>
-              <td class="num" data-label="ROI">+266.62%</td>
-              <td class="num" data-label="Backtest">+91%</td>
-              <td class="center" data-label="Status"><span class="sc-good">&#10003;</span></td>
-            </tr>
-        
-            <tr>
-              <td class="sc-strat" data-label="Strategy">Over cap=5 EV</td>
-              <td class="num" data-label="n">26</td>
-              <td class="num" data-label="W">17</td>
-              <td class="num" data-label="WR">65.4%</td>
-              <td class="num" data-label="Units">+69.32u</td>
-              <td class="num" data-label="ROI">+266.62%</td>
-              <td class="num" data-label="Backtest">+63%</td>
-              <td class="center" data-label="Status"><span class="sc-good">&#10003;</span></td>
-            </tr>
-        
-            <tr>
-              <td class="sc-strat" data-label="Strategy">Over skip-1 (ranks 2-3)</td>
-              <td class="num" data-label="n">1</td>
-              <td class="num" data-label="W">1</td>
-              <td class="num" data-label="WR">100.0%</td>
-              <td class="num" data-label="Units">+3.72u</td>
-              <td class="num" data-label="ROI">+372.00%</td>
-              <td class="num" data-label="Backtest">+105%</td>
-              <td class="center" data-label="Status"><span class="sc-good">&#10003;</span></td>
-            </tr>
-        
-            <tr>
-              <td class="sc-strat" data-label="Strategy">Under cap=5 EV</td>
-              <td class="num" data-label="n">38</td>
-              <td class="num" data-label="W">26</td>
-              <td class="num" data-label="WR">68.4%</td>
-              <td class="num" data-label="Units">-1.65u</td>
-              <td class="num" data-label="ROI">-4.35%</td>
-              <td class="num" data-label="Backtest">+3%</td>
-              <td class="center" data-label="Status"><span class="sc-bad">&#10007;</span></td>
-            </tr>
-        
-            <tr>
-              <td class="sc-strat" data-label="Strategy">Parlay ranks 1+3</td>
-              <td class="num" data-label="n">0</td>
-              <td class="num" data-label="W">0</td>
-              <td class="num" data-label="WR">—</td>
-              <td class="num" data-label="Units">+0.00u</td>
-              <td class="num" data-label="ROI">&mdash;</td>
-              <td class="num" data-label="Backtest">+361%</td>
-              <td class="center" data-label="Status"><span class="sc-muted">&mdash;</span></td>
-            </tr>
-        </tbody>
-      </table>
-    </div>
-
-        <h4 class="sc-h4">Today's picks (2026-06-14)</h4>
-        <p class="sc-empty">No picks generated for today yet.</p>
-
-        <div class="sc-notes">Strong-filter recommended: Over edge≥0.08 + prob 0.20-0.50 + cap=5 EV. All Phase D validation passed.</div>
-      </div>
-      <div class="sc-prop-card" style="border-left:4px solid #0f9a99;">
-        <h3 class="sc-prop-h">HR-RR V2 (K=3 + K=4 N=6 Combined Closed-Form Parlays)</h3>
-        <div class="sc-prop-status">Sidecar started 2026-05-30 — decision 2026-06-30 (K=4 alone), K=3 added 2026-05-31 after combined audit passed</div>
-
-        
-
-        <h4 class="sc-h4">Per-strategy running totals</h4>
-        
-    <div class="table-scroll">
-      <table class="dash sc-strat-table">
-        <thead>
-          <tr>
-            <th>Strategy</th>
-            <th class="num">n</th>
-            <th class="num">W</th>
-            <th class="num">WR</th>
-            <th class="num">Units</th>
-            <th class="num">ROI</th>
-            <th class="num">Backtest</th>
-            <th class="center">vs BT</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr>
-              <td class="sc-strat" data-label="Strategy">K=3 N=6 closed-form</td>
-              <td class="num" data-label="n">0</td>
-              <td class="num" data-label="W">0</td>
-              <td class="num" data-label="WR">—</td>
-              <td class="num" data-label="Units">+0.00u</td>
-              <td class="num" data-label="ROI">&mdash;</td>
-              <td class="num" data-label="Backtest">+1868%</td>
-              <td class="center" data-label="Status"><span class="sc-muted">&mdash;</span></td>
-            </tr>
-        
-            <tr>
-              <td class="sc-strat" data-label="Strategy">K=4 N=6 closed-form</td>
-              <td class="num" data-label="n">0</td>
-              <td class="num" data-label="W">0</td>
-              <td class="num" data-label="WR">—</td>
-              <td class="num" data-label="Units">+0.00u</td>
-              <td class="num" data-label="ROI">&mdash;</td>
-              <td class="num" data-label="Backtest">+4497%</td>
-              <td class="center" data-label="Status"><span class="sc-muted">&mdash;</span></td>
-            </tr>
-        </tbody>
-      </table>
-    </div>
-
-        <h4 class="sc-h4">Today's picks (2026-06-14)</h4>
-        <p class="sc-empty">No picks generated for today yet.</p>
-
-        <div class="sc-notes">Closed-form ranker beat HR-RR (+1,620% ROI prod) after testing 11 ML architectures. K=3+K=4 combined audit: P(&gt;0)=100%, P(beat HR-RR)&gt;89%, cross-year LOYO 2022-2026 STABLE all years positive. Combined: +20.96u/day at 0.70u/day stake = 2.9× HR-RR daily return at 1.6× stake. See hr_rr_v2/HR_RR_V2_REPLICATION_GUIDE.md.</div>
-      </div>
-  </section>
-
-  <!-- HR TOP 30 TAB (display-only accuracy model — no PnL by design) -->
-  <section id="tab-hr30" class="tab-panel" role="tabpanel">
-    <p style="color:var(--c-muted); padding:16px;">No HR Top-30 list for 2026-06-14 yet — populates with the 11 AM ET sidecar run once lineups post.</p>
-  </section>
-
-  <div class="footer">
-    <div><strong>Strategy:</strong> 6am ET lock, ROI_Weighted_EV at cap=10, drop SK/HRR day games.
-    Per-model: Outs EV / Hits EV_skip1 / SK EV / TB cap20 / BK cap20 / HRR cap10.</div>
-    <div style="margin-top:4px;"><strong>Models:</strong> HRR V1 / SK V5 MIN_B / TB V3 MIN_X / Hits V6 / BK V6 / Outs V6 (all locked 2026-05-25)</div>
-    <div style="margin-top:4px;">Spec: <a href="STRATEGY_LOCK.md">STRATEGY_LOCK.md</a> &middot; Auto-revalidates 2026-07-01</div>
-  </div>
-
+<section><div class="st">2026 Model Performance <span style="font-size:.7rem;color:var(--muted);font-family:'DM Mono',monospace">Paper trading from Apr 7 — per model</span></div>
+<div class="kgd"><div class="kc" style="--accent:#00ff88"><div class="kl">Hits</div><div style="display:flex;justify-content:space-between;align-items:baseline;margin:.4rem 0"><span class="kv" style="color:#00ff88">+5.70u</span><span style="font-family:DM Mono,monospace;font-size:.8rem;color:#00ff88">+40.7%</span></div><div style="font-family:DM Mono,monospace;font-size:.72rem;color:#64748b">9W-5L</div><div style="margin-top:.5rem;background:#1a2535;border-radius:3px;height:4px"><div style="width:80%;background:#00ff88;height:4px;border-radius:3px"></div></div><div style="display:flex;justify-content:space-between;font-size:.6rem;color:#64748b;margin-top:2px"><span>Win: <span style="color:#00ff88">64.3%</span></span><span>BE: 46.4%</span></div></div><div class="kc" style="--accent:#00ff88"><div class="kl">batter_hrr</div><div style="display:flex;justify-content:space-between;align-items:baseline;margin:.4rem 0"><span class="kv" style="color:#00ff88">+6.29u</span><span style="font-family:DM Mono,monospace;font-size:.8rem;color:#00ff88">+6.5%</span></div><div style="font-family:DM Mono,monospace;font-size:.72rem;color:#64748b">51W-46L</div><div style="margin-top:.5rem;background:#1a2535;border-radius:3px;height:4px"><div style="width:65%;background:#00ff88;height:4px;border-radius:3px"></div></div><div style="display:flex;justify-content:space-between;font-size:.6rem;color:#64748b;margin-top:2px"><span>Win: <span style="color:#00ff88">52.6%</span></span><span>BE: 49.5%</span></div></div><div class="kc" style="--accent:#00ff88"><div class="kl">BK (Batter Strikeouts)</div><div style="display:flex;justify-content:space-between;align-items:baseline;margin:.4rem 0"><span class="kv" style="color:#00ff88">+19.52u</span><span style="font-family:DM Mono,monospace;font-size:.8rem;color:#00ff88">+15.9%</span></div><div style="font-family:DM Mono,monospace;font-size:.72rem;color:#64748b">94W-29L</div><div style="margin-top:.5rem;background:#1a2535;border-radius:3px;height:4px"><div style="width:95%;background:#00ff88;height:4px;border-radius:3px"></div></div><div style="display:flex;justify-content:space-between;font-size:.6rem;color:#64748b;margin-top:2px"><span>Win: <span style="color:#00ff88">76.4%</span></span><span>BE: 65.9%</span></div></div><div class="kc" style="--accent:#00ff88"><div class="kl">Total Bases</div><div style="display:flex;justify-content:space-between;align-items:baseline;margin:.4rem 0"><span class="kv" style="color:#00ff88">+4.05u</span><span style="font-family:DM Mono,monospace;font-size:.8rem;color:#00ff88">+1.2%</span></div><div style="font-family:DM Mono,monospace;font-size:.72rem;color:#64748b">196W-148L</div><div style="margin-top:.5rem;background:#1a2535;border-radius:3px;height:4px"><div style="width:71%;background:#00ff88;height:4px;border-radius:3px"></div></div><div style="display:flex;justify-content:space-between;font-size:.6rem;color:#64748b;margin-top:2px"><span>Win: <span style="color:#00ff88">57.0%</span></span><span>BE: 55.8%</span></div></div><div class="kc" style="--accent:#00ff88"><div class="kl">pitcher_outs</div><div style="display:flex;justify-content:space-between;align-items:baseline;margin:.4rem 0"><span class="kv" style="color:#00ff88">+45.86u</span><span style="font-family:DM Mono,monospace;font-size:.8rem;color:#00ff88">+9.8%</span></div><div style="font-family:DM Mono,monospace;font-size:.72rem;color:#64748b">282W-187L</div><div style="margin-top:.5rem;background:#1a2535;border-radius:3px;height:4px"><div style="width:75%;background:#00ff88;height:4px;border-radius:3px"></div></div><div style="display:flex;justify-content:space-between;font-size:.6rem;color:#64748b;margin-top:2px"><span>Win: <span style="color:#00ff88">60.1%</span></span><span>BE: 53.6%</span></div></div></div></section>
+<section><div class="st">Performance Segmentation <span style="font-size:.7rem;color:var(--muted);font-family:'DM Mono',monospace">By edge bucket, odds bucket &amp; daily trend</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+<div><div style="font-size:.75rem;color:#64748b;margin-bottom:.4rem">BY EDGE BUCKET</div><div class="tbl"><table><thead><tr><th>Edge</th><th>Bets</th><th>WR%</th><th>ROI%</th><th>P&amp;L</th></tr></thead><tbody><tr><td class="mono sm">0-5%</td><td class="mono sm">43</td><td class="mono sm" style="color:#00ff88">60.5%</td><td class="mono sm" style="color:#00ff88">+10.3%</td><td class="mono sm" style="color:#00ff88">+4.43u</td></tr><tr><td class="mono sm">5-10%</td><td class="mono sm">249</td><td class="mono sm" style="color:#00ff88">56.2%</td><td class="mono sm" style="color:#ff4444">-0.2%</td><td class="mono sm" style="color:#ff4444">-0.53u</td></tr><tr><td class="mono sm">10-15%</td><td class="mono sm">205</td><td class="mono sm" style="color:#00ff88">53.2%</td><td class="mono sm" style="color:#00ff88">+3.1%</td><td class="mono sm" style="color:#00ff88">+6.42u</td></tr><tr><td class="mono sm">15-20%</td><td class="mono sm">120</td><td class="mono sm" style="color:#00ff88">55.8%</td><td class="mono sm" style="color:#00ff88">+11.8%</td><td class="mono sm" style="color:#00ff88">+14.13u</td></tr><tr><td class="mono sm">20%+</td><td class="mono sm">137</td><td class="mono sm" style="color:#00ff88">58.4%</td><td class="mono sm" style="color:#00ff88">+13.0%</td><td class="mono sm" style="color:#00ff88">+17.81u</td></tr></tbody></table></div></div>
+<div><div style="font-size:.75rem;color:#64748b;margin-bottom:.4rem">BY ODDS BUCKET</div><div class="tbl"><table><thead><tr><th>Odds</th><th>Bets</th><th>WR%</th><th>ROI%</th><th>P&amp;L</th></tr></thead><tbody><tr><td class="mono sm">-200+</td><td class="mono sm">24</td><td class="mono sm" style="color:#ff4444">45.8%</td><td class="mono sm" style="color:#ff4444">-33.3%</td><td class="mono sm" style="color:#ff4444">-8.00u</td></tr><tr><td class="mono sm">-200 to -150</td><td class="mono sm">163</td><td class="mono sm" style="color:#00ff88">60.1%</td><td class="mono sm" style="color:#ff4444">-2.9%</td><td class="mono sm" style="color:#ff4444">-4.66u</td></tr><tr><td class="mono sm">-150 to -120</td><td class="mono sm">168</td><td class="mono sm" style="color:#00ff88">63.1%</td><td class="mono sm" style="color:#00ff88">+11.2%</td><td class="mono sm" style="color:#00ff88">+18.82u</td></tr><tr><td class="mono sm">-120 to -100</td><td class="mono sm">165</td><td class="mono sm" style="color:#00ff88">56.4%</td><td class="mono sm" style="color:#00ff88">+8.2%</td><td class="mono sm" style="color:#00ff88">+13.53u</td></tr><tr><td class="mono sm">+100 to +150</td><td class="mono sm">261</td><td class="mono sm" style="color:#ff4444">47.9%</td><td class="mono sm" style="color:#00ff88">+3.4%</td><td class="mono sm" style="color:#00ff88">+8.80u</td></tr><tr><td class="mono sm">+150+</td><td class="mono sm">26</td><td class="mono sm" style="color:#ff4444">46.2%</td><td class="mono sm" style="color:#00ff88">+24.0%</td><td class="mono sm" style="color:#00ff88">+6.25u</td></tr></tbody></table></div></div>
 </div>
+<div><div style="font-size:.75rem;color:#64748b;margin-bottom:.4rem">DAILY TREND</div><div class="tbl"><table><thead><tr><th>Date</th><th>Bets</th><th>WR%</th><th>ROI%</th><th>Day P&amp;L</th><th>Cumulative</th></tr></thead><tbody><tr><td class="mono sm">2026-04-07</td><td class="mono sm">3</td><td class="mono sm" style="color:#00ff88">66.7%</td><td class="mono sm" style="color:#00ff88">+25.5%</td><td class="mono sm" style="color:#00ff88">+0.76u</td><td class="mono sm" style="color:#00ff88">+0.76u</td></tr><tr><td class="mono sm">2026-04-08</td><td class="mono sm">21</td><td class="mono sm" style="color:#00ff88">52.4%</td><td class="mono sm" style="color:#00ff88">+0.4%</td><td class="mono sm" style="color:#00ff88">+0.08u</td><td class="mono sm" style="color:#00ff88">+0.85u</td></tr><tr><td class="mono sm">2026-04-09</td><td class="mono sm">3</td><td class="mono sm" style="color:#ff4444">33.3%</td><td class="mono sm" style="color:#ff4444">-34.9%</td><td class="mono sm" style="color:#ff4444">-1.05u</td><td class="mono sm" style="color:#ff4444">-0.20u</td></tr><tr><td class="mono sm">2026-04-10</td><td class="mono sm">6</td><td class="mono sm" style="color:#00ff88">83.3%</td><td class="mono sm" style="color:#00ff88">+70.2%</td><td class="mono sm" style="color:#00ff88">+4.21u</td><td class="mono sm" style="color:#00ff88">+4.02u</td></tr><tr><td class="mono sm">2026-04-11</td><td class="mono sm">19</td><td class="mono sm" style="color:#00ff88">68.4%</td><td class="mono sm" style="color:#00ff88">+23.6%</td><td class="mono sm" style="color:#00ff88">+4.49u</td><td class="mono sm" style="color:#00ff88">+8.50u</td></tr><tr><td class="mono sm">2026-04-12</td><td class="mono sm">21</td><td class="mono sm" style="color:#00ff88">61.9%</td><td class="mono sm" style="color:#00ff88">+20.4%</td><td class="mono sm" style="color:#00ff88">+4.29u</td><td class="mono sm" style="color:#00ff88">+12.80u</td></tr><tr><td class="mono sm">2026-04-13</td><td class="mono sm">9</td><td class="mono sm" style="color:#ff4444">33.3%</td><td class="mono sm" style="color:#ff4444">-34.7%</td><td class="mono sm" style="color:#ff4444">-3.12u</td><td class="mono sm" style="color:#00ff88">+9.68u</td></tr><tr><td class="mono sm">2026-04-14</td><td class="mono sm">16</td><td class="mono sm" style="color:#00ff88">75.0%</td><td class="mono sm" style="color:#00ff88">+63.9%</td><td class="mono sm" style="color:#00ff88">+10.22u</td><td class="mono sm" style="color:#00ff88">+19.89u</td></tr><tr><td class="mono sm">2026-04-15</td><td class="mono sm">8</td><td class="mono sm" style="color:#00ff88">100.0%</td><td class="mono sm" style="color:#00ff88">+75.8%</td><td class="mono sm" style="color:#00ff88">+6.07u</td><td class="mono sm" style="color:#00ff88">+25.96u</td></tr><tr><td class="mono sm">2026-04-16</td><td class="mono sm">8</td><td class="mono sm" style="color:#ff4444">50.0%</td><td class="mono sm" style="color:#ff4444">-12.5%</td><td class="mono sm" style="color:#ff4444">-1.00u</td><td class="mono sm" style="color:#00ff88">+24.96u</td></tr><tr><td class="mono sm">2026-04-17</td><td class="mono sm">6</td><td class="mono sm" style="color:#00ff88">66.7%</td><td class="mono sm" style="color:#00ff88">+21.7%</td><td class="mono sm" style="color:#00ff88">+1.30u</td><td class="mono sm" style="color:#00ff88">+26.26u</td></tr><tr><td class="mono sm">2026-04-18</td><td class="mono sm">9</td><td class="mono sm" style="color:#00ff88">66.7%</td><td class="mono sm" style="color:#00ff88">+39.0%</td><td class="mono sm" style="color:#00ff88">+3.51u</td><td class="mono sm" style="color:#00ff88">+29.77u</td></tr><tr><td class="mono sm">2026-04-19</td><td class="mono sm">9</td><td class="mono sm" style="color:#ff4444">33.3%</td><td class="mono sm" style="color:#ff4444">-35.3%</td><td class="mono sm" style="color:#ff4444">-3.18u</td><td class="mono sm" style="color:#00ff88">+26.60u</td></tr><tr><td class="mono sm">2026-04-20</td><td class="mono sm">11</td><td class="mono sm" style="color:#00ff88">63.6%</td><td class="mono sm" style="color:#00ff88">+26.6%</td><td class="mono sm" style="color:#00ff88">+2.92u</td><td class="mono sm" style="color:#00ff88">+29.52u</td></tr><tr><td class="mono sm">2026-04-21</td><td class="mono sm">9</td><td class="mono sm" style="color:#ff4444">44.4%</td><td class="mono sm" style="color:#ff4444">-4.3%</td><td class="mono sm" style="color:#ff4444">-0.38u</td><td class="mono sm" style="color:#00ff88">+29.14u</td></tr><tr><td class="mono sm">2026-04-22</td><td class="mono sm">2</td><td class="mono sm" style="color:#ff4444">0.0%</td><td class="mono sm" style="color:#ff4444">-100.0%</td><td class="mono sm" style="color:#ff4444">-2.00u</td><td class="mono sm" style="color:#00ff88">+27.14u</td></tr><tr><td class="mono sm">2026-04-24</td><td class="mono sm">10</td><td class="mono sm" style="color:#00ff88">60.0%</td><td class="mono sm" style="color:#00ff88">+15.7%</td><td class="mono sm" style="color:#00ff88">+1.57u</td><td class="mono sm" style="color:#00ff88">+28.71u</td></tr><tr><td class="mono sm">2026-04-25</td><td class="mono sm">8</td><td class="mono sm" style="color:#ff4444">50.0%</td><td class="mono sm" style="color:#ff4444">-5.1%</td><td class="mono sm" style="color:#ff4444">-0.41u</td><td class="mono sm" style="color:#00ff88">+28.30u</td></tr><tr><td class="mono sm">2026-04-26</td><td class="mono sm">18</td><td class="mono sm" style="color:#ff4444">50.0%</td><td class="mono sm" style="color:#ff4444">-11.9%</td><td class="mono sm" style="color:#ff4444">-2.15u</td><td class="mono sm" style="color:#00ff88">+26.15u</td></tr><tr><td class="mono sm">2026-04-27</td><td class="mono sm">13</td><td class="mono sm" style="color:#ff4444">30.8%</td><td class="mono sm" style="color:#ff4444">-45.3%</td><td class="mono sm" style="color:#ff4444">-5.89u</td><td class="mono sm" style="color:#00ff88">+20.26u</td></tr><tr><td class="mono sm">2026-04-28</td><td class="mono sm">15</td><td class="mono sm" style="color:#ff4444">40.0%</td><td class="mono sm" style="color:#ff4444">-20.2%</td><td class="mono sm" style="color:#ff4444">-3.04u</td><td class="mono sm" style="color:#00ff88">+17.23u</td></tr><tr><td class="mono sm">2026-04-29</td><td class="mono sm">24</td><td class="mono sm" style="color:#00ff88">62.5%</td><td class="mono sm" style="color:#00ff88">+19.3%</td><td class="mono sm" style="color:#00ff88">+4.62u</td><td class="mono sm" style="color:#00ff88">+21.85u</td></tr><tr><td class="mono sm">2026-04-30</td><td class="mono sm">12</td><td class="mono sm" style="color:#ff4444">50.0%</td><td class="mono sm" style="color:#ff4444">-0.4%</td><td class="mono sm" style="color:#ff4444">-0.05u</td><td class="mono sm" style="color:#00ff88">+21.80u</td></tr><tr><td class="mono sm">2026-05-01</td><td class="mono sm">27</td><td class="mono sm" style="color:#ff4444">51.9%</td><td class="mono sm" style="color:#ff4444">-4.2%</td><td class="mono sm" style="color:#ff4444">-1.12u</td><td class="mono sm" style="color:#00ff88">+20.68u</td></tr><tr><td class="mono sm">2026-05-02</td><td class="mono sm">35</td><td class="mono sm" style="color:#00ff88">57.1%</td><td class="mono sm" style="color:#00ff88">+14.4%</td><td class="mono sm" style="color:#00ff88">+5.04u</td><td class="mono sm" style="color:#00ff88">+25.72u</td></tr><tr><td class="mono sm">2026-05-03</td><td class="mono sm">25</td><td class="mono sm" style="color:#00ff88">64.0%</td><td class="mono sm" style="color:#00ff88">+21.1%</td><td class="mono sm" style="color:#00ff88">+5.27u</td><td class="mono sm" style="color:#00ff88">+30.99u</td></tr><tr><td class="mono sm">2026-05-04</td><td class="mono sm">19</td><td class="mono sm" style="color:#00ff88">68.4%</td><td class="mono sm" style="color:#00ff88">+34.8%</td><td class="mono sm" style="color:#00ff88">+6.62u</td><td class="mono sm" style="color:#00ff88">+37.60u</td></tr><tr><td class="mono sm">2026-05-05</td><td class="mono sm">16</td><td class="mono sm" style="color:#ff4444">50.0%</td><td class="mono sm" style="color:#ff4444">-8.6%</td><td class="mono sm" style="color:#ff4444">-1.37u</td><td class="mono sm" style="color:#00ff88">+36.23u</td></tr><tr><td class="mono sm">2026-05-06</td><td class="mono sm">26</td><td class="mono sm" style="color:#00ff88">57.7%</td><td class="mono sm" style="color:#00ff88">+5.3%</td><td class="mono sm" style="color:#00ff88">+1.37u</td><td class="mono sm" style="color:#00ff88">+37.60u</td></tr><tr><td class="mono sm">2026-05-07</td><td class="mono sm">18</td><td class="mono sm" style="color:#00ff88">66.7%</td><td class="mono sm" style="color:#00ff88">+26.8%</td><td class="mono sm" style="color:#00ff88">+4.83u</td><td class="mono sm" style="color:#00ff88">+42.42u</td></tr><tr><td class="mono sm">2026-05-08</td><td class="mono sm">25</td><td class="mono sm" style="color:#00ff88">56.0%</td><td class="mono sm" style="color:#00ff88">+12.1%</td><td class="mono sm" style="color:#00ff88">+3.03u</td><td class="mono sm" style="color:#00ff88">+45.45u</td></tr><tr><td class="mono sm">2026-05-09</td><td class="mono sm">31</td><td class="mono sm" style="color:#00ff88">54.8%</td><td class="mono sm" style="color:#00ff88">-0.0%</td><td class="mono sm" style="color:#00ff88">-0.00u</td><td class="mono sm" style="color:#00ff88">+45.45u</td></tr><tr><td class="mono sm">2026-05-10</td><td class="mono sm">32</td><td class="mono sm" style="color:#ff4444">46.9%</td><td class="mono sm" style="color:#ff4444">-11.8%</td><td class="mono sm" style="color:#ff4444">-3.79u</td><td class="mono sm" style="color:#00ff88">+41.66u</td></tr><tr><td class="mono sm">2026-05-11</td><td class="mono sm">10</td><td class="mono sm" style="color:#00ff88">70.0%</td><td class="mono sm" style="color:#00ff88">+38.0%</td><td class="mono sm" style="color:#00ff88">+3.80u</td><td class="mono sm" style="color:#00ff88">+45.46u</td></tr><tr><td class="mono sm">2026-05-12</td><td class="mono sm">27</td><td class="mono sm" style="color:#ff4444">40.7%</td><td class="mono sm" style="color:#ff4444">-24.1%</td><td class="mono sm" style="color:#ff4444">-6.52u</td><td class="mono sm" style="color:#00ff88">+38.94u</td></tr><tr><td class="mono sm">2026-05-13</td><td class="mono sm">25</td><td class="mono sm" style="color:#ff4444">48.0%</td><td class="mono sm" style="color:#ff4444">-13.6%</td><td class="mono sm" style="color:#ff4444">-3.40u</td><td class="mono sm" style="color:#00ff88">+35.54u</td></tr><tr><td class="mono sm">2026-05-14</td><td class="mono sm">27</td><td class="mono sm" style="color:#ff4444">44.4%</td><td class="mono sm" style="color:#ff4444">-17.1%</td><td class="mono sm" style="color:#ff4444">-4.61u</td><td class="mono sm" style="color:#00ff88">+30.92u</td></tr><tr><td class="mono sm">2026-05-15</td><td class="mono sm">24</td><td class="mono sm" style="color:#00ff88">66.7%</td><td class="mono sm" style="color:#00ff88">+19.4%</td><td class="mono sm" style="color:#00ff88">+4.65u</td><td class="mono sm" style="color:#00ff88">+35.58u</td></tr><tr><td class="mono sm">2026-05-16</td><td class="mono sm">19</td><td class="mono sm" style="color:#00ff88">68.4%</td><td class="mono sm" style="color:#00ff88">+22.7%</td><td class="mono sm" style="color:#00ff88">+4.32u</td><td class="mono sm" style="color:#00ff88">+39.89u</td></tr><tr><td class="mono sm">2026-05-17</td><td class="mono sm">13</td><td class="mono sm" style="color:#00ff88">53.8%</td><td class="mono sm" style="color:#00ff88">+3.1%</td><td class="mono sm" style="color:#00ff88">+0.40u</td><td class="mono sm" style="color:#00ff88">+40.30u</td></tr><tr><td class="mono sm">2026-05-18</td><td class="mono sm">11</td><td class="mono sm" style="color:#ff4444">45.5%</td><td class="mono sm" style="color:#ff4444">-13.4%</td><td class="mono sm" style="color:#ff4444">-1.47u</td><td class="mono sm" style="color:#00ff88">+38.82u</td></tr><tr><td class="mono sm">2026-05-19</td><td class="mono sm">18</td><td class="mono sm" style="color:#ff4444">50.0%</td><td class="mono sm" style="color:#ff4444">-11.0%</td><td class="mono sm" style="color:#ff4444">-1.98u</td><td class="mono sm" style="color:#00ff88">+36.84u</td></tr><tr><td class="mono sm">2026-05-20</td><td class="mono sm">15</td><td class="mono sm" style="color:#ff4444">26.7%</td><td class="mono sm" style="color:#ff4444">-53.8%</td><td class="mono sm" style="color:#ff4444">-8.07u</td><td class="mono sm" style="color:#00ff88">+28.77u</td></tr><tr><td class="mono sm">2026-05-21</td><td class="mono sm">6</td><td class="mono sm" style="color:#00ff88">66.7%</td><td class="mono sm" style="color:#00ff88">+28.8%</td><td class="mono sm" style="color:#00ff88">+1.73u</td><td class="mono sm" style="color:#00ff88">+30.50u</td></tr><tr><td class="mono sm">2026-05-22</td><td class="mono sm">11</td><td class="mono sm" style="color:#ff4444">45.5%</td><td class="mono sm" style="color:#ff4444">-0.2%</td><td class="mono sm" style="color:#ff4444">-0.02u</td><td class="mono sm" style="color:#00ff88">+30.48u</td></tr><tr><td class="mono sm">2026-05-23</td><td class="mono sm">19</td><td class="mono sm" style="color:#00ff88">52.6%</td><td class="mono sm" style="color:#ff4444">-6.7%</td><td class="mono sm" style="color:#ff4444">-1.28u</td><td class="mono sm" style="color:#00ff88">+29.20u</td></tr><tr><td class="mono sm">2026-05-24</td><td class="mono sm">15</td><td class="mono sm" style="color:#00ff88">53.3%</td><td class="mono sm" style="color:#ff4444">-8.4%</td><td class="mono sm" style="color:#ff4444">-1.26u</td><td class="mono sm" style="color:#00ff88">+27.95u</td></tr><tr><td class="mono sm">2026-05-25</td><td class="mono sm">17</td><td class="mono sm" style="color:#00ff88">64.7%</td><td class="mono sm" style="color:#00ff88">+17.4%</td><td class="mono sm" style="color:#00ff88">+2.96u</td><td class="mono sm" style="color:#00ff88">+30.91u</td></tr><tr><td class="mono sm">2026-06-10</td><td class="mono sm">16</td><td class="mono sm" style="color:#ff4444">43.8%</td><td class="mono sm" style="color:#ff4444">-21.9%</td><td class="mono sm" style="color:#ff4444">-3.50u</td><td class="mono sm" style="color:#00ff88">+27.41u</td></tr><tr><td class="mono sm">2026-06-11</td><td class="mono sm">3</td><td class="mono sm" style="color:#ff4444">33.3%</td><td class="mono sm" style="color:#ff4444">-31.7%</td><td class="mono sm" style="color:#ff4444">-0.95u</td><td class="mono sm" style="color:#00ff88">+26.46u</td></tr><tr><td class="mono sm">2026-06-12</td><td class="mono sm">7</td><td class="mono sm" style="color:#00ff88">71.4%</td><td class="mono sm" style="color:#00ff88">+54.2%</td><td class="mono sm" style="color:#00ff88">+3.80u</td><td class="mono sm" style="color:#00ff88">+30.26u</td></tr><tr><td class="mono sm">2026-06-13</td><td class="mono sm">11</td><td class="mono sm" style="color:#00ff88">72.7%</td><td class="mono sm" style="color:#00ff88">+31.6%</td><td class="mono sm" style="color:#00ff88">+3.48u</td><td class="mono sm" style="color:#00ff88">+33.74u</td></tr></tbody></table></div></div></section>
+<section><div class="st">2026 Monthly Breakdown</div>
+<div class="tbl"><table><thead><tr><th>Month</th><th>Bets</th><th>Wins</th><th>Win%</th><th>P&L</th><th>ROI</th><th>Status</th></tr></thead><tbody><tr><td class="mono sm">2026-04</td><td class="mono">573</td><td class="mono">354</td><td class="mono" style="color:#00ff88">61.8%</td><td class="mono" style="color:#00ff88">+50.64u</td><td class="mono" style="color:#00ff88">8.8%</td><td><span class="badge green">✅ EDGE</span></td></tr><tr><td class="mono sm">2026-05</td><td class="mono">451</td><td class="mono">266</td><td class="mono" style="color:#00ff88">59.0%</td><td class="mono" style="color:#00ff88">+30.41u</td><td class="mono" style="color:#00ff88">6.7%</td><td><span class="badge green">✅ EDGE</span></td></tr><tr><td class="mono sm">2026-06</td><td class="mono">23</td><td class="mono">12</td><td class="mono" style="color:#ff4444">52.2%</td><td class="mono" style="color:#00ff88">+0.37u</td><td class="mono" style="color:#00ff88">1.6%</td><td><span class="badge red">⚠️ BELOW</span></td></tr></tbody></table></div></section>
+<div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.12em;color:#e2e8f0;text-transform:uppercase;margin:2.5rem 0 1rem 0;border-bottom:1px solid var(--border);padding-bottom:.6rem">Today's Picks <span style="font-size:.8rem;color:var(--muted);letter-spacing:.08em;font-family:'DM Mono',monospace;text-transform:none">2026-06-14</span></div>
+<section><div class="st">Today's Batter K Picks (Over 0.5)</div>
+<div class="tbl"><table><thead><tr><th>Player</th><th>Team</th><th>Opp SP</th><th>Platoon</th><th>K%(10g)</th><th>Opp K/9</th><th>Prob</th><th>Rec</th></tr></thead><tbody><tr><td colspan="8" class="empty">No BK picks with edge today</td></tr></tbody></table></div></section>
+<section><div class="st">Today's Hits Picks (Over 0.5)</div>
+<div class="tbl"><table><thead><tr><th>Player</th><th>Team</th><th>Hit% 10g</th><th>xBA</th><th>Prob</th><th>Fair Value</th><th>Over Odds</th><th>Edge</th><th>Rec</th></tr></thead><tbody><tr><td colspan="9" class="empty">No hits picks today</td></tr></tbody></table></div></section>
+<section><div class="st">Today's Total Bases Picks (Over 0.5)</div>
+<div class="tbl"><table><thead><tr><th>Player</th><th>Team</th><th>TB/G 10g</th><th>xSLG</th><th>Prob</th><th>Fair Value</th><th>Over Odds</th><th>Edge</th><th>Rec</th></tr></thead><tbody><tr><td colspan="9" class="empty">No total bases picks today</td></tr></tbody></table></div></section>
+<section><div class="st">Today's H+R+RBI Picks (Over 1.5) <span style="font-size:.7rem;color:var(--muted);font-family:'DM Mono',monospace">Hits + Runs + RBI</span></div>
+<div class="tbl"><table><thead><tr><th>Player</th><th>Team</th><th>HRR/G 10g</th><th>Szn HRR/G</th><th>Prob</th><th>Fair Value</th><th>Over Odds</th><th>Edge</th><th>Rec</th></tr></thead><tbody><tr><td colspan="9" class="empty">No HRR picks today</td></tr></tbody></table></div></section>
+<section><div class="st">Today's Pitcher Outs Picks <span style="font-size:.7rem;color:var(--muted);font-family:'DM Mono',monospace">SP outs recorded — Over target</span></div>
+<div class="tbl"><table><thead><tr><th>Pitcher</th><th>Team</th><th>Vs</th><th>Line</th><th>IP/G 5g</th><th>Prob</th><th>Fair Value</th><th>Book Odds</th><th>Rec</th></tr></thead><tbody><tr><td>Emmet Sheehan</td><td class="sm">Los Angeles Dodgers</td><td class="sm">Chicago White Sox</td><td class="mono">15.5</td><td class="mono">4.52</td><td class="mono">74.7%</td><td class="mono">+34</td><td class="mono">+115</td><td class="mono" style="color:#00ff88">✅ OVER</td></tr><tr><td>Patrick Corbin</td><td class="sm">Toronto Blue Jays</td><td class="sm">New York Yankees</td><td class="mono">14.5</td><td class="mono">4.5</td><td class="mono">83.1%</td><td class="mono">+20</td><td class="mono">-160</td><td class="mono" style="color:#00ff88">✅ OVER</td></tr><tr><td>Michael McGreevy</td><td class="sm">St. Louis Cardinals</td><td class="sm">Minnesota Twins</td><td class="mono">16.5</td><td class="mono">6.0</td><td class="mono">61.8%</td><td class="mono">+62</td><td class="mono">-115</td><td class="mono" style="color:#00ff88">✅ OVER</td></tr><tr><td>Walker Buehler</td><td class="sm">San Diego Padres</td><td class="sm">Baltimore Orioles</td><td class="mono">15.5</td><td class="mono">5.06</td><td class="mono">52.7%</td><td class="mono">+90</td><td class="mono">+125</td><td class="mono" style="color:#00ff88">✅ OVER</td></tr><tr><td>Emerson Hancock</td><td class="sm">Seattle Mariners</td><td class="sm">Washington Nationals</td><td class="mono">16.5</td><td class="mono">6.2</td><td class="mono">53.3%</td><td class="mono">+88</td><td class="mono">+115</td><td class="mono" style="color:#00ff88">✅ OVER</td></tr><tr><td>Jeffrey Springs</td><td class="sm">Athletics</td><td class="sm">Colorado Rockies</td><td class="mono">15.5</td><td class="mono">5.42</td><td class="mono">58.0%</td><td class="mono">+72</td><td class="mono">-110</td><td class="mono" style="color:#00ff88">✅ OVER</td></tr><tr><td>Spencer Arrighetti</td><td class="sm">Houston Astros</td><td class="sm">Kansas City Royals</td><td class="mono">16.5</td><td class="mono">5.86</td><td class="mono">60.2%</td><td class="mono">+66</td><td class="mono">-125</td><td class="mono" style="color:#00ff88">✅ OVER</td></tr><tr><td>Tomoyuki Sugano</td><td class="sm">Colorado Rockies</td><td class="sm">Athletics</td><td class="mono">15.5</td><td class="mono">5.28</td><td class="mono">17.8%</td><td class="mono">+462</td><td class="mono">+105</td><td class="mono" style="color:#00ff88">✅ UNDER</td></tr><tr><td>Cristopher Sánchez</td><td class="sm">Philadelphia Phillies</td><td class="sm">Milwaukee Brewers</td><td class="mono">20.5</td><td class="mono">7.06</td><td class="mono">23.3%</td><td class="mono">+329</td><td class="mono">+100</td><td class="mono" style="color:#00ff88">✅ UNDER</td></tr><tr><td>Freddy Peralta</td><td class="sm">New York Mets</td><td class="sm">Atlanta Braves</td><td class="mono">18.5</td><td class="mono">5.8</td><td class="mono">18.5%</td><td class="mono">+440</td><td class="mono">+130</td><td class="mono" style="color:#00ff88">✅ UNDER</td></tr><tr><td>Logan Webb</td><td class="sm">San Francisco Giants</td><td class="sm">Chicago Cubs</td><td class="mono">18.5</td><td class="mono">6.6</td><td class="mono">20.6%</td><td class="mono">+385</td><td class="mono">+130</td><td class="mono" style="color:#00ff88">✅ UNDER</td></tr></tbody></table></div></section>
 
+<div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.12em;color:#e2e8f0;text-transform:uppercase;margin:2.5rem 0 1rem 0;border-bottom:1px solid var(--border);padding-bottom:.6rem">Yesterday's Results <span style="font-size:.8rem;color:var(--muted);letter-spacing:.08em;font-family:'DM Mono',monospace;text-transform:none">2026-06-13 &middot; 67 graded &middot; <span style="color:#00ff88">+3.48u</span></span></div>
+<section><div class="st">Yesterday's Model Picks <span style="font-size:.7rem;color:var(--muted);font-family:'DM Mono',monospace">2026-06-13</span></div>
+<div class="tbl"><table><thead><tr><th>Player</th><th>Team</th><th>Model</th><th>Line</th><th>Odds</th><th>Result</th><th>Payout</th></tr></thead><tbody><tr><td>Connor Prielipp</td><td class="sm">Minnesota Twins</td><td class="mono sm">Outs</td><td class="mono">15.5</td><td class="mono">+135</td><td class="mono" style="color:#00ff88;font-weight:600">W</td><td class="mono" style="color:#00ff88">+1.35u</td></tr><tr><td>Bubba Chandler</td><td class="sm">Pittsburgh Pirates</td><td class="mono sm">SK</td><td class="mono">4.5</td><td class="mono">-102</td><td class="mono" style="color:#00ff88;font-weight:600">W</td><td class="mono" style="color:#00ff88">+0.98u</td></tr><tr><td>Martín Pérez</td><td class="sm">Atlanta Braves</td><td class="mono sm">Outs</td><td class="mono">14.5</td><td class="mono">-136</td><td class="mono" style="color:#00ff88;font-weight:600">W</td><td class="mono" style="color:#00ff88">+0.74u</td></tr><tr><td>Rhett Lowder</td><td class="sm">Cincinnati Reds</td><td class="mono sm">Outs</td><td class="mono">14.5</td><td class="mono">-143</td><td class="mono" style="color:#00ff88;font-weight:600">W</td><td class="mono" style="color:#00ff88">+0.70u</td></tr><tr><td>Griffin Jax</td><td class="sm">Tampa Bay Rays</td><td class="mono sm">Outs</td><td class="mono">14.5</td><td class="mono">-145</td><td class="mono" style="color:#00ff88;font-weight:600">W</td><td class="mono" style="color:#00ff88">+0.69u</td></tr><tr><td>Joey Cantillo</td><td class="sm">Cleveland Guardians</td><td class="mono sm">Outs</td><td class="mono">14.5</td><td class="mono">-145</td><td class="mono" style="color:#00ff88;font-weight:600">W</td><td class="mono" style="color:#00ff88">+0.69u</td></tr><tr><td>Shane Drohan</td><td class="sm">Milwaukee Brewers</td><td class="mono sm">Outs</td><td class="mono">14.5</td><td class="mono">-145</td><td class="mono" style="color:#00ff88;font-weight:600">W</td><td class="mono" style="color:#00ff88">+0.69u</td></tr><tr><td>Kyle Freeland</td><td class="sm">Colorado Rockies</td><td class="mono sm">Outs</td><td class="mono">14.5</td><td class="mono">-155</td><td class="mono" style="color:#00ff88;font-weight:600">W</td><td class="mono" style="color:#00ff88">+0.65u</td></tr><tr><td>Aaron Nola</td><td class="sm">Philadelphia Phillies</td><td class="mono sm">Outs</td><td class="mono">15.5</td><td class="mono">-125</td><td class="mono" style="color:#ff4444;font-weight:600">L</td><td class="mono" style="color:#ff4444">-1.00u</td></tr><tr><td>Sean Burke</td><td class="sm">Chicago White Sox</td><td class="mono sm">Outs</td><td class="mono">15.5</td><td class="mono">+165</td><td class="mono" style="color:#ff4444;font-weight:600">L</td><td class="mono" style="color:#ff4444">-1.00u</td></tr><tr><td>Trevor McDonald</td><td class="sm">San Francisco Giants</td><td class="mono sm">Outs</td><td class="mono">16.5</td><td class="mono">+115</td><td class="mono" style="color:#ff4444;font-weight:600">L</td><td class="mono" style="color:#ff4444">-1.00u</td></tr></tbody></table></div></section>
+</main>
+<footer><div>MLB Betting Intelligence &middot; stach318MLB &middot; Model v4</div><div style="margin-top:.3rem">Paper trading since Apr 7, 2026 &middot; SK v2 &middot; BK v2 &middot; Hits v1 &middot; TB v1</div><div style="margin-top:.3rem;font-size:.6rem;color:#444">Odds sourced from Pikkit &middot; Results from MLB Stats API &middot; Models retrain weekly</div></footer>
 <script>
-// Simple tab switcher (no framework, no localStorage)
-document.addEventListener('click', function(ev) {
-  var btn = ev.target.closest('.tab-nav button[data-tab]');
-  if (!btn) return;
-  var target = btn.getAttribute('data-tab');
-  // Remove active from all in nav + panels
-  document.querySelectorAll('.tab-nav button').forEach(function(b) {
-    b.classList.remove('active');
-  });
-  document.querySelectorAll('.tab-panel').forEach(function(p) {
-    p.classList.remove('active');
-  });
-  btn.classList.add('active');
-  var panel = document.getElementById(target);
-  if (panel) panel.classList.add('active');
-});
-</script>
-
-</body>
-</html>
+const bkD=[{"date": "2026-04-07", "bankroll": 1.05, "result": "WIN"}, {"date": "2026-04-07", "bankroll": 0.05, "result": "LOSS"}, {"date": "2026-04-07", "bankroll": -0.95, "result": "LOSS"}, {"date": "2026-04-07", "bankroll": -0.1626, "result": "WIN"}, {"date": "2026-04-07", "bankroll": -1.1626, "result": "LOSS"}, {"date": "2026-04-07", "bankroll": -0.2535, "result": "WIN"}, {"date": "2026-04-08", "bankroll": -1.2535, "result": "LOSS"}, {"date": "2026-04-08", "bankroll": -0.6853, "result": "WIN"}, {"date": "2026-04-08", "bankroll": -0.0564, "result": "WIN"}, {"date": "2026-04-08", "bankroll": 1.1836, "result": "WIN"}, {"date": "2026-04-08", "bankroll": 2.0169, "result": "WIN"}, {"date": "2026-04-08", "bankroll": 3.1169, "result": "WIN"}, {"date": "2026-04-08", "bankroll": 3.6917, "result": "WIN"}, {"date": "2026-04-08", "bankroll": 4.7317, "result": "WIN"}, {"date": "2026-04-08", "bankroll": 3.7317, "result": "LOSS"}, {"date": "2026-04-08", "bankroll": 4.7317, "result": "WIN"}, {"date": "2026-04-08", "bankroll": 3.7317, "result": "LOSS"}, {"date": "2026-04-08", "bankroll": 2.7317, "result": "LOSS"}, {"date": "2026-04-08", "bankroll": 3.6012, "result": "WIN"}, {"date": "2026-04-08", "bankroll": 4.4941, "result": "WIN"}, {"date": "2026-04-08", "bankroll": 5.4032, "result": "WIN"}, {"date": "2026-04-08", "bankroll": 5.9032, "result": "WIN"}, {"date": "2026-04-08", "bankroll": 7.3532, "result": "WIN"}, {"date": "2026-04-08", "bankroll": 7.9026, "result": "WIN"}, {"date": "2026-04-08", "bankroll": 8.9026, "result": "WIN"}, {"date": "2026-04-08", "bankroll": 10.3126, "result": "WIN"}, {"date": "2026-04-08", "bankroll": 11.265, "result": "WIN"}, {"date": "2026-04-08", "bankroll": 10.265, "result": "LOSS"}, {"date": "2026-04-08", "bankroll": 9.265, "result": "LOSS"}, {"date": "2026-04-08", "bankroll": 8.265, "result": "LOSS"}, {"date": "2026-04-08", "bankroll": 8.8532, "result": "WIN"}, {"date": "2026-04-09", "bankroll": 7.8532, "result": "LOSS"}, {"date": "2026-04-09", "bankroll": 6.8532, "result": "LOSS"}, {"date": "2026-04-09", "bankroll": 5.8532, "result": "LOSS"}, {"date": "2026-04-09", "bankroll": 4.8532, "result": "LOSS"}, {"date": "2026-04-09", "bankroll": 5.5199, "result": "WIN"}, {"date": "2026-04-09", "bankroll": 4.5199, "result": "LOSS"}, {"date": "2026-04-09", "bankroll": 3.5199, "result": "LOSS"}, {"date": "2026-04-09", "bankroll": 4.7699, "result": "WIN"}, {"date": "2026-04-09", "bankroll": 5.3949, "result": "WIN"}, {"date": "2026-04-09", "bankroll": 6.0485, "result": "WIN"}, {"date": "2026-04-09", "bankroll": 6.7892, "result": "WIN"}, {"date": "2026-04-09", "bankroll": 7.4142, "result": "WIN"}, {"date": "2026-04-09", "bankroll": 8.1039, "result": "WIN"}, {"date": "2026-04-09", "bankroll": 7.1039, "result": "LOSS"}, {"date": "2026-04-09", "bankroll": 8.0563, "result": "WIN"}, {"date": "2026-04-09", "bankroll": 7.0563, "result": "LOSS"}, {"date": "2026-04-09", "bankroll": 6.0563, "result": "LOSS"}, {"date": "2026-04-09", "bankroll": 5.0563, "result": "LOSS"}, {"date": "2026-04-09", "bankroll": 5.7229, "result": "WIN"}, {"date": "2026-04-09", "bankroll": 4.7229, "result": "LOSS"}, {"date": "2026-04-10", "bankroll": 3.7229, "result": "LOSS"}, {"date": "2026-04-10", "bankroll": 2.7229, "result": "LOSS"}, {"date": "2026-04-10", "bankroll": 1.7229, "result": "LOSS"}, {"date": "2026-04-10", "bankroll": 2.3479, "result": "WIN"}, {"date": "2026-04-10", "bankroll": 1.3479, "result": "LOSS"}, {"date": "2026-04-10", "bankroll": 2.0887, "result": "WIN"}, {"date": "2026-04-10", "bankroll": 2.5887, "result": "WIN"}, {"date": "2026-04-10", "bankroll": 1.5887, "result": "LOSS"}, {"date": "2026-04-10", "bankroll": 2.1536, "result": "WIN"}, {"date": "2026-04-10", "bankroll": 2.7123, "result": "WIN"}, {"date": "2026-04-10", "bankroll": 3.3111, "result": "WIN"}, {"date": "2026-04-10", "bankroll": 2.3111, "result": "LOSS"}, {"date": "2026-04-10", "bankroll": 1.3111, "result": "LOSS"}, {"date": "2026-04-10", "bankroll": 2.2202, "result": "WIN"}, {"date": "2026-04-10", "bankroll": 1.2202, "result": "LOSS"}, {"date": "2026-04-10", "bankroll": 0.2202, "result": "LOSS"}, {"date": "2026-04-10", "bankroll": -0.7798, "result": "LOSS"}, {"date": "2026-04-10", "bankroll": -1.7798, "result": "LOSS"}, {"date": "2026-04-10", "bankroll": -2.7798, "result": "LOSS"}, {"date": "2026-04-10", "bankroll": -2.2242, "result": "WIN"}, {"date": "2026-04-10", "bankroll": -1.4667, "result": "WIN"}, {"date": "2026-04-10", "bankroll": -0.8679, "result": "WIN"}, {"date": "2026-04-10", "bankroll": -0.0679, "result": "WIN"}, {"date": "2026-04-10", "bankroll": 0.5345, "result": "WIN"}, {"date": "2026-04-10", "bankroll": 1.6845, "result": "WIN"}, {"date": "2026-04-10", "bankroll": 0.6845, "result": "LOSS"}, {"date": "2026-04-11", "bankroll": -0.3155, "result": "LOSS"}, {"date": "2026-04-11", "bankroll": 0.532, "result": "WIN"}, {"date": "2026-04-11", "bankroll": 1.3795, "result": "WIN"}, {"date": "2026-04-11", "bankroll": 2.0045, "result": "WIN"}, {"date": "2026-04-11", "bankroll": 1.0045, "result": "LOSS"}, {"date": "2026-04-11", "bankroll": 0.0045, "result": "LOSS"}, {"date": "2026-04-11", "bankroll": -0.9955, "result": "LOSS"}, {"date": "2026-04-11", "bankroll": -0.4853, "result": "WIN"}, {"date": "2026-04-11", "bankroll": -1.4853, "result": "LOSS"}, {"date": "2026-04-11", "bankroll": -0.8402, "result": "WIN"}, {"date": "2026-04-11", "bankroll": -0.1779, "result": "WIN"}, {"date": "2026-04-11", "bankroll": -1.1779, "result": "LOSS"}, {"date": "2026-04-11", "bankroll": -0.5827, "result": "WIN"}, {"date": "2026-04-11", "bankroll": -1.5827, "result": "LOSS"}, {"date": "2026-04-11", "bankroll": -2.5827, "result": "LOSS"}, {"date": "2026-04-11", "bankroll": -1.6736, "result": "WIN"}, {"date": "2026-04-11", "bankroll": -1.0157, "result": "WIN"}, {"date": "2026-04-11", "bankroll": -0.275, "result": "WIN"}, {"date": "2026-04-11", "bankroll": -1.275, "result": "LOSS"}, {"date": "2026-04-11", "bankroll": -0.9625, "result": "WIN"}, {"date": "2026-04-11", "bankroll": -1.9625, "result": "LOSS"}, {"date": "2026-04-11", "bankroll": -1.2632, "result": "WIN"}, {"date": "2026-04-11", "bankroll": -0.3108, "result": "WIN"}, {"date": "2026-04-11", "bankroll": 0.1337, "result": "WIN"}, {"date": "2026-04-11", "bankroll": -0.8663, "result": "LOSS"}, {"date": "2026-04-11", "bankroll": -0.3663, "result": "WIN"}, {"date": "2026-04-11", "bankroll": -1.3663, "result": "LOSS"}, {"date": "2026-04-11", "bankroll": -0.4404, "result": "WIN"}, {"date": "2026-04-11", "bankroll": -1.4404, "result": "LOSS"}, {"date": "2026-04-11", "bankroll": -0.7312, "result": "WIN"}, {"date": "2026-04-11", "bankroll": 0.038, "result": "WIN"}, {"date": "2026-04-11", "bankroll": -0.962, "result": "LOSS"}, {"date": "2026-04-11", "bankroll": -0.1145, "result": "WIN"}, {"date": "2026-04-12", "bankroll": -1.1145, "result": "LOSS"}, {"date": "2026-04-12", "bankroll": -2.1145, "result": "LOSS"}, {"date": "2026-04-12", "bankroll": -1.6383, "result": "WIN"}, {"date": "2026-04-12", "bankroll": -2.6383, "result": "LOSS"}, {"date": "2026-04-12", "bankroll": -1.6859, "result": "WIN"}, {"date": "2026-04-12", "bankroll": -2.6859, "result": "LOSS"}, {"date": "2026-04-12", "bankroll": -3.6859, "result": "LOSS"}, {"date": "2026-04-12", "bankroll": -2.8923, "result": "WIN"}, {"date": "2026-04-12", "bankroll": -1.8523, "result": "WIN"}, {"date": "2026-04-12", "bankroll": -1.2808, "result": "WIN"}, {"date": "2026-04-12", "bankroll": -2.2808, "result": "LOSS"}, {"date": "2026-04-12", "bankroll": -3.2808, "result": "LOSS"}, {"date": "2026-04-12", "bankroll": -2.4808, "result": "WIN"}, {"date": "2026-04-12", "bankroll": -3.4808, "result": "LOSS"}, {"date": "2026-04-12", "bankroll": -2.8748, "result": "WIN"}, {"date": "2026-04-12", "bankroll": -2.2378, "result": "WIN"}, {"date": "2026-04-12", "bankroll": -1.4378, "result": "WIN"}, {"date": "2026-04-12", "bankroll": -2.4378, "result": "LOSS"}, {"date": "2026-04-12", "bankroll": -3.4378, "result": "LOSS"}, {"date": "2026-04-12", "bankroll": -2.4855, "result": "WIN"}, {"date": "2026-04-12", "bankroll": -1.8403, "result": "WIN"}, {"date": "2026-04-12", "bankroll": -1.1311, "result": "WIN"}, {"date": "2026-04-12", "bankroll": -0.6311, "result": "WIN"}, {"date": "2026-04-12", "bankroll": 0.2948, "result": "WIN"}, {"date": "2026-04-12", "bankroll": -0.7052, "result": "LOSS"}, {"date": "2026-04-12", "bankroll": -1.7052, "result": "LOSS"}, {"date": "2026-04-12", "bankroll": -2.7052, "result": "LOSS"}, {"date": "2026-04-12", "bankroll": -3.7052, "result": "LOSS"}, {"date": "2026-04-13", "bankroll": -4.7052, "result": "LOSS"}, {"date": "2026-04-13", "bankroll": -3.9909, "result": "WIN"}, {"date": "2026-04-13", "bankroll": -4.9909, "result": "LOSS"}, {"date": "2026-04-13", "bankroll": -3.9409, "result": "WIN"}, {"date": "2026-04-13", "bankroll": -3.3526, "result": "WIN"}, {"date": "2026-04-13", "bankroll": -2.4831, "result": "WIN"}, {"date": "2026-04-13", "bankroll": -1.6135, "result": "WIN"}, {"date": "2026-04-13", "bankroll": -0.8728, "result": "WIN"}, {"date": "2026-04-13", "bankroll": -1.8728, "result": "LOSS"}, {"date": "2026-04-13", "bankroll": -1.0394, "result": "WIN"}, {"date": "2026-04-13", "bankroll": -2.0394, "result": "LOSS"}, {"date": "2026-04-13", "bankroll": -3.0394, "result": "LOSS"}, {"date": "2026-04-13", "bankroll": -2.2702, "result": "WIN"}, {"date": "2026-04-13", "bankroll": -3.2702, "result": "LOSS"}, {"date": "2026-04-13", "bankroll": -2.6413, "result": "WIN"}, {"date": "2026-04-13", "bankroll": -2.0163, "result": "WIN"}, {"date": "2026-04-13", "bankroll": -1.3406, "result": "WIN"}, {"date": "2026-04-13", "bankroll": -0.3882, "result": "WIN"}, {"date": "2026-04-13", "bankroll": 0.4814, "result": "WIN"}, {"date": "2026-04-13", "bankroll": 1.0077, "result": "WIN"}, {"date": "2026-04-13", "bankroll": 0.0077, "result": "LOSS"}, {"date": "2026-04-14", "bankroll": -0.9923, "result": "LOSS"}, {"date": "2026-04-14", "bankroll": -0.5069, "result": "WIN"}, {"date": "2026-04-14", "bankroll": 0.4455, "result": "WIN"}, {"date": "2026-04-14", "bankroll": -0.5545, "result": "LOSS"}, {"date": "2026-04-14", "bankroll": 0.1598, "result": "WIN"}, {"date": "2026-04-14", "bankroll": -0.8402, "result": "LOSS"}, {"date": "2026-04-14", "bankroll": 0.2598, "result": "WIN"}, {"date": "2026-04-14", "bankroll": 0.7861, "result": "WIN"}, {"date": "2026-04-14", "bankroll": -0.2139, "result": "LOSS"}, {"date": "2026-04-14", "bankroll": 0.4528, "result": "WIN"}, {"date": "2026-04-14", "bankroll": -0.5472, "result": "LOSS"}, {"date": "2026-04-14", "bankroll": -1.5472, "result": "LOSS"}, {"date": "2026-04-14", "bankroll": -0.833, "result": "WIN"}, {"date": "2026-04-14", "bankroll": -1.833, "result": "LOSS"}, {"date": "2026-04-14", "bankroll": -1.1433, "result": "WIN"}, {"date": "2026-04-14", "bankroll": -2.1433, "result": "LOSS"}, {"date": "2026-04-14", "bankroll": -1.3741, "result": "WIN"}, {"date": "2026-04-14", "bankroll": -2.3741, "result": "LOSS"}, {"date": "2026-04-14", "bankroll": -1.8741, "result": "WIN"}, {"date": "2026-04-14", "bankroll": -2.8741, "result": "LOSS"}, {"date": "2026-04-14", "bankroll": -3.8741, "result": "LOSS"}, {"date": "2026-04-14", "bankroll": -4.8741, "result": "LOSS"}, {"date": "2026-04-14", "bankroll": -5.8741, "result": "LOSS"}, {"date": "2026-04-14", "bankroll": -4.4441, "result": "WIN"}, {"date": "2026-04-15", "bankroll": -5.4441, "result": "LOSS"}, {"date": "2026-04-15", "bankroll": -6.4441, "result": "LOSS"}, {"date": "2026-04-15", "bankroll": -5.8417, "result": "WIN"}, {"date": "2026-04-15", "bankroll": -5.3539, "result": "WIN"}, {"date": "2026-04-15", "bankroll": -4.9191, "result": "WIN"}, {"date": "2026-04-15", "bankroll": -3.8991, "result": "WIN"}, {"date": "2026-04-15", "bankroll": -3.2818, "result": "WIN"}, {"date": "2026-04-15", "bankroll": -2.2318, "result": "WIN"}, {"date": "2026-04-15", "bankroll": -3.2318, "result": "LOSS"}, {"date": "2026-04-15", "bankroll": -2.3985, "result": "WIN"}, {"date": "2026-04-15", "bankroll": -3.3985, "result": "LOSS"}, {"date": "2026-04-15", "bankroll": -2.5289, "result": "WIN"}, {"date": "2026-04-15", "bankroll": -3.5289, "result": "LOSS"}, {"date": "2026-04-15", "bankroll": -2.8392, "result": "WIN"}, {"date": "2026-04-15", "bankroll": -2.2023, "result": "WIN"}, {"date": "2026-04-15", "bankroll": -3.2023, "result": "LOSS"}, {"date": "2026-04-15", "bankroll": -2.4023, "result": "WIN"}, {"date": "2026-04-15", "bankroll": -1.7773, "result": "WIN"}, {"date": "2026-04-15", "bankroll": -1.2278, "result": "WIN"}, {"date": "2026-04-15", "bankroll": -0.6067, "result": "WIN"}, {"date": "2026-04-15", "bankroll": 0.0183, "result": "WIN"}, {"date": "2026-04-15", "bankroll": 0.6849, "result": "WIN"}, {"date": "2026-04-15", "bankroll": 1.8849, "result": "WIN"}, {"date": "2026-04-15", "bankroll": 0.8849, "result": "LOSS"}, {"date": "2026-04-15", "bankroll": 1.794, "result": "WIN"}, {"date": "2026-04-15", "bankroll": 2.679, "result": "WIN"}, {"date": "2026-04-15", "bankroll": 3.3457, "result": "WIN"}, {"date": "2026-04-16", "bankroll": 3.9707, "result": "WIN"}, {"date": "2026-04-16", "bankroll": 4.5957, "result": "WIN"}, {"date": "2026-04-16", "bankroll": 3.5957, "result": "LOSS"}, {"date": "2026-04-16", "bankroll": 4.0957, "result": "WIN"}, {"date": "2026-04-16", "bankroll": 4.7713, "result": "WIN"}, {"date": "2026-04-16", "bankroll": 3.7713, "result": "LOSS"}, {"date": "2026-04-16", "bankroll": 2.7713, "result": "LOSS"}, {"date": "2026-04-16", "bankroll": 3.3848, "result": "WIN"}, {"date": "2026-04-16", "bankroll": 2.3848, "result": "LOSS"}, {"date": "2026-04-16", "bankroll": 1.3848, "result": "LOSS"}, {"date": "2026-04-16", "bankroll": 2.0745, "result": "WIN"}, {"date": "2026-04-16", "bankroll": 2.8497, "result": "WIN"}, {"date": "2026-04-16", "bankroll": 3.6497, "result": "WIN"}, {"date": "2026-04-16", "bankroll": 4.3904, "result": "WIN"}, {"date": "2026-04-16", "bankroll": 3.3904, "result": "LOSS"}, {"date": "2026-04-16", "bankroll": 4.0154, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 3.0154, "result": "LOSS"}, {"date": "2026-04-17", "bankroll": 4.1154, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 5.1154, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 5.8051, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 6.5743, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 7.1457, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 7.6044, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 8.1364, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 8.8663, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 7.8663, "result": "LOSS"}, {"date": "2026-04-17", "bankroll": 6.8663, "result": "LOSS"}, {"date": "2026-04-17", "bankroll": 7.4545, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 7.9545, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 6.9545, "result": "LOSS"}, {"date": "2026-04-17", "bankroll": 7.7545, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 6.7545, "result": "LOSS"}, {"date": "2026-04-17", "bankroll": 7.5419, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 6.5419, "result": "LOSS"}, {"date": "2026-04-17", "bankroll": 7.2562, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 7.7967, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 8.2993, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 9.1688, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 9.9151, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 11.1151, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 11.7818, "result": "WIN"}, {"date": "2026-04-17", "bankroll": 10.7818, "result": "LOSS"}, {"date": "2026-04-17", "bankroll": 11.9818, "result": "WIN"}, {"date": "2026-04-18", "bankroll": 12.6269, "result": "WIN"}, {"date": "2026-04-18", "bankroll": 12.9906, "result": "WIN"}, {"date": "2026-04-18", "bankroll": 13.9429, "result": "WIN"}, {"date": "2026-04-18", "bankroll": 12.9429, "result": "LOSS"}, {"date": "2026-04-18", "bankroll": 13.6096, "result": "WIN"}, {"date": "2026-04-18", "bankroll": 12.6096, "result": "LOSS"}, {"date": "2026-04-18", "bankroll": 11.6096, "result": "LOSS"}, {"date": "2026-04-18", "bankroll": 10.6096, "result": "LOSS"}, {"date": "2026-04-18", "bankroll": 11.1096, "result": "WIN"}, {"date": "2026-04-18", "bankroll": 11.7807, "result": "WIN"}, {"date": "2026-04-18", "bankroll": 10.7807, "result": "LOSS"}, {"date": "2026-04-18", "bankroll": 9.7807, "result": "LOSS"}, {"date": "2026-04-18", "bankroll": 8.7807, "result": "LOSS"}, {"date": "2026-04-18", "bankroll": 7.7807, "result": "LOSS"}, {"date": "2026-04-18", "bankroll": 8.495, "result": "WIN"}, {"date": "2026-04-18", "bankroll": 9.4851, "result": "WIN"}, {"date": "2026-04-18", "bankroll": 8.4851, "result": "LOSS"}, {"date": "2026-04-18", "bankroll": 9.2259, "result": "WIN"}, {"date": "2026-04-18", "bankroll": 8.2259, "result": "LOSS"}, {"date": "2026-04-18", "bankroll": 8.8141, "result": "WIN"}, {"date": "2026-04-18", "bankroll": 9.3666, "result": "WIN"}, {"date": "2026-04-18", "bankroll": 8.3666, "result": "LOSS"}, {"date": "2026-04-18", "bankroll": 7.3666, "result": "LOSS"}, {"date": "2026-04-18", "bankroll": 6.3666, "result": "LOSS"}, {"date": "2026-04-18", "bankroll": 7.3666, "result": "WIN"}, {"date": "2026-04-18", "bankroll": 6.3666, "result": "LOSS"}, {"date": "2026-04-18", "bankroll": 7.8466, "result": "WIN"}, {"date": "2026-04-18", "bankroll": 6.8466, "result": "LOSS"}, {"date": "2026-04-18", "bankroll": 7.5873, "result": "WIN"}, {"date": "2026-04-18", "bankroll": 6.5873, "result": "LOSS"}, {"date": "2026-04-19", "bankroll": 7.3016, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 7.9595, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 8.503, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 9.2224, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 9.8891, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 10.9291, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 11.4846, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 12.1019, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 11.1019, "result": "LOSS"}, {"date": "2026-04-19", "bankroll": 12.2819, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 12.8254, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 13.5946, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 12.5946, "result": "LOSS"}, {"date": "2026-04-19", "bankroll": 13.2613, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 12.2613, "result": "LOSS"}, {"date": "2026-04-19", "bankroll": 11.2613, "result": "LOSS"}, {"date": "2026-04-19", "bankroll": 10.2613, "result": "LOSS"}, {"date": "2026-04-19", "bankroll": 10.8295, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 9.8295, "result": "LOSS"}, {"date": "2026-04-19", "bankroll": 10.4962, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 11.6062, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 12.4395, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 11.4395, "result": "LOSS"}, {"date": "2026-04-19", "bankroll": 12.0243, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 11.0243, "result": "LOSS"}, {"date": "2026-04-19", "bankroll": 11.9334, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 12.5913, "result": "WIN"}, {"date": "2026-04-19", "bankroll": 11.5913, "result": "LOSS"}, {"date": "2026-04-20", "bankroll": 12.0913, "result": "WIN"}, {"date": "2026-04-20", "bankroll": 12.7163, "result": "WIN"}, {"date": "2026-04-20", "bankroll": 13.4306, "result": "WIN"}, {"date": "2026-04-20", "bankroll": 12.4306, "result": "LOSS"}, {"date": "2026-04-20", "bankroll": 11.4306, "result": "LOSS"}, {"date": "2026-04-20", "bankroll": 10.4306, "result": "LOSS"}, {"date": "2026-04-20", "bankroll": 9.4306, "result": "LOSS"}, {"date": "2026-04-20", "bankroll": 8.4306, "result": "LOSS"}, {"date": "2026-04-20", "bankroll": 9.0188, "result": "WIN"}, {"date": "2026-04-20", "bankroll": 8.0188, "result": "LOSS"}, {"date": "2026-04-20", "bankroll": 8.5138, "result": "WIN"}, {"date": "2026-04-20", "bankroll": 7.5138, "result": "LOSS"}, {"date": "2026-04-20", "bankroll": 6.5138, "result": "LOSS"}, {"date": "2026-04-20", "bankroll": 7.0544, "result": "WIN"}, {"date": "2026-04-20", "bankroll": 7.7687, "result": "WIN"}, {"date": "2026-04-20", "bankroll": 6.7687, "result": "LOSS"}, {"date": "2026-04-20", "bankroll": 7.2687, "result": "WIN"}, {"date": "2026-04-20", "bankroll": 7.7687, "result": "WIN"}, {"date": "2026-04-20", "bankroll": 8.4353, "result": "WIN"}, {"date": "2026-04-20", "bankroll": 10.0353, "result": "WIN"}, {"date": "2026-04-20", "bankroll": 10.7548, "result": "WIN"}, {"date": "2026-04-20", "bankroll": 9.7548, "result": "LOSS"}, {"date": "2026-04-20", "bankroll": 8.7548, "result": "LOSS"}, {"date": "2026-04-20", "bankroll": 9.7256, "result": "WIN"}, {"date": "2026-04-20", "bankroll": 10.2971, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 9.2971, "result": "LOSS"}, {"date": "2026-04-21", "bankroll": 8.2971, "result": "LOSS"}, {"date": "2026-04-21", "bankroll": 7.2971, "result": "LOSS"}, {"date": "2026-04-21", "bankroll": 7.8589, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 6.8589, "result": "LOSS"}, {"date": "2026-04-21", "bankroll": 7.5167, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 8.3298, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 9.0009, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 8.0009, "result": "LOSS"}, {"date": "2026-04-21", "bankroll": 8.6766, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 9.2171, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 8.2171, "result": "LOSS"}, {"date": "2026-04-21", "bankroll": 8.7727, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 9.606, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 8.606, "result": "LOSS"}, {"date": "2026-04-21", "bankroll": 7.606, "result": "LOSS"}, {"date": "2026-04-21", "bankroll": 6.606, "result": "LOSS"}, {"date": "2026-04-21", "bankroll": 7.776, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 8.3608, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 9.5608, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 10.0608, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 10.9867, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 11.7867, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 13.1267, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 12.1267, "result": "LOSS"}, {"date": "2026-04-21", "bankroll": 12.9267, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 13.7141, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 14.1903, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 15.0236, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 16.5236, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 17.0236, "result": "WIN"}, {"date": "2026-04-21", "bankroll": 16.0236, "result": "LOSS"}, {"date": "2026-04-22", "bankroll": 16.6526, "result": "WIN"}, {"date": "2026-04-22", "bankroll": 17.2208, "result": "WIN"}, {"date": "2026-04-22", "bankroll": 17.99, "result": "WIN"}, {"date": "2026-04-22", "bankroll": 18.8596, "result": "WIN"}, {"date": "2026-04-22", "bankroll": 19.5132, "result": "WIN"}, {"date": "2026-04-22", "bankroll": 18.5132, "result": "LOSS"}, {"date": "2026-04-22", "bankroll": 19.1583, "result": "WIN"}, {"date": "2026-04-22", "bankroll": 19.7607, "result": "WIN"}, {"date": "2026-04-22", "bankroll": 20.7131, "result": "WIN"}, {"date": "2026-04-22", "bankroll": 21.5131, "result": "WIN"}, {"date": "2026-04-22", "bankroll": 22.2274, "result": "WIN"}, {"date": "2026-04-22", "bankroll": 22.8262, "result": "WIN"}, {"date": "2026-04-22", "bankroll": 23.3667, "result": "WIN"}, {"date": "2026-04-22", "bankroll": 22.3667, "result": "LOSS"}, {"date": "2026-04-22", "bankroll": 23.2363, "result": "WIN"}, {"date": "2026-04-22", "bankroll": 23.9074, "result": "WIN"}, {"date": "2026-04-22", "bankroll": 25.4574, "result": "WIN"}, {"date": "2026-04-22", "bankroll": 24.4574, "result": "LOSS"}, {"date": "2026-04-22", "bankroll": 23.4574, "result": "LOSS"}, {"date": "2026-04-22", "bankroll": 22.4574, "result": "LOSS"}, {"date": "2026-04-22", "bankroll": 21.4574, "result": "LOSS"}, {"date": "2026-04-22", "bankroll": 22.3665, "result": "WIN"}, {"date": "2026-04-22", "bankroll": 21.3665, "result": "LOSS"}, {"date": "2026-04-23", "bankroll": 22.4165, "result": "WIN"}, {"date": "2026-04-23", "bankroll": 23.0832, "result": "WIN"}, {"date": "2026-04-23", "bankroll": 22.0832, "result": "LOSS"}, {"date": "2026-04-23", "bankroll": 21.0832, "result": "LOSS"}, {"date": "2026-04-23", "bankroll": 21.5034, "result": "WIN"}, {"date": "2026-04-23", "bankroll": 20.5034, "result": "LOSS"}, {"date": "2026-04-23", "bankroll": 21.8934, "result": "WIN"}, {"date": "2026-04-23", "bankroll": 22.4648, "result": "WIN"}, {"date": "2026-04-23", "bankroll": 21.4648, "result": "LOSS"}, {"date": "2026-04-23", "bankroll": 20.4648, "result": "LOSS"}, {"date": "2026-04-23", "bankroll": 19.4648, "result": "LOSS"}, {"date": "2026-04-24", "bankroll": 18.4648, "result": "LOSS"}, {"date": "2026-04-24", "bankroll": 19.1791, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 20.4291, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 21.2986, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 22.2986, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 22.7748, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 23.4415, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 24.3939, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 25.303, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 26.393, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 26.9485, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 27.8576, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 26.8576, "result": "LOSS"}, {"date": "2026-04-24", "bankroll": 27.81, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 26.81, "result": "LOSS"}, {"date": "2026-04-24", "bankroll": 25.81, "result": "LOSS"}, {"date": "2026-04-24", "bankroll": 26.4124, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 27.1216, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 26.1216, "result": "LOSS"}, {"date": "2026-04-24", "bankroll": 25.1216, "result": "LOSS"}, {"date": "2026-04-24", "bankroll": 26.4216, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 27.2912, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 28.0055, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 28.4957, "result": "WIN"}, {"date": "2026-04-24", "bankroll": 29.7957, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 28.7957, "result": "LOSS"}, {"date": "2026-04-25", "bankroll": 29.5649, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 30.2316, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 31.1244, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 30.1244, "result": "LOSS"}, {"date": "2026-04-25", "bankroll": 31.1244, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 31.4312, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 32.0026, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 32.955, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 33.6217, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 32.6217, "result": "LOSS"}, {"date": "2026-04-25", "bankroll": 31.6217, "result": "LOSS"}, {"date": "2026-04-25", "bankroll": 30.6217, "result": "LOSS"}, {"date": "2026-04-25", "bankroll": 31.7217, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 32.6226, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 33.7626, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 32.7626, "result": "LOSS"}, {"date": "2026-04-25", "bankroll": 33.2171, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 33.4598, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 34.4032, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 35.0056, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 36.0056, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 36.6508, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 37.5204, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 38.2346, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 38.8716, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 39.6716, "result": "WIN"}, {"date": "2026-04-25", "bankroll": 38.6716, "result": "LOSS"}, {"date": "2026-04-26", "bankroll": 37.6716, "result": "LOSS"}, {"date": "2026-04-26", "bankroll": 38.8116, "result": "WIN"}, {"date": "2026-04-26", "bankroll": 39.6449, "result": "WIN"}, {"date": "2026-04-26", "bankroll": 40.3116, "result": "WIN"}, {"date": "2026-04-26", "bankroll": 39.3116, "result": "LOSS"}, {"date": "2026-04-26", "bankroll": 40.0259, "result": "WIN"}, {"date": "2026-04-26", "bankroll": 40.8592, "result": "WIN"}, {"date": "2026-04-26", "bankroll": 41.5044, "result": "WIN"}, {"date": "2026-04-26", "bankroll": 40.5044, "result": "LOSS"}, {"date": "2026-04-26", "bankroll": 41.5544, "result": "WIN"}, {"date": "2026-04-26", "bankroll": 42.6044, "result": "WIN"}, {"date": "2026-04-26", "bankroll": 41.6044, "result": "LOSS"}, {"date": "2026-04-26", "bankroll": 40.6044, "result": "LOSS"}, {"date": "2026-04-26", "bankroll": 41.3451, "result": "WIN"}, {"date": "2026-04-26", "bankroll": 40.3451, "result": "LOSS"}, {"date": "2026-04-26", "bankroll": 41.3451, "result": "WIN"}, {"date": "2026-04-26", "bankroll": 42.1143, "result": "WIN"}, {"date": "2026-04-26", "bankroll": 42.7131, "result": "WIN"}, {"date": "2026-04-26", "bankroll": 43.5465, "result": "WIN"}, {"date": "2026-04-26", "bankroll": 42.5465, "result": "LOSS"}, {"date": "2026-04-26", "bankroll": 43.4899, "result": "WIN"}, {"date": "2026-04-26", "bankroll": 44.1565, "result": "WIN"}, {"date": "2026-04-27", "bankroll": 44.6971, "result": "WIN"}, {"date": "2026-04-27", "bankroll": 45.2685, "result": "WIN"}, {"date": "2026-04-27", "bankroll": 45.7685, "result": "WIN"}, {"date": "2026-04-27", "bankroll": 46.2447, "result": "WIN"}, {"date": "2026-04-27", "bankroll": 45.2447, "result": "LOSS"}, {"date": "2026-04-27", "bankroll": 44.2447, "result": "LOSS"}, {"date": "2026-04-27", "bankroll": 44.8435, "result": "WIN"}, {"date": "2026-04-27", "bankroll": 45.5578, "result": "WIN"}, {"date": "2026-04-27", "bankroll": 46.435, "result": "WIN"}, {"date": "2026-04-27", "bankroll": 46.6742, "result": "WIN"}, {"date": "2026-04-27", "bankroll": 47.4434, "result": "WIN"}, {"date": "2026-04-27", "bankroll": 46.4434, "result": "LOSS"}, {"date": "2026-04-27", "bankroll": 45.4434, "result": "LOSS"}, {"date": "2026-04-27", "bankroll": 45.9698, "result": "WIN"}, {"date": "2026-04-27", "bankroll": 44.9698, "result": "LOSS"}, {"date": "2026-04-27", "bankroll": 45.5758, "result": "WIN"}, {"date": "2026-04-27", "bankroll": 44.5758, "result": "LOSS"}, {"date": "2026-04-27", "bankroll": 45.2425, "result": "WIN"}, {"date": "2026-04-27", "bankroll": 44.2425, "result": "LOSS"}, {"date": "2026-04-27", "bankroll": 45.4425, "result": "WIN"}, {"date": "2026-04-27", "bankroll": 46.0485, "result": "WIN"}, {"date": "2026-04-27", "bankroll": 46.7628, "result": "WIN"}, {"date": "2026-04-27", "bankroll": 45.7628, "result": "LOSS"}, {"date": "2026-04-27", "bankroll": 46.6974, "result": "WIN"}, {"date": "2026-04-28", "bankroll": 45.6974, "result": "LOSS"}, {"date": "2026-04-28", "bankroll": 46.253, "result": "WIN"}, {"date": "2026-04-28", "bankroll": 46.9426, "result": "WIN"}, {"date": "2026-04-28", "bankroll": 45.9426, "result": "LOSS"}, {"date": "2026-04-28", "bankroll": 46.4951, "result": "WIN"}, {"date": "2026-04-28", "bankroll": 47.0356, "result": "WIN"}, {"date": "2026-04-28", "bankroll": 46.0356, "result": "LOSS"}, {"date": "2026-04-28", "bankroll": 45.0356, "result": "LOSS"}, {"date": "2026-04-28", "bankroll": 46.016, "result": "WIN"}, {"date": "2026-04-28", "bankroll": 45.016, "result": "LOSS"}, {"date": "2026-04-28", "bankroll": 44.016, "result": "LOSS"}, {"date": "2026-04-28", "bankroll": 44.6571, "result": "WIN"}, {"date": "2026-04-28", "bankroll": 45.7071, "result": "WIN"}, {"date": "2026-04-28", "bankroll": 44.7071, "result": "LOSS"}, {"date": "2026-04-28", "bankroll": 45.5071, "result": "WIN"}, {"date": "2026-04-28", "bankroll": 46.4594, "result": "WIN"}, {"date": "2026-04-28", "bankroll": 47.6094, "result": "WIN"}, {"date": "2026-04-28", "bankroll": 46.6094, "result": "LOSS"}, {"date": "2026-04-28", "bankroll": 45.6094, "result": "LOSS"}, {"date": "2026-04-28", "bankroll": 44.6094, "result": "LOSS"}, {"date": "2026-04-28", "bankroll": 43.6094, "result": "LOSS"}, {"date": "2026-04-28", "bankroll": 42.6094, "result": "LOSS"}, {"date": "2026-04-28", "bankroll": 43.107, "result": "WIN"}, {"date": "2026-04-28", "bankroll": 43.9403, "result": "WIN"}, {"date": "2026-04-28", "bankroll": 45.3903, "result": "WIN"}, {"date": "2026-04-28", "bankroll": 44.3903, "result": "LOSS"}, {"date": "2026-04-29", "bankroll": 45.3427, "result": "WIN"}, {"date": "2026-04-29", "bankroll": 46.0834, "result": "WIN"}, {"date": "2026-04-29", "bankroll": 45.0834, "result": "LOSS"}, {"date": "2026-04-29", "bankroll": 45.624, "result": "WIN"}, {"date": "2026-04-29", "bankroll": 46.2691, "result": "WIN"}, {"date": "2026-04-29", "bankroll": 47.1024, "result": "WIN"}, {"date": "2026-04-29", "bankroll": 46.1024, "result": "LOSS"}, {"date": "2026-04-29", "bankroll": 45.1024, "result": "LOSS"}, {"date": "2026-04-29", "bankroll": 45.8324, "result": "WIN"}, {"date": "2026-04-29", "bankroll": 46.9024, "result": "WIN"}, {"date": "2026-04-29", "bankroll": 45.9024, "result": "LOSS"}, {"date": "2026-04-29", "bankroll": 44.9024, "result": "LOSS"}, {"date": "2026-04-29", "bankroll": 45.4429, "result": "WIN"}, {"date": "2026-04-29", "bankroll": 45.9191, "result": "WIN"}, {"date": "2026-04-29", "bankroll": 44.9191, "result": "LOSS"}, {"date": "2026-04-29", "bankroll": 45.4191, "result": "WIN"}, {"date": "2026-04-29", "bankroll": 46.1883, "result": "WIN"}, {"date": "2026-04-29", "bankroll": 46.8173, "result": "WIN"}, {"date": "2026-04-29", "bankroll": 45.8173, "result": "LOSS"}, {"date": "2026-04-29", "bankroll": 47.0873, "result": "WIN"}, {"date": "2026-04-29", "bankroll": 47.8119, "result": "WIN"}, {"date": "2026-04-29", "bankroll": 46.8119, "result": "LOSS"}, {"date": "2026-04-29", "bankroll": 47.4408, "result": "WIN"}, {"date": "2026-04-29", "bankroll": 48.1816, "result": "WIN"}, {"date": "2026-04-29", "bankroll": 49.5316, "result": "WIN"}, {"date": "2026-04-30", "bankroll": 50.1982, "result": "WIN"}, {"date": "2026-04-30", "bankroll": 50.9125, "result": "WIN"}, {"date": "2026-04-30", "bankroll": 51.2527, "result": "WIN"}, {"date": "2026-04-30", "bankroll": 52.1001, "result": "WIN"}, {"date": "2026-04-30", "bankroll": 51.1001, "result": "LOSS"}, {"date": "2026-04-30", "bankroll": 51.7898, "result": "WIN"}, {"date": "2026-04-30", "bankroll": 50.7898, "result": "LOSS"}, {"date": "2026-04-30", "bankroll": 51.7898, "result": "WIN"}, {"date": "2026-04-30", "bankroll": 52.5041, "result": "WIN"}, {"date": "2026-04-30", "bankroll": 53.1707, "result": "WIN"}, {"date": "2026-04-30", "bankroll": 53.7957, "result": "WIN"}, {"date": "2026-04-30", "bankroll": 52.7957, "result": "LOSS"}, {"date": "2026-04-30", "bankroll": 53.2249, "result": "WIN"}, {"date": "2026-04-30", "bankroll": 54.134, "result": "WIN"}, {"date": "2026-04-30", "bankroll": 54.9277, "result": "WIN"}, {"date": "2026-04-30", "bankroll": 55.6419, "result": "WIN"}, {"date": "2026-04-30", "bankroll": 54.6419, "result": "LOSS"}, {"date": "2026-04-30", "bankroll": 53.6419, "result": "LOSS"}, {"date": "2026-04-30", "bankroll": 52.6419, "result": "LOSS"}, {"date": "2026-04-30", "bankroll": 51.6419, "result": "LOSS"}, {"date": "2026-04-30", "bankroll": 50.6419, "result": "LOSS"}, {"date": "2026-05-01", "bankroll": 49.6419, "result": "LOSS"}, {"date": "2026-05-01", "bankroll": 51.1719, "result": "WIN"}, {"date": "2026-05-01", "bankroll": 51.8298, "result": "WIN"}, {"date": "2026-05-01", "bankroll": 50.8298, "result": "LOSS"}, {"date": "2026-05-01", "bankroll": 51.6994, "result": "WIN"}, {"date": "2026-05-01", "bankroll": 50.6994, "result": "LOSS"}, {"date": "2026-05-01", "bankroll": 51.4686, "result": "WIN"}, {"date": "2026-05-01", "bankroll": 52.6186, "result": "WIN"}, {"date": "2026-05-01", "bankroll": 51.6186, "result": "LOSS"}, {"date": "2026-05-01", "bankroll": 52.3329, "result": "WIN"}, {"date": "2026-05-01", "bankroll": 53.1021, "result": "WIN"}, {"date": "2026-05-01", "bankroll": 54.1021, "result": "WIN"}, {"date": "2026-05-01", "bankroll": 53.1021, "result": "LOSS"}, {"date": "2026-05-01", "bankroll": 52.1021, "result": "LOSS"}, {"date": "2026-05-01", "bankroll": 51.1021, "result": "LOSS"}, {"date": "2026-05-01", "bankroll": 50.1021, "result": "LOSS"}, {"date": "2026-05-01", "bankroll": 50.9021, "result": "WIN"}, {"date": "2026-05-01", "bankroll": 51.9521, "result": "WIN"}, {"date": "2026-05-01", "bankroll": 52.5302, "result": "WIN"}, {"date": "2026-05-01", "bankroll": 53.0277, "result": "WIN"}, {"date": "2026-05-01", "bankroll": 52.0277, "result": "LOSS"}, {"date": "2026-05-01", "bankroll": 51.0277, "result": "LOSS"}, {"date": "2026-05-01", "bankroll": 52.1077, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 53.1077, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 52.1077, "result": "LOSS"}, {"date": "2026-05-02", "bankroll": 53.1877, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 52.1877, "result": "LOSS"}, {"date": "2026-05-02", "bankroll": 51.1877, "result": "LOSS"}, {"date": "2026-05-02", "bankroll": 51.7591, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 52.4043, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 53.4843, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 54.0831, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 53.0831, "result": "LOSS"}, {"date": "2026-05-02", "bankroll": 52.0831, "result": "LOSS"}, {"date": "2026-05-02", "bankroll": 51.0831, "result": "LOSS"}, {"date": "2026-05-02", "bankroll": 50.0831, "result": "LOSS"}, {"date": "2026-05-02", "bankroll": 50.6819, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 51.9319, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 52.3864, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 53.0531, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 54.0531, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 53.0531, "result": "LOSS"}, {"date": "2026-05-02", "bankroll": 53.7288, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 54.3739, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 55.1739, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 55.7059, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 56.6318, "result": "WIN"}, {"date": "2026-05-02", "bankroll": 57.2728, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 57.9871, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 58.7871, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 57.7871, "result": "LOSS"}, {"date": "2026-05-03", "bankroll": 58.4538, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 59.9538, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 58.9538, "result": "LOSS"}, {"date": "2026-05-03", "bankroll": 59.723, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 60.523, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 59.523, "result": "LOSS"}, {"date": "2026-05-03", "bankroll": 60.129, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 59.129, "result": "LOSS"}, {"date": "2026-05-03", "bankroll": 58.129, "result": "LOSS"}, {"date": "2026-05-03", "bankroll": 58.4485, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 59.2359, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 59.8173, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 60.6507, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 62.1407, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 62.855, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 63.955, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 64.6692, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 65.4155, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 66.1298, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 66.8441, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 67.8342, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 66.8342, "result": "LOSS"}, {"date": "2026-05-03", "bankroll": 67.6342, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 66.6342, "result": "LOSS"}, {"date": "2026-05-03", "bankroll": 67.2592, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 67.5216, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 68.6216, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 69.3624, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 70.2552, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 70.8764, "result": "WIN"}, {"date": "2026-05-03", "bankroll": 71.0728, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 71.9062, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 72.5351, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 73.172, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 72.172, "result": "LOSS"}, {"date": "2026-05-04", "bankroll": 72.9413, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 73.533, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 74.533, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 75.533, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 74.533, "result": "LOSS"}, {"date": "2026-05-04", "bankroll": 75.0735, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 74.0735, "result": "LOSS"}, {"date": "2026-05-04", "bankroll": 74.8735, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 75.7585, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 76.6594, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 78.1794, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 77.1794, "result": "LOSS"}, {"date": "2026-05-04", "bankroll": 77.7854, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 78.4521, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 79.2854, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 80.0262, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 81.7762, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 82.1398, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 82.708, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 81.708, "result": "LOSS"}, {"date": "2026-05-04", "bankroll": 82.5413, "result": "WIN"}, {"date": "2026-05-04", "bankroll": 81.5413, "result": "LOSS"}, {"date": "2026-05-05", "bankroll": 81.9413, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 80.9413, "result": "LOSS"}, {"date": "2026-05-05", "bankroll": 81.631, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 82.2639, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 83.0972, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 83.5457, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 84.2213, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 85.0213, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 86.4213, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 86.8908, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 87.6051, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 86.6051, "result": "LOSS"}, {"date": "2026-05-05", "bankroll": 85.6051, "result": "LOSS"}, {"date": "2026-05-05", "bankroll": 86.0813, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 86.9146, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 87.8237, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 88.6571, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 89.29, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 90.56, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 89.56, "result": "LOSS"}, {"date": "2026-05-05", "bankroll": 90.6, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 89.6, "result": "LOSS"}, {"date": "2026-05-05", "bankroll": 90.3407, "result": "WIN"}, {"date": "2026-05-05", "bankroll": 89.3407, "result": "LOSS"}, {"date": "2026-05-06", "bankroll": 90.0074, "result": "WIN"}, {"date": "2026-05-06", "bankroll": 90.7373, "result": "WIN"}, {"date": "2026-05-06", "bankroll": 91.3825, "result": "WIN"}, {"date": "2026-05-06", "bankroll": 92.2597, "result": "WIN"}, {"date": "2026-05-06", "bankroll": 91.2597, "result": "LOSS"}, {"date": "2026-05-06", "bankroll": 92.0289, "result": "WIN"}, {"date": "2026-05-06", "bankroll": 92.6539, "result": "WIN"}, {"date": "2026-05-06", "bankroll": 93.5973, "result": "WIN"}, {"date": "2026-05-06", "bankroll": 92.5973, "result": "LOSS"}, {"date": "2026-05-06", "bankroll": 91.5973, "result": "LOSS"}, {"date": "2026-05-06", "bankroll": 92.2223, "result": "WIN"}, {"date": "2026-05-06", "bankroll": 91.2223, "result": "LOSS"}, {"date": "2026-05-06", "bankroll": 91.7628, "result": "WIN"}, {"date": "2026-05-07", "bankroll": 92.7243, "result": "WIN"}, {"date": "2026-05-07", "bankroll": 93.5243, "result": "WIN"}, {"date": "2026-05-07", "bankroll": 92.5243, "result": "LOSS"}, {"date": "2026-05-07", "bankroll": 91.5243, "result": "LOSS"}, {"date": "2026-05-07", "bankroll": 92.2386, "result": "WIN"}, {"date": "2026-05-07", "bankroll": 91.2386, "result": "LOSS"}, {"date": "2026-05-07", "bankroll": 92.4486, "result": "WIN"}, {"date": "2026-05-07", "bankroll": 93.7986, "result": "WIN"}, {"date": "2026-05-07", "bankroll": 94.7986, "result": "WIN"}, {"date": "2026-05-07", "bankroll": 95.7986, "result": "WIN"}, {"date": "2026-05-07", "bankroll": 94.7986, "result": "LOSS"}, {"date": "2026-05-07", "bankroll": 93.7986, "result": "LOSS"}, {"date": "2026-05-07", "bankroll": 94.37, "result": "WIN"}, {"date": "2026-05-07", "bankroll": 95.0597, "result": "WIN"}, {"date": "2026-05-07", "bankroll": 94.0597, "result": "LOSS"}, {"date": "2026-05-07", "bankroll": 94.9688, "result": "WIN"}, {"date": "2026-05-07", "bankroll": 95.6355, "result": "WIN"}, {"date": "2026-05-08", "bankroll": 94.6355, "result": "LOSS"}, {"date": "2026-05-08", "bankroll": 96.1855, "result": "WIN"}, {"date": "2026-05-08", "bankroll": 95.1855, "result": "LOSS"}, {"date": "2026-05-08", "bankroll": 95.7669, "result": "WIN"}, {"date": "2026-05-08", "bankroll": 96.5361, "result": "WIN"}, {"date": "2026-05-08", "bankroll": 97.4885, "result": "WIN"}, {"date": "2026-05-08", "bankroll": 96.4885, "result": "LOSS"}, {"date": "2026-05-08", "bankroll": 95.4885, "result": "LOSS"}, {"date": "2026-05-08", "bankroll": 94.4885, "result": "LOSS"}, {"date": "2026-05-08", "bankroll": 93.4885, "result": "LOSS"}, {"date": "2026-05-08", "bankroll": 94.2292, "result": "WIN"}, {"date": "2026-05-08", "bankroll": 95.1466, "result": "WIN"}, {"date": "2026-05-08", "bankroll": 94.1466, "result": "LOSS"}, {"date": "2026-05-08", "bankroll": 93.1466, "result": "LOSS"}, {"date": "2026-05-08", "bankroll": 94.2966, "result": "WIN"}, {"date": "2026-05-08", "bankroll": 93.2966, "result": "LOSS"}, {"date": "2026-05-09", "bankroll": 93.9863, "result": "WIN"}, {"date": "2026-05-09", "bankroll": 94.6113, "result": "WIN"}, {"date": "2026-05-09", "bankroll": 95.3865, "result": "WIN"}, {"date": "2026-05-09", "bankroll": 94.3865, "result": "LOSS"}, {"date": "2026-05-09", "bankroll": 93.3865, "result": "LOSS"}, {"date": "2026-05-09", "bankroll": 94.9865, "result": "WIN"}, {"date": "2026-05-09", "bankroll": 93.9865, "result": "LOSS"}, {"date": "2026-05-09", "bankroll": 92.9865, "result": "LOSS"}, {"date": "2026-05-09", "bankroll": 93.8956, "result": "WIN"}, {"date": "2026-05-09", "bankroll": 94.7652, "result": "WIN"}, {"date": "2026-05-09", "bankroll": 95.3902, "result": "WIN"}, {"date": "2026-05-09", "bankroll": 94.3902, "result": "LOSS"}, {"date": "2026-05-09", "bankroll": 95.3076, "result": "WIN"}, {"date": "2026-05-09", "bankroll": 94.3076, "result": "LOSS"}, {"date": "2026-05-09", "bankroll": 93.3076, "result": "LOSS"}, {"date": "2026-05-09", "bankroll": 93.9326, "result": "WIN"}, {"date": "2026-05-09", "bankroll": 94.6469, "result": "WIN"}, {"date": "2026-05-09", "bankroll": 93.6469, "result": "LOSS"}, {"date": "2026-05-09", "bankroll": 94.3366, "result": "WIN"}, {"date": "2026-05-09", "bankroll": 95.1913, "result": "WIN"}, {"date": "2026-05-09", "bankroll": 95.608, "result": "WIN"}, {"date": "2026-05-09", "bankroll": 96.408, "result": "WIN"}, {"date": "2026-05-09", "bankroll": 95.408, "result": "LOSS"}, {"date": "2026-05-09", "bankroll": 96.2852, "result": "WIN"}, {"date": "2026-05-10", "bankroll": 97.1548, "result": "WIN"}, {"date": "2026-05-10", "bankroll": 96.1548, "result": "LOSS"}, {"date": "2026-05-10", "bankroll": 95.1548, "result": "LOSS"}, {"date": "2026-05-10", "bankroll": 95.924, "result": "WIN"}, {"date": "2026-05-10", "bankroll": 94.924, "result": "LOSS"}, {"date": "2026-05-10", "bankroll": 96.024, "result": "WIN"}, {"date": "2026-05-10", "bankroll": 95.024, "result": "LOSS"}, {"date": "2026-05-10", "bankroll": 94.024, "result": "LOSS"}, {"date": "2026-05-10", "bankroll": 93.024, "result": "LOSS"}, {"date": "2026-05-10", "bankroll": 94.364, "result": "WIN"}, {"date": "2026-05-10", "bankroll": 95.1837, "result": "WIN"}, {"date": "2026-05-10", "bankroll": 95.8087, "result": "WIN"}, {"date": "2026-05-10", "bankroll": 96.8887, "result": "WIN"}, {"date": "2026-05-10", "bankroll": 97.5137, "result": "WIN"}, {"date": "2026-05-10", "bankroll": 96.5137, "result": "LOSS"}, {"date": "2026-05-10", "bankroll": 97.1804, "result": "WIN"}, {"date": "2026-05-10", "bankroll": 97.9103, "result": "WIN"}, {"date": "2026-05-10", "bankroll": 96.9103, "result": "LOSS"}, {"date": "2026-05-10", "bankroll": 95.9103, "result": "LOSS"}, {"date": "2026-05-10", "bankroll": 94.9103, "result": "LOSS"}, {"date": "2026-05-10", "bankroll": 93.9103, "result": "LOSS"}, {"date": "2026-05-10", "bankroll": 95.1803, "result": "WIN"}, {"date": "2026-05-10", "bankroll": 95.8053, "result": "WIN"}, {"date": "2026-05-10", "bankroll": 96.66, "result": "WIN"}, {"date": "2026-05-10", "bankroll": 97.4933, "result": "WIN"}, {"date": "2026-05-11", "bankroll": 98.2625, "result": "WIN"}, {"date": "2026-05-11", "bankroll": 99.4225, "result": "WIN"}, {"date": "2026-05-11", "bankroll": 100.4625, "result": "WIN"}, {"date": "2026-05-11", "bankroll": 101.1819, "result": "WIN"}, {"date": "2026-05-11", "bankroll": 100.1819, "result": "LOSS"}, {"date": "2026-05-11", "bankroll": 99.1819, "result": "LOSS"}, {"date": "2026-05-11", "bankroll": 99.9819, "result": "WIN"}, {"date": "2026-05-11", "bankroll": 101.2219, "result": "WIN"}, {"date": "2026-05-12", "bankroll": 100.2219, "result": "LOSS"}, {"date": "2026-05-12", "bankroll": 101.1565, "result": "WIN"}, {"date": "2026-05-12", "bankroll": 101.8322, "result": "WIN"}, {"date": "2026-05-12", "bankroll": 102.7018, "result": "WIN"}, {"date": "2026-05-12", "bankroll": 101.7018, "result": "LOSS"}, {"date": "2026-05-12", "bankroll": 100.7018, "result": "LOSS"}, {"date": "2026-05-12", "bankroll": 99.7018, "result": "LOSS"}, {"date": "2026-05-12", "bankroll": 98.7018, "result": "LOSS"}, {"date": "2026-05-12", "bankroll": 97.7018, "result": "LOSS"}, {"date": "2026-05-12", "bankroll": 96.7018, "result": "LOSS"}, {"date": "2026-05-12", "bankroll": 97.5018, "result": "WIN"}, {"date": "2026-05-12", "bankroll": 96.5018, "result": "LOSS"}, {"date": "2026-05-12", "bankroll": 95.5018, "result": "LOSS"}, {"date": "2026-05-12", "bankroll": 94.5018, "result": "LOSS"}, {"date": "2026-05-12", "bankroll": 95.09, "result": "WIN"}, {"date": "2026-05-12", "bankroll": 94.09, "result": "LOSS"}, {"date": "2026-05-12", "bankroll": 93.09, "result": "LOSS"}, {"date": "2026-05-12", "bankroll": 92.09, "result": "LOSS"}, {"date": "2026-05-12", "bankroll": 91.09, "result": "LOSS"}, {"date": "2026-05-12", "bankroll": 90.09, "result": "LOSS"}, {"date": "2026-05-12", "bankroll": 90.9233, "result": "WIN"}, {"date": "2026-05-12", "bankroll": 89.9233, "result": "LOSS"}, {"date": "2026-05-12", "bankroll": 90.6376, "result": "WIN"}, {"date": "2026-05-12", "bankroll": 91.4376, "result": "WIN"}, {"date": "2026-05-13", "bankroll": 92.0745, "result": "WIN"}, {"date": "2026-05-13", "bankroll": 91.0745, "result": "LOSS"}, {"date": "2026-05-13", "bankroll": 90.0745, "result": "LOSS"}, {"date": "2026-05-13", "bankroll": 89.0745, "result": "LOSS"}, {"date": "2026-05-13", "bankroll": 90.0549, "result": "WIN"}, {"date": "2026-05-13", "bankroll": 89.0549, "result": "LOSS"}, {"date": "2026-05-13", "bankroll": 89.9024, "result": "WIN"}, {"date": "2026-05-13", "bankroll": 90.8283, "result": "WIN"}, {"date": "2026-05-13", "bankroll": 91.495, "result": "WIN"}, {"date": "2026-05-13", "bankroll": 90.495, "result": "LOSS"}, {"date": "2026-05-13", "bankroll": 89.495, "result": "LOSS"}, {"date": "2026-05-13", "bankroll": 88.495, "result": "LOSS"}, {"date": "2026-05-13", "bankroll": 89.0974, "result": "WIN"}, {"date": "2026-05-13", "bankroll": 88.0974, "result": "LOSS"}, {"date": "2026-05-13", "bankroll": 88.6688, "result": "WIN"}, {"date": "2026-05-13", "bankroll": 89.1951, "result": "WIN"}, {"date": "2026-05-13", "bankroll": 89.9643, "result": "WIN"}, {"date": "2026-05-13", "bankroll": 88.9643, "result": "LOSS"}, {"date": "2026-05-13", "bankroll": 89.7643, "result": "WIN"}, {"date": "2026-05-13", "bankroll": 88.7643, "result": "LOSS"}, {"date": "2026-05-14", "bankroll": 87.7643, "result": "LOSS"}, {"date": "2026-05-14", "bankroll": 88.3138, "result": "WIN"}, {"date": "2026-05-14", "bankroll": 87.3138, "result": "LOSS"}, {"date": "2026-05-14", "bankroll": 86.3138, "result": "LOSS"}, {"date": "2026-05-14", "bankroll": 87.3138, "result": "WIN"}, {"date": "2026-05-14", "bankroll": 88.5138, "result": "WIN"}, {"date": "2026-05-14", "bankroll": 87.5138, "result": "LOSS"}, {"date": "2026-05-14", "bankroll": 88.3471, "result": "WIN"}, {"date": "2026-05-14", "bankroll": 89.4771, "result": "WIN"}, {"date": "2026-05-14", "bankroll": 88.4771, "result": "LOSS"}, {"date": "2026-05-14", "bankroll": 87.4771, "result": "LOSS"}, {"date": "2026-05-14", "bankroll": 88.1223, "result": "WIN"}, {"date": "2026-05-14", "bankroll": 87.1223, "result": "LOSS"}, {"date": "2026-05-14", "bankroll": 86.1223, "result": "LOSS"}, {"date": "2026-05-14", "bankroll": 85.1223, "result": "LOSS"}, {"date": "2026-05-14", "bankroll": 85.6937, "result": "WIN"}, {"date": "2026-05-14", "bankroll": 86.3604, "result": "WIN"}, {"date": "2026-05-14", "bankroll": 85.3604, "result": "LOSS"}, {"date": "2026-05-14", "bankroll": 84.3604, "result": "LOSS"}, {"date": "2026-05-14", "bankroll": 83.3604, "result": "LOSS"}, {"date": "2026-05-15", "bankroll": 82.3604, "result": "LOSS"}, {"date": "2026-05-15", "bankroll": 81.3604, "result": "LOSS"}, {"date": "2026-05-15", "bankroll": 82.0271, "result": "WIN"}, {"date": "2026-05-15", "bankroll": 82.8271, "result": "WIN"}, {"date": "2026-05-15", "bankroll": 81.8271, "result": "LOSS"}, {"date": "2026-05-15", "bankroll": 82.4332, "result": "WIN"}, {"date": "2026-05-15", "bankroll": 83.0393, "result": "WIN"}, {"date": "2026-05-15", "bankroll": 83.8726, "result": "WIN"}, {"date": "2026-05-15", "bankroll": 84.5095, "result": "WIN"}, {"date": "2026-05-15", "bankroll": 83.5095, "result": "LOSS"}, {"date": "2026-05-15", "bankroll": 82.5095, "result": "LOSS"}, {"date": "2026-05-15", "bankroll": 81.5095, "result": "LOSS"}, {"date": "2026-05-15", "bankroll": 82.2289, "result": "WIN"}, {"date": "2026-05-15", "bankroll": 82.9186, "result": "WIN"}, {"date": "2026-05-15", "bankroll": 81.9186, "result": "LOSS"}, {"date": "2026-05-15", "bankroll": 82.7519, "result": "WIN"}, {"date": "2026-05-15", "bankroll": 83.4662, "result": "WIN"}, {"date": "2026-05-15", "bankroll": 84.0912, "result": "WIN"}, {"date": "2026-05-16", "bankroll": 85.0436, "result": "WIN"}, {"date": "2026-05-16", "bankroll": 85.5436, "result": "WIN"}, {"date": "2026-05-16", "bankroll": 86.5936, "result": "WIN"}, {"date": "2026-05-16", "bankroll": 87.6136, "result": "WIN"}, {"date": "2026-05-16", "bankroll": 86.6136, "result": "LOSS"}, {"date": "2026-05-16", "bankroll": 87.1692, "result": "WIN"}, {"date": "2026-05-16", "bankroll": 87.9099, "result": "WIN"}, {"date": "2026-05-16", "bankroll": 88.4879, "result": "WIN"}, {"date": "2026-05-16", "bankroll": 87.4879, "result": "LOSS"}, {"date": "2026-05-16", "bankroll": 88.1546, "result": "WIN"}, {"date": "2026-05-16", "bankroll": 87.1546, "result": "LOSS"}, {"date": "2026-05-16", "bankroll": 86.1546, "result": "LOSS"}, {"date": "2026-05-16", "bankroll": 86.7956, "result": "WIN"}, {"date": "2026-05-16", "bankroll": 87.8156, "result": "WIN"}, {"date": "2026-05-16", "bankroll": 88.7502, "result": "WIN"}, {"date": "2026-05-16", "bankroll": 89.8002, "result": "WIN"}, {"date": "2026-05-16", "bankroll": 88.8002, "result": "LOSS"}, {"date": "2026-05-16", "bankroll": 89.4063, "result": "WIN"}, {"date": "2026-05-17", "bankroll": 88.4063, "result": "LOSS"}, {"date": "2026-05-17", "bankroll": 89.7263, "result": "WIN"}, {"date": "2026-05-17", "bankroll": 88.7263, "result": "LOSS"}, {"date": "2026-05-17", "bankroll": 89.318, "result": "WIN"}, {"date": "2026-05-17", "bankroll": 90.518, "result": "WIN"}, {"date": "2026-05-17", "bankroll": 91.2587, "result": "WIN"}, {"date": "2026-05-17", "bankroll": 91.785, "result": "WIN"}, {"date": "2026-05-17", "bankroll": 90.785, "result": "LOSS"}, {"date": "2026-05-17", "bankroll": 89.785, "result": "LOSS"}, {"date": "2026-05-17", "bankroll": 90.6397, "result": "WIN"}, {"date": "2026-05-17", "bankroll": 89.6397, "result": "LOSS"}, {"date": "2026-05-18", "bankroll": 90.7397, "result": "WIN"}, {"date": "2026-05-18", "bankroll": 89.7397, "result": "LOSS"}, {"date": "2026-05-18", "bankroll": 88.7397, "result": "LOSS"}, {"date": "2026-05-18", "bankroll": 87.7397, "result": "LOSS"}, {"date": "2026-05-18", "bankroll": 88.2275, "result": "WIN"}, {"date": "2026-05-18", "bankroll": 89.2275, "result": "WIN"}, {"date": "2026-05-18", "bankroll": 88.2275, "result": "LOSS"}, {"date": "2026-05-18", "bankroll": 87.2275, "result": "LOSS"}, {"date": "2026-05-18", "bankroll": 86.2275, "result": "LOSS"}, {"date": "2026-05-18", "bankroll": 87.5875, "result": "WIN"}, {"date": "2026-05-18", "bankroll": 88.1655, "result": "WIN"}, {"date": "2026-05-19", "bankroll": 89.0746, "result": "WIN"}, {"date": "2026-05-19", "bankroll": 89.5291, "result": "WIN"}, {"date": "2026-05-19", "bankroll": 88.5291, "result": "LOSS"}, {"date": "2026-05-19", "bankroll": 87.5291, "result": "LOSS"}, {"date": "2026-05-19", "bankroll": 86.5291, "result": "LOSS"}, {"date": "2026-05-19", "bankroll": 87.4382, "result": "WIN"}, {"date": "2026-05-19", "bankroll": 88.3906, "result": "WIN"}, {"date": "2026-05-19", "bankroll": 88.8906, "result": "WIN"}, {"date": "2026-05-19", "bankroll": 87.8906, "result": "LOSS"}, {"date": "2026-05-19", "bankroll": 88.5573, "result": "WIN"}, {"date": "2026-05-19", "bankroll": 87.5573, "result": "LOSS"}, {"date": "2026-05-19", "bankroll": 88.4048, "result": "WIN"}, {"date": "2026-05-19", "bankroll": 87.4048, "result": "LOSS"}, {"date": "2026-05-19", "bankroll": 88.2381, "result": "WIN"}, {"date": "2026-05-19", "bankroll": 87.2381, "result": "LOSS"}, {"date": "2026-05-19", "bankroll": 88.1815, "result": "WIN"}, {"date": "2026-05-20", "bankroll": 87.1815, "result": "LOSS"}, {"date": "2026-05-20", "bankroll": 87.9222, "result": "WIN"}, {"date": "2026-05-20", "bankroll": 86.9222, "result": "LOSS"}, {"date": "2026-05-20", "bankroll": 85.9222, "result": "LOSS"}, {"date": "2026-05-20", "bankroll": 84.9222, "result": "LOSS"}, {"date": "2026-05-20", "bankroll": 83.9222, "result": "LOSS"}, {"date": "2026-05-20", "bankroll": 82.9222, "result": "LOSS"}, {"date": "2026-05-20", "bankroll": 81.9222, "result": "LOSS"}, {"date": "2026-05-20", "bankroll": 80.9222, "result": "LOSS"}, {"date": "2026-05-20", "bankroll": 81.8656, "result": "WIN"}, {"date": "2026-05-20", "bankroll": 80.8656, "result": "LOSS"}, {"date": "2026-05-20", "bankroll": 79.8656, "result": "LOSS"}, {"date": "2026-05-20", "bankroll": 78.8656, "result": "LOSS"}, {"date": "2026-05-20", "bankroll": 79.3201, "result": "WIN"}, {"date": "2026-05-21", "bankroll": 79.9451, "result": "WIN"}, {"date": "2026-05-21", "bankroll": 81.1051, "result": "WIN"}, {"date": "2026-05-21", "bankroll": 80.1051, "result": "LOSS"}, {"date": "2026-05-21", "bankroll": 79.1051, "result": "LOSS"}, {"date": "2026-05-21", "bankroll": 80.0952, "result": "WIN"}, {"date": "2026-05-21", "bankroll": 81.0476, "result": "WIN"}, {"date": "2026-05-22", "bankroll": 82.8976, "result": "WIN"}, {"date": "2026-05-22", "bankroll": 81.8976, "result": "LOSS"}, {"date": "2026-05-22", "bankroll": 80.8976, "result": "LOSS"}, {"date": "2026-05-22", "bankroll": 81.8976, "result": "WIN"}, {"date": "2026-05-22", "bankroll": 82.85, "result": "WIN"}, {"date": "2026-05-22", "bankroll": 81.85, "result": "LOSS"}, {"date": "2026-05-22", "bankroll": 80.85, "result": "LOSS"}, {"date": "2026-05-22", "bankroll": 81.491, "result": "WIN"}, {"date": "2026-05-22", "bankroll": 80.491, "result": "LOSS"}, {"date": "2026-05-23", "bankroll": 79.491, "result": "LOSS"}, {"date": "2026-05-23", "bankroll": 78.491, "result": "LOSS"}, {"date": "2026-05-23", "bankroll": 78.8942, "result": "WIN"}, {"date": "2026-05-23", "bankroll": 77.8942, "result": "LOSS"}, {"date": "2026-05-23", "bankroll": 76.8942, "result": "LOSS"}, {"date": "2026-05-23", "bankroll": 75.8942, "result": "LOSS"}, {"date": "2026-05-23", "bankroll": 74.8942, "result": "LOSS"}, {"date": "2026-05-23", "bankroll": 76.4442, "result": "WIN"}, {"date": "2026-05-23", "bankroll": 75.4442, "result": "LOSS"}, {"date": "2026-05-23", "bankroll": 74.4442, "result": "LOSS"}, {"date": "2026-05-23", "bankroll": 74.9093, "result": "WIN"}, {"date": "2026-05-23", "bankroll": 75.8617, "result": "WIN"}, {"date": "2026-05-23", "bankroll": 76.4986, "result": "WIN"}, {"date": "2026-05-23", "bankroll": 75.4986, "result": "LOSS"}, {"date": "2026-05-23", "bankroll": 76.3607, "result": "WIN"}, {"date": "2026-05-23", "bankroll": 76.9857, "result": "WIN"}, {"date": "2026-05-23", "bankroll": 77.6068, "result": "WIN"}, {"date": "2026-05-23", "bankroll": 78.6068, "result": "WIN"}, {"date": "2026-05-23", "bankroll": 79.2129, "result": "WIN"}, {"date": "2026-05-24", "bankroll": 78.2129, "result": "LOSS"}, {"date": "2026-05-24", "bankroll": 77.2129, "result": "LOSS"}, {"date": "2026-05-24", "bankroll": 77.8379, "result": "WIN"}, {"date": "2026-05-24", "bankroll": 76.8379, "result": "LOSS"}, {"date": "2026-05-24", "bankroll": 77.444, "result": "WIN"}, {"date": "2026-05-24", "bankroll": 76.444, "result": "LOSS"}, {"date": "2026-05-24", "bankroll": 77.2132, "result": "WIN"}, {"date": "2026-05-24", "bankroll": 76.2132, "result": "LOSS"}, {"date": "2026-05-24", "bankroll": 76.812, "result": "WIN"}, {"date": "2026-05-24", "bankroll": 77.312, "result": "WIN"}, {"date": "2026-05-24", "bankroll": 78.422, "result": "WIN"}, {"date": "2026-05-24", "bankroll": 77.422, "result": "LOSS"}, {"date": "2026-05-24", "bankroll": 78.522, "result": "WIN"}, {"date": "2026-05-24", "bankroll": 78.9568, "result": "WIN"}, {"date": "2026-05-25", "bankroll": 79.6975, "result": "WIN"}, {"date": "2026-05-25", "bankroll": 80.3642, "result": "WIN"}, {"date": "2026-05-25", "bankroll": 81.0353, "result": "WIN"}, {"date": "2026-05-25", "bankroll": 81.6414, "result": "WIN"}, {"date": "2026-05-25", "bankroll": 82.8914, "result": "WIN"}, {"date": "2026-05-25", "bankroll": 81.8914, "result": "LOSS"}, {"date": "2026-05-25", "bankroll": 83.0914, "result": "WIN"}, {"date": "2026-05-25", "bankroll": 82.0914, "result": "LOSS"}, {"date": "2026-05-25", "bankroll": 82.8606, "result": "WIN"}, {"date": "2026-05-25", "bankroll": 81.8606, "result": "LOSS"}, {"date": "2026-05-25", "bankroll": 82.5185, "result": "WIN"}, {"date": "2026-05-25", "bankroll": 83.2877, "result": "WIN"}, {"date": "2026-05-25", "bankroll": 84.0569, "result": "WIN"}, {"date": "2026-05-25", "bankroll": 83.0569, "result": "LOSS"}, {"date": "2026-05-25", "bankroll": 82.0569, "result": "LOSS"}, {"date": "2026-05-25", "bankroll": 81.0569, "result": "LOSS"}, {"date": "2026-06-10", "bankroll": 81.8261, "result": "WIN"}, {"date": "2026-06-10", "bankroll": 80.8261, "result": "LOSS"}, {"date": "2026-06-10", "bankroll": 81.5404, "result": "WIN"}, {"date": "2026-06-10", "bankroll": 80.5404, "result": "LOSS"}, {"date": "2026-06-10", "bankroll": 79.5404, "result": "LOSS"}, {"date": "2026-06-10", "bankroll": 78.5404, "result": "LOSS"}, {"date": "2026-06-10", "bankroll": 77.5404, "result": "LOSS"}, {"date": "2026-06-10", "bankroll": 76.5404, "result": "LOSS"}, {"date": "2026-06-10", "bankroll": 77.1654, "result": "WIN"}, {"date": "2026-06-10", "bankroll": 76.1654, "result": "LOSS"}, {"date": "2026-06-10", "bankroll": 76.55, "result": "WIN"}, {"date": "2026-06-10", "bankroll": 77.4429, "result": "WIN"}, {"date": "2026-06-10", "bankroll": 76.4429, "result": "LOSS"}, {"date": "2026-06-10", "bankroll": 77.9029, "result": "WIN"}, {"date": "2026-06-10", "bankroll": 78.5565, "result": "WIN"}, {"date": "2026-06-11", "bankroll": 79.6065, "result": "WIN"}, {"date": "2026-06-11", "bankroll": 78.6065, "result": "LOSS"}, {"date": "2026-06-12", "bankroll": 79.4994, "result": "WIN"}, {"date": "2026-06-12", "bankroll": 80.0876, "result": "WIN"}, {"date": "2026-06-12", "bankroll": 79.0876, "result": "LOSS"}, {"date": "2026-06-12", "bankroll": 79.7633, "result": "WIN"}, {"date": "2026-06-12", "bankroll": 78.7633, "result": "LOSS"}, {"date": "2026-06-12", "bankroll": 81.4233, "result": "WIN"}];const mD=[{"month": "2026-04", "bets": 573, "wins": 354, "pnl": 50.64, "win_pct": 61.8, "roi": 8.8}, {"month": "2026-05", "bets": 451, "wins": 266, "pnl": 30.41, "win_pct": 59.0, "roi": 6.7}, {"month": "2026-06", "bets": 23, "wins": 12, "pnl": 0.37, "win_pct": 52.2, "roi": 1.6}];
+if(bkD.length>0){new Chart(document.getElementById('bkC').getContext('2d'),{type:'line',
+  data:{labels:bkD.map(d=>d.date),datasets:[{data:bkD.map(d=>d.bankroll),borderColor:'#00ff88',borderWidth:2,pointRadius:0,fill:true,backgroundColor:(ctx)=>{const g=ctx.chart.ctx.createLinearGradient(0,0,0,240);g.addColorStop(0,'rgba(0,255,136,0.15)');g.addColorStop(1,'rgba(0,255,136,0)');return g;},tension:0.3}]},
+  options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{display:false},y:{grid:{color:'#1a2535'},ticks:{color:'#64748b',font:{family:'DM Mono',size:10},callback:v=>v.toFixed(2)+'u'}}}}})}
+if(mD.length>0){new Chart(document.getElementById('mC').getContext('2d'),{type:'bar',
+  data:{labels:mD.map(d=>d.month),datasets:[{data:mD.map(d=>d.win_pct),backgroundColor:mD.map(d=>d.win_pct>=52.4?'rgba(0,255,136,0.7)':'rgba(255,59,92,0.7)'),borderRadius:4}]},
+  options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{color:'#64748b'}},y:{min:40,grid:{color:'#1a2535'},ticks:{color:'#64748b',callback:v=>v+'%'}}}}})}
+</script></html>
