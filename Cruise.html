@@ -3,327 +3,297 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Family Cruise Options — Round 2</title>
+<title>Family Cruise Options — Round 3 (5 Destinations)</title>
 <style>
-  :root{
-    --navy:#1F3864; --blue:#2E5496; --light:#DDEBF7; --ink:#1c2530; --grey:#5b6573;
-    --line:#e3e8ef; --gold:#b8862b; --green:#2f7d4f; --soft:#f6f8fb;
-  }
+  :root{--navy:#1F3864;--blue:#2E5496;--light:#DDEBF7;--ink:#1c2530;--grey:#5b6573;--line:#e3e8ef;--gold:#b8862b;--green:#2f7d4f;--soft:#f6f8fb;}
   *{box-sizing:border-box;}
   body{font-family:'Segoe UI',Arial,Helvetica,sans-serif;color:var(--ink);margin:0;background:#fff;line-height:1.5;}
-  .wrap{max-width:980px;margin:0 auto;padding:32px 28px 60px;}
+  .wrap{max-width:1000px;margin:0 auto;padding:32px 28px 60px;}
   h1{font-size:30px;margin:0 0 6px;color:var(--navy);}
-  h2{font-size:22px;color:var(--navy);margin:38px 0 14px;border-bottom:2px solid var(--light);padding-bottom:6px;}
-  h3{font-size:19px;margin:0;}
+  h2{font-size:23px;color:var(--navy);margin:36px 0 6px;}
+  h3{font-size:16px;margin:14px 0 4px;color:var(--navy);}
   .sub{color:var(--grey);font-size:15px;margin:0 0 4px;}
   .banner{background:linear-gradient(120deg,var(--navy),var(--blue));color:#fff;border-radius:14px;padding:24px 26px;margin-bottom:8px;}
-  .banner h1{color:#fff;}
-  .banner p{margin:6px 0 0;color:#dbe6f5;font-size:15px;}
+  .banner h1{color:#fff;}.banner p{margin:6px 0 0;color:#dbe6f5;font-size:15px;}
   .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
   .pill{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:5px 11px;border-radius:20px;font-size:13px;}
   .note{background:var(--soft);border-left:4px solid var(--gold);padding:12px 16px;border-radius:6px;font-size:14px;color:#43474d;margin:14px 0;}
-  .rec{background:#eafaf0;border-left:4px solid var(--green);}
-  .lane{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--blue);margin:30px 0 -6px;}
-  .lane.b{color:var(--green);}
-  .card{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:18px 0;box-shadow:0 2px 10px rgba(20,40,80,.05);}
-  .card.best{border:2px solid var(--green);box-shadow:0 3px 14px rgba(47,125,79,.14);}
-  .photo{position:relative;height:230px;overflow:hidden;background:#0b3d91;}
-  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-  .photo .meta{position:absolute;left:0;bottom:0;z-index:2;padding:16px 20px;width:100%;
-    background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff;}
-  .photo .badge{position:absolute;top:14px;right:16px;z-index:2;background:#fff;color:var(--navy);font-weight:700;font-size:12px;padding:4px 10px;border-radius:20px;}
-  .photo .badge.g{background:var(--green);color:#fff;}
-  .photo h3{color:#fff;font-size:22px;}
-  .photo .line{font-size:13px;opacity:.95;}
+  .dest{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:26px 0;box-shadow:0 2px 12px rgba(20,40,80,.06);}
+  .hero{position:relative;height:220px;overflow:hidden;background:#0b3d91;}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .hero .meta{position:absolute;left:0;bottom:0;z-index:2;padding:16px 20px;width:100%;background:linear-gradient(transparent,rgba(0,0,0,.74));color:#fff;}
+  .hero h2{color:#fff;margin:0;font-size:24px;}
+  .hero .line{font-size:13px;opacity:.95;}
+  .hero .badge{position:absolute;top:14px;right:16px;z-index:2;background:#fff;color:var(--navy);font-weight:700;font-size:12px;padding:4px 10px;border-radius:20px;}
   .credit{position:absolute;left:8px;top:8px;z-index:2;background:rgba(0,0,0,.45);color:#fff;font-size:10px;padding:2px 7px;border-radius:4px;}
-  .body{padding:18px 20px 8px;}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-  @media(max-width:680px){.grid{grid-template-columns:1fr;}}
-  .fact{font-size:14px;margin:3px 0;}
-  .fact b{color:var(--navy);}
-  .rev{font-size:13px;color:#444;font-style:italic;border-left:3px solid var(--light);padding:2px 10px;margin:8px 0;}
-  .isle{margin:6px 0 2px;border-radius:10px;overflow:hidden;position:relative;}
-  .isle img{width:100%;height:150px;object-fit:cover;display:block;}
-  .isle .cap{font-size:12px;color:var(--grey);padding:4px 2px;}
-  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0 4px;}
-  th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);}
+  .body{padding:16px 20px 10px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0 10px;}
+  th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top;}
   th{background:var(--navy);color:#fff;font-weight:600;}
   td.n,th.n{text-align:right;}
-  tr.tot td{background:var(--light);font-weight:700;color:var(--navy);border-bottom:none;}
-  .cmp th{background:var(--blue);}
-  .cmp td.win{background:#eafaf0;font-weight:700;color:var(--green);}
-  .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-left:6px;}
-  .t-drive{background:#eafaf0;color:var(--green);}
-  .t-fly{background:#e9eefb;color:var(--blue);}
-  ul.am{margin:6px 0;padding-left:18px;font-size:13.5px;}
+  tr.tot td{background:var(--light);font-weight:700;color:var(--navy);}
+  .cmp th{background:var(--blue);} .cmp td.win{background:#eafaf0;font-weight:700;color:var(--green);}
+  .amgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+  @media(max-width:760px){.amgrid{grid-template-columns:1fr;}}
+  ul.am{margin:4px 0 0;padding-left:16px;font-size:12.5px;}
   ul.am li{margin:2px 0;}
-  .gallery{font-size:13px;margin:8px 0 2px;}
-  .gallery a{color:var(--blue);font-weight:600;}
-  .wish{display:inline-block;background:#fff3d6;color:#7a5a12;font-size:11px;font-weight:700;padding:1px 7px;border-radius:5px;margin-left:4px;}
+  .wish{display:inline-block;background:#fff3d6;color:#7a5a12;font-size:11px;font-weight:700;padding:1px 7px;border-radius:5px;}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;}
+  .t-drive{background:#eafaf0;color:var(--green);}.t-fly{background:#e9eefb;color:var(--blue);}
+  a{color:var(--blue);text-decoration:none;} a:hover{text-decoration:underline;}
   .foot{margin-top:30px;font-size:13px;color:var(--grey);border-top:1px solid var(--line);padding-top:16px;}
-  a{color:var(--blue);}
+  .small{font-size:12px;color:var(--grey);}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <div class="banner">
-    <h1>Family Cruise — Options, Round 2</h1>
-    <p>Rebuilt around Nicole's updates: adventurous excursions are the #1 priority, real ports over private islands, and you'll drive up to 10 hours or fly. Four options across two directions and two lengths.</p>
+    <h1>Family Cruise — Options, Round 3</h1>
+    <p>Five destinations, each priced across up to three cruise lines, with ship amenities, excursions and full cost breakdowns. Built around Nicole's brief: adventurous excursions first, real ports (no private-island days), drive or fly, no Disney.</p>
     <div class="pills">
       <span class="pill">7 travelers · 4 adults (1 turning 65) + kids 5, 6, 9</span>
       <span class="pill">2 cabins</span>
-      <span class="pill">5 or 7 nights</span>
-      <span class="pill">Summer 2027 · flexible</span>
+      <span class="pill">5–7 nights</span>
+      <span class="pill">Summer 2027</span>
       <span class="pill">From CLE · drive ≤10 hr or fly</span>
-      <span class="pill">Under $20,000</span>
-      <span class="pill">Priority: adventurous excursions</span>
-      <span class="pill">Casino · live entertainment · WiFi</span>
+      <span class="pill">Target $14k · ceiling $20k</span>
+      <span class="pill">No Disney</span>
     </div>
   </div>
 
   <div class="note">
-    <b>How I matched your wishlist:</b> <span class="wish">jungle</span> → Belize &amp; Roatán rainforest/ruins · <span class="wish">cave</span> → Belize cave-tubing + Bermuda's Crystal Caves · <span class="wish">history/culture</span> → Mayan ruins &amp; Bermuda's St. George's (UNESCO). None of these use a private-island day — every stop is a real port with excursions.
+    <b>How to read this:</b> each of the five destinations below has a <b>cost-comparison table</b> across its cruise lines (7 people, 2 interior cabins, all-in), then each ship's <b>top amenities</b>, then a <b>shore-excursion list with prices</b> you can add or drop to adjust the total. <b>Underlined text is a link</b> — ship names go to the official ship page, excursions to a booking/info page, and destinations to a port guide, since photos for those don't make sense.
   </div>
-
   <div class="note">
-    <b>About the photos &amp; numbers:</b> Ship/destination images are real, freely-licensed photos (Wikimedia Commons, CC BY-SA). It's June 2026, so summer-2027 fares are only partly loaded — costs are <b>estimates</b> from current comparable pricing and will firm up as 2027 inventory opens. All four land under your $20k ceiling.
+    <b>About the numbers:</b> It's June 2026, so summer-2027 fares are only partly loaded — all costs are <b>estimates</b> from current comparable pricing and will firm up as 2027 inventory opens. Drink packages are left out (you said "not sure"); insurance is a placeholder "get a quote." Photos are real, freely-licensed images (Wikimedia Commons, CC BY-SA).
   </div>
 
-  <h2>The two directions</h2>
-  <p class="sub"><b>Drive → Bermuda</b> (no airfare): Cape Liberty in Bayonne, NJ is ~7.5 hours from Cleveland. Royal Caribbean's <i>Independence of the Seas</i> docks ~2–3 days right in Bermuda — caves, pink-sand beaches, and St. George's history, with a big casino and Broadway-style shows onboard. Cheapest path, but no jungle. <b>Fly → Western Caribbean</b> (from Galveston, TX): this is the adventure powerhouse — Cozumel, Costa Maya, Roatán, and especially <b>Belize</b>, where one excursion combines cave-tubing, zipline, and jungle Mayan ruins. Adds airfare, but it's the best fit for "excursions first."</p>
-
-  <!-- ============ DRIVE LANE ============ -->
-  <div class="lane b">Drive from Cleveland · Bermuda · no airfare</div>
-
-  <!-- OPTION 1 -->
-  <div class="card">
-    <div class="photo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/INDEPENDENCE_of_the_SEAS_27-6-2025.jpg/1280px-INDEPENDENCE_of_the_SEAS_27-6-2025.jpg" alt="Royal Caribbean Independence of the Seas">
-      <span class="credit">Photo: Wikimedia Commons, CC BY-SA</span>
-      <span class="badge g">★ Lowest cost</span>
-      <div class="meta">
-        <h3>Option 1 — Bermuda, 5 nights <span class="tag t-drive">DRIVE</span></h3>
-        <div class="line">Royal Caribbean <i>Independence of the Seas</i> · round-trip Cape Liberty (Bayonne, NJ)</div>
-      </div>
-    </div>
-    <div class="body">
-      <div class="grid">
-        <div>
-          <p class="fact"><b>Drive:</b> ~7.5 hr Cleveland → Bayonne, NJ — no flights, your own car at the port</p>
-          <p class="fact"><b>Sample route:</b> Bayonne → 2 full days docked at Royal Naval Dockyard, Bermuda → Bayonne</p>
-          <p class="fact"><b>Excursions:</b> Crystal &amp; Fantasy Caves <span class="wish">cave</span>, Horseshoe Bay snorkel, St. George's UNESCO town <span class="wish">history</span>, glass-bottom boat</p>
-          <p class="fact"><b>Kids' program:</b> Adventure Ocean (3–12) — fits all three (5, 6, 9)</p>
-          <p class="fact"><b>Casino &amp; shows:</b> Casino Royale + Broadway-style entertainment</p>
-          <div class="isle">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Horseshoebay.Bermuda.JPG/1280px-Horseshoebay.Bermuda.JPG" alt="Horseshoe Bay, Bermuda">
-            <div class="cap">Horseshoe Bay, Bermuda · Photo: Wikimedia Commons, CC BY-SA</div>
-          </div>
-        </div>
-        <div>
-          <p class="fact"><b>Why it fits:</b></p>
-          <ul class="am">
-            <li>No airfare — easiest on the budget by far</li>
-            <li>2 full days IN Bermuda = lots of excursion time, no private-island day</li>
-            <li>Caves + history tick two of Nicole's three wishes</li>
-            <li>Short enough for a first family cruise</li>
-          </ul>
-          <p class="fact"><b>Trade-off:</b> one destination, and no jungle (that's the Caribbean's department).</p>
-          <p class="gallery"><b>Official:</b> <a href="https://www.royalcaribbean.com/cruise-ships/independence-of-the-seas">royalcaribbean.com — Independence of the Seas</a></p>
-        </div>
-      </div>
-      <table>
-        <tr><th>Cost category</th><th>Basis</th><th class="n">Estimate</th></tr>
-        <tr><td>Cruise fare (all 7)</td><td>2 interior cabins</td><td class="n">$4,850</td></tr>
-        <tr><td>Taxes &amp; port fees</td><td>per person ×7</td><td class="n">$1,120</td></tr>
-        <tr><td>Gratuities</td><td>~$16 ×5 ×7</td><td class="n">$560</td></tr>
-        <tr><td>Airfare</td><td>driving</td><td class="n">$0</td></tr>
-        <tr><td>Drive — gas, tolls, port parking</td><td>round trip</td><td class="n">$360</td></tr>
-        <tr><td>Pre-cruise hotel</td><td>2 rooms ×1 night</td><td class="n">$280</td></tr>
-        <tr><td>Excursions</td><td>family</td><td class="n">$700</td></tr>
-        <tr><td>WiFi</td><td>package</td><td class="n">$150</td></tr>
-        <tr><td>Travel insurance</td><td>group</td><td class="n">$400</td></tr>
-        <tr><td>Onboard / misc</td><td>spending</td><td class="n">$700</td></tr>
-        <tr class="tot"><td colspan="2">ESTIMATED TRIP TOTAL</td><td class="n">$9,120 &nbsp;(≈ $1,303 / person)</td></tr>
-      </table>
-    </div>
-  </div>
-
-  <!-- OPTION 2 -->
-  <div class="card">
-    <div class="photo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Horseshoebay.Bermuda.JPG/1280px-Horseshoebay.Bermuda.JPG" alt="Bermuda pink sand beach">
-      <span class="credit">Photo: Wikimedia Commons, CC BY-SA</span>
-      <span class="badge">More island time</span>
-      <div class="meta">
-        <h3>Option 2 — Bermuda, 7 nights <span class="tag t-drive">DRIVE</span></h3>
-        <div class="line">Royal Caribbean <i>Independence of the Seas</i> · round-trip Cape Liberty (Bayonne, NJ)</div>
-      </div>
-    </div>
-    <div class="body">
-      <div class="grid">
-        <div>
-          <p class="fact"><b>Drive:</b> same ~7.5 hr to Bayonne, no airfare</p>
-          <p class="fact"><b>Sample route:</b> Bayonne → ~3 days docked in Bermuda (sometimes + an extra port/sea day) → Bayonne</p>
-          <p class="fact"><b>Excursions:</b> everything in Option 1 with time to spare — add a catamaran sail, shipwreck snorkel, or a Crystal Caves + Swizzle Inn combo</p>
-          <p class="fact"><b>Kids' program:</b> Adventure Ocean (3–12)</p>
-          <p class="fact"><b>Casino &amp; shows:</b> yes + yes</p>
-        </div>
-        <div>
-          <p class="fact"><b>Why it fits:</b></p>
-          <ul class="am">
-            <li>No airfare, but a fuller week and an extra day in Bermuda</li>
-            <li>Relaxed pace — more excursions without rushing</li>
-            <li>Still real-destination time, no private-island day</li>
-          </ul>
-          <p class="fact"><b>Trade-off:</b> costs more than the 5-night; still one main destination, no jungle.</p>
-          <p class="gallery"><b>Official:</b> <a href="https://www.royalcaribbean.com/cruise-ships/independence-of-the-seas">royalcaribbean.com — Independence of the Seas</a></p>
-        </div>
-      </div>
-      <table>
-        <tr><th>Cost category</th><th>Basis</th><th class="n">Estimate</th></tr>
-        <tr><td>Cruise fare (all 7)</td><td>2 interior cabins</td><td class="n">$6,940</td></tr>
-        <tr><td>Taxes &amp; port fees</td><td>per person ×7</td><td class="n">$1,330</td></tr>
-        <tr><td>Gratuities</td><td>~$16 ×7 ×7</td><td class="n">$784</td></tr>
-        <tr><td>Airfare</td><td>driving</td><td class="n">$0</td></tr>
-        <tr><td>Drive — gas, tolls, port parking</td><td>round trip</td><td class="n">$420</td></tr>
-        <tr><td>Pre-cruise hotel</td><td>2 rooms ×1 night</td><td class="n">$280</td></tr>
-        <tr><td>Excursions</td><td>family</td><td class="n">$1,000</td></tr>
-        <tr><td>WiFi</td><td>package</td><td class="n">$200</td></tr>
-        <tr><td>Travel insurance</td><td>group</td><td class="n">$500</td></tr>
-        <tr><td>Onboard / misc</td><td>spending</td><td class="n">$900</td></tr>
-        <tr class="tot"><td colspan="2">ESTIMATED TRIP TOTAL</td><td class="n">$12,354 &nbsp;(≈ $1,765 / person)</td></tr>
-      </table>
-    </div>
-  </div>
-
-  <!-- ============ FLY LANE ============ -->
-  <div class="lane">Fly from Cleveland · Western Caribbean · the adventure lane</div>
-
-  <!-- OPTION 3 -->
-  <div class="card">
-    <div class="photo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Carnival_Breeze_in_Cozumel%2C_Mexico.jpg/1280px-Carnival_Breeze_in_Cozumel%2C_Mexico.jpg" alt="Carnival ship in Cozumel, Mexico">
-      <span class="credit">Photo: Wikimedia Commons, CC BY-SA</span>
-      <span class="badge">Shorter &amp; cheaper fly option</span>
-      <div class="meta">
-        <h3>Option 3 — Western Caribbean, 5 nights <span class="tag t-fly">FLY</span></h3>
-        <div class="line">Carnival from Galveston, TX (fly CLE→Houston) · Cozumel + Costa Maya</div>
-      </div>
-    </div>
-    <div class="body">
-      <div class="grid">
-        <div>
-          <p class="fact"><b>Getting there:</b> fly CLE → Houston, ~1 hr transfer to Galveston</p>
-          <p class="fact"><b>Sample route:</b> Galveston → Cozumel → Costa Maya → sea days → Galveston</p>
-          <p class="fact"><b>Excursions:</b> Mayan ruins at Tulum/San Gervasio &amp; Chacchoben <span class="wish">history</span>, jungle ziplines &amp; cenote swims near Costa Maya <span class="wish">jungle</span></p>
-          <p class="fact"><b>Recommended ages:</b> ruins &amp; cenotes work for all; some ziplines need age 5–8+ (the 5-year-old may sit a couple out)</p>
-          <p class="fact"><b>Casino &amp; shows:</b> yes + live entertainment</p>
-        </div>
-        <div>
-          <p class="fact"><b>Why it fits:</b></p>
-          <ul class="am">
-            <li>Real adventure excursions (ruins + jungle) without a full week</li>
-            <li>Two Mexican ports, no private-island day</li>
-            <li>Carnival = value pricing, keeps total down despite airfare</li>
-          </ul>
-          <p class="fact"><b>Trade-off:</b> only two ports; misses Belize's signature cave-tube + zipline combo (that's the 7-night).</p>
-          <p class="gallery"><b>Official:</b> <a href="https://www.carnival.com/cruise-from/galveston-cruises">carnival.com — cruises from Galveston</a></p>
-        </div>
-      </div>
-      <table>
-        <tr><th>Cost category</th><th>Basis</th><th class="n">Estimate</th></tr>
-        <tr><td>Cruise fare (all 7)</td><td>2 interior cabins</td><td class="n">$3,660</td></tr>
-        <tr><td>Taxes &amp; port fees</td><td>per person ×7</td><td class="n">$980</td></tr>
-        <tr><td>Gratuities</td><td>~$16 ×5 ×7</td><td class="n">$560</td></tr>
-        <tr><td>Airfare CLE↔Houston</td><td>per person ×7</td><td class="n">$2,450</td></tr>
-        <tr><td>Airport↔Galveston transfer</td><td>group, round trip</td><td class="n">$300</td></tr>
-        <tr><td>Pre-cruise hotel</td><td>2 rooms ×1 night</td><td class="n">$300</td></tr>
-        <tr><td>Excursions</td><td>family</td><td class="n">$1,000</td></tr>
-        <tr><td>WiFi</td><td>package</td><td class="n">$150</td></tr>
-        <tr><td>Travel insurance</td><td>group</td><td class="n">$450</td></tr>
-        <tr><td>Onboard / misc</td><td>spending</td><td class="n">$800</td></tr>
-        <tr class="tot"><td colspan="2">ESTIMATED TRIP TOTAL</td><td class="n">$10,650 &nbsp;(≈ $1,521 / person)</td></tr>
-      </table>
-    </div>
-  </div>
-
-  <!-- OPTION 4 — BEST MATCH -->
-  <div class="card best">
-    <div class="photo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Altun_Ha_Temple_The_Temple_of_the_Masonry_Altars_Structure_B4.png/800px-Altun_Ha_Temple_The_Temple_of_the_Masonry_Altars_Structure_B4.png" alt="Altun Ha Mayan ruins in the Belize jungle">
-      <span class="credit">Photo: Wikimedia Commons, CC BY-SA</span>
-      <span class="badge g">★ Best match for your priorities</span>
-      <div class="meta">
-        <h3>Option 4 — Western Caribbean, 7 nights <span class="tag t-fly">FLY</span></h3>
-        <div class="line">Carnival from Galveston, TX · Costa Maya + Roatán + <b>Belize</b> + Cozumel</div>
-      </div>
-    </div>
-    <div class="body">
-      <div class="grid">
-        <div>
-          <p class="fact"><b>Getting there:</b> fly CLE → Houston, ~1 hr transfer to Galveston</p>
-          <p class="fact"><b>Sample route:</b> Galveston → Costa Maya → Roatán → Belize → Cozumel → Galveston (4 ports, zero private-island days)</p>
-          <p class="fact"><b>Belize is the star:</b> one excursion = cave-tubing an underground river <span class="wish">cave</span> + zipline over the rainforest <span class="wish">jungle</span> + a Mayan ruin <span class="wish">history</span></p>
-          <p class="fact"><b>Plus:</b> Roatán jungle ziplines &amp; suspension bridges; Costa Maya &amp; Cozumel ruins</p>
-          <p class="fact"><b>Recommended ages:</b> ruins/snorkel suit all; cave-tubing usually OK at 5 with a family operator; a few ziplines require age 6–8+, so the 5-year-old may swap to an easier option on those</p>
-          <div class="isle">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Carnival_Breeze_in_Cozumel%2C_Mexico.jpg/1280px-Carnival_Breeze_in_Cozumel%2C_Mexico.jpg" alt="Carnival ship in Cozumel">
-            <div class="cap">Carnival ship in Cozumel, Mexico · Photo: Wikimedia Commons, CC BY-SA</div>
-          </div>
-        </div>
-        <div>
-          <p class="fact"><b>Why it's the best match:</b></p>
-          <ul class="am">
-            <li>Hits all three wishes — jungle, cave, history — in real ports</li>
-            <li>4 excursion days, the most "adventure per trip" of any option</li>
-            <li>Casino, live entertainment, WiFi all included</li>
-            <li>Still comfortably under your $20k ceiling</li>
-          </ul>
-          <p class="rev">"Belize cave-tubing then ziplining through the jungle was the highlight of the whole week — the kids still talk about it."</p>
-          <p class="gallery"><b>Official:</b> <a href="https://www.carnival.com/shore-excursions/belize">carnival.com — Belize shore excursions</a></p>
-        </div>
-      </div>
-      <table>
-        <tr><th>Cost category</th><th>Basis</th><th class="n">Estimate</th></tr>
-        <tr><td>Cruise fare (all 7)</td><td>2 interior cabins</td><td class="n">$5,400</td></tr>
-        <tr><td>Taxes &amp; port fees</td><td>per person ×7</td><td class="n">$1,190</td></tr>
-        <tr><td>Gratuities</td><td>~$16 ×7 ×7</td><td class="n">$784</td></tr>
-        <tr><td>Airfare CLE↔Houston</td><td>per person ×7</td><td class="n">$2,450</td></tr>
-        <tr><td>Airport↔Galveston transfer</td><td>group, round trip</td><td class="n">$300</td></tr>
-        <tr><td>Pre-cruise hotel</td><td>2 rooms ×1 night</td><td class="n">$300</td></tr>
-        <tr><td>Excursions (4 ports — adventure)</td><td>family</td><td class="n">$1,500</td></tr>
-        <tr><td>WiFi</td><td>package</td><td class="n">$200</td></tr>
-        <tr><td>Travel insurance</td><td>group</td><td class="n">$550</td></tr>
-        <tr><td>Onboard / misc</td><td>spending</td><td class="n">$1,000</td></tr>
-        <tr class="tot"><td colspan="2">ESTIMATED TRIP TOTAL</td><td class="n">$13,674 &nbsp;(≈ $1,953 / person)</td></tr>
-      </table>
-    </div>
-  </div>
-
-  <h2>Side-by-side</h2>
+  <h2>The five at a glance</h2>
   <table class="cmp">
-    <tr><th>&nbsp;</th><th>1 · Bermuda 5-nt</th><th>2 · Bermuda 7-nt</th><th>3 · W. Carib 5-nt</th><th>4 · W. Carib 7-nt</th></tr>
-    <tr><td><b>Get there</b></td><td>Drive ~7.5 hr</td><td>Drive ~7.5 hr</td><td>Fly + transfer</td><td>Fly + transfer</td></tr>
-    <tr><td><b>Ports / stops</b></td><td>Bermuda (2 days)</td><td>Bermuda (3 days)</td><td>Cozumel, Costa Maya</td><td class="win">Costa Maya, Roatán, Belize, Cozumel</td></tr>
-    <tr><td><b>Jungle</b></td><td>—</td><td>—</td><td>Some</td><td class="win">Yes (Belize, Roatán)</td></tr>
-    <tr><td><b>Cave</b></td><td class="win">Crystal Caves</td><td class="win">Crystal Caves</td><td>—</td><td class="win">Belize cave-tubing</td></tr>
-    <tr><td><b>History/culture</b></td><td>St. George's</td><td>St. George's</td><td>Mayan ruins</td><td class="win">Mayan ruins ×3</td></tr>
-    <tr><td><b>Private-island days</b></td><td>None</td><td>None</td><td>None</td><td>None</td></tr>
-    <tr><td><b>Casino · shows · WiFi</b></td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
-    <tr><td><b>Est. trip total</b></td><td class="win">$9,120</td><td>$12,354</td><td>$10,650</td><td>$13,674</td></tr>
-    <tr><td><b>Est. per person</b></td><td class="win">$1,303</td><td>$1,765</td><td>$1,521</td><td>$1,953</td></tr>
+    <tr><th>Destination</th><th>Get there</th><th>The adventure draw</th><th class="n">Cheapest line, all-in</th></tr>
+    <tr><td><b>1. Western Caribbean</b></td><td>Fly → Galveston</td><td>Belize cave-tube + zipline + jungle ruins; Roatán, Cozumel</td><td class="n win">$13,674 (Carnival)</td></tr>
+    <tr><td><b>2. Bermuda</b></td><td>Drive ~7.5 hr</td><td>Crystal Caves, St. George's history, pink beaches</td><td class="n win">$8,890 (Norwegian, 5-nt)</td></tr>
+    <tr><td><b>3. Mexican Riviera</b></td><td>Fly → Los Angeles</td><td>Puerto Vallarta jungle ziplines + ATV; Cabo, Mazatlán</td><td class="n win">$12,684 (Carnival)</td></tr>
+    <tr><td><b>4. Southern Caribbean</b></td><td>Fly → San Juan</td><td>Curaçao Hato Caves, Aruba 4x4 caves, reef snorkels</td><td class="n win">$13,534 (Princess)</td></tr>
+    <tr><td><b>5. Mediterranean</b> (your "cheapest Europe")</td><td>Fly → Barcelona/Rome</td><td>Colosseum, Pompeii, Florence — history overload</td><td class="n win">$16,684 (MSC)</td></tr>
   </table>
+  <p class="small">All five sit under the $20k ceiling. Western Caribbean, Bermuda and Mexican Riviera are the best value; the Mediterranean is the splurge (as expected).</p>
 
-  <div class="note rec">
-    <b>My read:</b> Since adventurous excursions are your #1 priority, <b>Option 4 (Western Caribbean, 7 nights)</b> is the strongest fit — it's the only one that delivers jungle, cave, and history together, and it's still ~$6k under your ceiling. If you'd rather keep it simple and cheap for a first family cruise, <b>Option 1 (Bermuda, 5 nights, drive)</b> is a great low-stress pick with caves and beaches and zero airfare.
+  <!-- ===================== 1. WESTERN CARIBBEAN ===================== -->
+  <div class="dest">
+    <div class="hero">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/90/Altun_Ha_Temple_The_Temple_of_the_Masonry_Altars_Structure_B4.png" alt="Altun Ha Mayan ruins, Belize">
+      <span class="credit">Photo: Wikimedia Commons, CC BY-SA</span>
+      <span class="badge">★ Top adventure pick</span>
+      <div class="meta"><h2>1 · Western Caribbean <span class="tag t-fly">FLY</span></h2><div class="line">7 nights from Galveston, TX · Costa Maya · Roatán · Belize · Cozumel</div></div>
+    </div>
+    <div class="body">
+      <p class="sub">The adventure powerhouse. <a href="https://www.carnival.com/shore-excursions/belize">Belize</a> alone delivers cave-tubing <span class="wish">cave</span>, ziplining <span class="wish">jungle</span> and Mayan ruins <span class="wish">history</span> in one outing; Roatán adds rainforest canopy lines and Cozumel/Costa Maya add more ruins. Fly CLE → Houston, ~1 hr to the <a href="https://www.royalcaribbean.com/cruise-to/galveston-texas">Galveston port</a>.</p>
+      <table>
+        <tr><th>Cost (7 people, 2 interior cabins)</th><th class="n"><a href="https://www.royalcaribbean.com/cruise-ships/independence-of-the-seas">Royal Caribbean</a></th><th class="n"><a href="https://www.carnival.com/cruise-ships/carnival-breeze">Carnival</a></th><th class="n"><a href="https://www.ncl.com/cruise-ship/joy">Norwegian</a></th></tr>
+        <tr><td>Cruise fare</td><td class="n">$6,800</td><td class="n">$5,400</td><td class="n">$6,200</td></tr>
+        <tr><td>Taxes, fees &amp; gratuities</td><td class="n">$1,974</td><td class="n">$1,974</td><td class="n">$1,974</td></tr>
+        <tr><td>Airfare CLE↔Houston (×7) + transfer</td><td class="n">$2,750</td><td class="n">$2,750</td><td class="n">$2,750</td></tr>
+        <tr><td>Pre-cruise hotel (1 night)</td><td class="n">$300</td><td class="n">$300</td><td class="n">$300</td></tr>
+        <tr><td>Excursions (4 ports)</td><td class="n">$1,500</td><td class="n">$1,500</td><td class="n">$1,500</td></tr>
+        <tr><td>WiFi + insurance + onboard</td><td class="n">$1,750</td><td class="n">$1,750</td><td class="n">$1,750</td></tr>
+        <tr class="tot"><td>ESTIMATED TOTAL</td><td class="n">$15,074</td><td class="n">$13,674</td><td class="n">$14,474</td></tr>
+        <tr><td>Per person</td><td class="n">$2,153</td><td class="n">$1,953</td><td class="n">$2,068</td></tr>
+      </table>
+      <div class="amgrid">
+        <div><h3><a href="https://www.royalcaribbean.com/cruise-ships/independence-of-the-seas">RC Independence of the Seas</a> — top amenities</h3>
+          <ul class="am"><li>FlowRider surf simulator</li><li>Rock-climbing wall</li><li>Mini-golf &amp; sports court</li><li>Adventure Ocean kids club (3–12)</li><li>Splashaway Bay kids aqua park</li><li>Casino Royale</li><li>Broadway-style theater</li><li>Ice rink &amp; ice shows</li><li>Royal Promenade shops</li><li>Chops Grille &amp; Giovanni's dining</li><li>Vitality spa &amp; gym</li><li>Teen lounge &amp; arcade</li><li>Multiple pools &amp; whirlpools</li><li>Live music &amp; nightclub</li></ul></div>
+        <div><h3><a href="https://www.carnival.com/cruise-ships/carnival-breeze">Carnival Breeze</a> — top amenities</h3>
+          <ul class="am"><li>WaterWorks slides &amp; splash park</li><li>SkyRide pedal coaster</li><li>Camp Ocean kids (2–11)</li><li>Circle "C" / Club O2 teens</li><li>Dr. Seuss at Sea breakfast</li><li>Casino</li><li>Punchliner Comedy Club</li><li>Guy's Burgers &amp; BlueIguana (free)</li><li>Cloud 9 Spa &amp; gym</li><li>Mini-golf &amp; SportSquare</li><li>Lido pools &amp; hot tubs</li><li>Serenity adult retreat</li><li>Playlist Production shows</li><li>RedFrog Pub</li></ul></div>
+        <div><h3><a href="https://www.ncl.com/cruise-ship/joy">Norwegian Joy</a> — top amenities</h3>
+          <ul class="am"><li>Go-kart race track</li><li>Aqua Park water slides</li><li>Galaxy Pavilion VR arcade</li><li>Splash Academy kids (3–12)</li><li>Entourage teen lounge</li><li>The Waterfront promenade</li><li>Casino</li><li>Broadway-caliber shows</li><li>15+ Freestyle restaurants</li><li>Mandara Spa &amp; thermal suite</li><li>Laser tag</li><li>Observation lounge</li><li>Mini-golf</li><li>Multiple pools &amp; hot tubs</li></ul></div>
+      </div>
+      <h3>Shore excursions — add or drop to adjust the total</h3>
+      <table>
+        <tr><th>Excursion</th><th>Port</th><th class="n">~ / person</th></tr>
+        <tr><td><a href="https://belizecruiseexcursions.com/excursion/belize-cave-tubing-zip-line-excursion/">Cave-tubing + zipline + Mayan ruin</a> <span class="wish">cave</span> <span class="wish">jungle</span></td><td>Belize</td><td class="n">$105</td></tr>
+        <tr><td><a href="https://www.cave-tubing.com/">Cave-tubing only (jungle river)</a></td><td>Belize</td><td class="n">$60</td></tr>
+        <tr><td><a href="https://www.shoreexcursionsgroup.com/caribbean-shore-excursions">Zipline canopy + beach</a></td><td>Roatán</td><td class="n">$80</td></tr>
+        <tr><td><a href="https://www.shoreexcursionsgroup.com/port/cozumel-excursions">Tulum ruins day trip</a> <span class="wish">history</span></td><td>Cozumel</td><td class="n">$120</td></tr>
+        <tr><td><a href="https://www.royalcaribbean.com/inspire/caribbean-puerto-costa-maya-mexico-shore-excursions">Chacchoben Mayan ruins</a></td><td>Costa Maya</td><td class="n">$75</td></tr>
+        <tr><td><a href="https://www.shoreexcursionsgroup.com/port/cozumel-excursions">Jeep + snorkel + ruins combo</a></td><td>Cozumel</td><td class="n">$90</td></tr>
+      </table>
+    </div>
   </div>
 
-  <h2>A couple of open questions</h2>
-  <p class="sub">To tighten the next pass: (1) <b>Galveston vs. a Florida departure</b> — Galveston has the best Belize/Roatán adventure itineraries but means flying into Houston; I can also check Miami/Orlando 6–7-night options if you'd prefer a shorter flight. (2) <b>Cruise line feel</b> — I used Carnival for value on the fly options; want me to price a Royal Caribbean version (bigger ships, more onboard) for comparison? (3) <b>Cabins</b> — all estimates use 2 interior cabins; say the word for balconies.</p>
+  <!-- ===================== 2. BERMUDA ===================== -->
+  <div class="dest">
+    <div class="hero">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Horseshoebay.Bermuda.JPG/1280px-Horseshoebay.Bermuda.JPG" alt="Horseshoe Bay, Bermuda">
+      <span class="credit">Photo: Wikimedia Commons, CC BY-SA</span>
+      <span class="badge">★ Cheapest &amp; no airfare</span>
+      <div class="meta"><h2>2 · Bermuda <span class="tag t-drive">DRIVE</span></h2><div class="line">5–7 nights from Cape Liberty (Bayonne, NJ) · ~7.5 hr drive · 2–3 days docked in Bermuda</div></div>
+    </div>
+    <div class="body">
+      <p class="sub">Drivable from Cleveland, so no airfare. Two to three full days at the dock means real excursion time: <a href="https://en.wikipedia.org/wiki/Crystal_Cave_(Bermuda)">Crystal &amp; Fantasy Caves</a> <span class="wish">cave</span>, the UNESCO town of <a href="https://en.wikipedia.org/wiki/St._George%27s,_Bermuda">St. George's</a> <span class="wish">history</span>, and Horseshoe Bay's pink sand. No jungle here — that's the trade-off for zero airfare.</p>
+      <table>
+        <tr><th>Cost (7 people, 2 interior cabins)</th><th class="n"><a href="https://www.royalcaribbean.com/cruise-ships/independence-of-the-seas">Royal Caribbean</a> 5-nt</th><th class="n"><a href="https://www.ncl.com/cruise-ship/joy">Norwegian</a> 5-nt</th><th class="n"><a href="https://www.celebritycruises.com/cruise-ships">Celebrity</a> 7-nt</th></tr>
+        <tr><td>Cruise fare</td><td class="n">$4,850</td><td class="n">$4,400</td><td class="n">$6,800</td></tr>
+        <tr><td>Taxes, fees &amp; gratuities</td><td class="n">$1,710</td><td class="n">$1,710</td><td class="n">$2,084</td></tr>
+        <tr><td>Drive — gas, tolls, port parking</td><td class="n">$400</td><td class="n">$400</td><td class="n">$420</td></tr>
+        <tr><td>Pre-cruise hotel (1 night)</td><td class="n">$280</td><td class="n">$280</td><td class="n">$280</td></tr>
+        <tr><td>Excursions</td><td class="n">$700</td><td class="n">$700</td><td class="n">$900</td></tr>
+        <tr><td>WiFi + insurance + onboard</td><td class="n">$1,400</td><td class="n">$1,400</td><td class="n">$1,580</td></tr>
+        <tr class="tot"><td>ESTIMATED TOTAL</td><td class="n">$9,340</td><td class="n">$8,890</td><td class="n">$12,064</td></tr>
+        <tr><td>Per person</td><td class="n">$1,334</td><td class="n">$1,270</td><td class="n">$1,723</td></tr>
+      </table>
+      <div class="amgrid">
+        <div><h3><a href="https://www.royalcaribbean.com/cruise-ships/independence-of-the-seas">RC Independence of the Seas</a></h3>
+          <ul class="am"><li>FlowRider surf simulator</li><li>Rock wall &amp; mini-golf</li><li>Adventure Ocean kids (3–12)</li><li>Splashaway Bay aqua park</li><li>Casino Royale</li><li>Broadway-style theater</li><li>Ice rink &amp; shows</li><li>Royal Promenade</li><li>Specialty dining</li><li>Spa &amp; gym</li><li>Teen lounge &amp; arcade</li><li>Pools &amp; whirlpools</li></ul></div>
+        <div><h3><a href="https://www.ncl.com/cruise-ship/breakaway">Norwegian (from NYC)</a></h3>
+          <ul class="am"><li>Aqua Park water slides</li><li>Ropes course &amp; climbing</li><li>Splash Academy kids (3–12)</li><li>Entourage teens</li><li>The Waterfront promenade</li><li>Casino</li><li>Broadway shows</li><li>15+ Freestyle restaurants</li><li>Mandara Spa</li><li>Mini-golf</li><li>Galaxy Pavilion arcade</li><li>Pools &amp; hot tubs</li></ul></div>
+        <div><h3><a href="https://www.celebritycruises.com/cruise-ships">Celebrity (premium)</a></h3>
+          <ul class="am"><li>Resort pool deck &amp; adults Solarium</li><li>Camp at Sea youth</li><li>Casino</li><li>Theater productions</li><li>Premium specialty dining</li><li>The Lawn Club (real grass)</li><li>Upscale spa &amp; gym</li><li>Martini Bar</li><li>Art galleries</li><li>Enrichment lectures</li><li>Pools &amp; whirlpools</li><li>Live music</li></ul></div>
+      </div>
+      <h3>Shore excursions</h3>
+      <table>
+        <tr><th>Excursion</th><th class="n">~ / person</th></tr>
+        <tr><td><a href="https://en.wikipedia.org/wiki/Crystal_Cave_(Bermuda)">Crystal &amp; Fantasy Caves tour</a> <span class="wish">cave</span></td><td class="n">$40</td></tr>
+        <tr><td><a href="https://www.bermuda.com/things-to-do/water-sports/snorkeling/">Catamaran sail &amp; reef snorkel</a></td><td class="n">$90</td></tr>
+        <tr><td>Shipwreck &amp; reef snorkel</td><td class="n">$70</td></tr>
+        <tr><td>Glass-bottom boat tour</td><td class="n">$55</td></tr>
+        <tr><td><a href="https://en.wikipedia.org/wiki/St._George%27s,_Bermuda">St. George's UNESCO walking tour</a> <span class="wish">history</span></td><td class="n">$45</td></tr>
+        <tr><td>Horseshoe Bay beach (ferry/shuttle)</td><td class="n">$15</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== 3. MEXICAN RIVIERA ===================== -->
+  <div class="dest">
+    <div class="hero">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Cabo_San_Lucas_Los_Arcos_3.jpg/1280px-Cabo_San_Lucas_Los_Arcos_3.jpg" alt="El Arco, Cabo San Lucas">
+      <span class="credit">Photo: Wikimedia Commons, CC BY-SA</span>
+      <div class="meta"><h2>3 · Mexican Riviera <span class="tag t-fly">FLY</span></h2><div class="line">7 nights from Los Angeles · Cabo San Lucas · Mazatlán · Puerto Vallarta</div></div>
+    </div>
+    <div class="body">
+      <p class="sub">The Pacific-coast alternative to the Caribbean. <a href="https://www.vallarta-adventures.com/en/tour/extreme-zip-line-canopy-adventure">Puerto Vallarta</a> is a jungle-adventure hub — canopy ziplines, ATV trails and waterfall rappels <span class="wish">jungle</span>; Cabo adds the iconic Arch, sea-lion colony and desert ziplines; Mazatlán brings old-town history <span class="wish">history</span> and cliff divers. Fly CLE → Los Angeles, short transfer to the <a href="https://www.royalcaribbean.com/cruise-to/los-angeles-california">LA cruise port</a>.</p>
+      <table>
+        <tr><th>Cost (7 people, 2 interior cabins)</th><th class="n"><a href="https://www.royalcaribbean.com/cruise-ships/navigator-of-the-seas">Royal Caribbean</a></th><th class="n"><a href="https://www.princess.com/en-us/ships">Princess</a></th><th class="n"><a href="https://www.carnival.com/cruise-ships">Carnival</a></th></tr>
+        <tr><td>Cruise fare</td><td class="n">$5,400</td><td class="n">$5,000</td><td class="n">$4,600</td></tr>
+        <tr><td>Taxes, fees &amp; gratuities</td><td class="n">$1,884</td><td class="n">$1,884</td><td class="n">$1,884</td></tr>
+        <tr><td>Airfare CLE↔LAX (×7) + transfer</td><td class="n">$3,000</td><td class="n">$3,000</td><td class="n">$3,000</td></tr>
+        <tr><td>Pre-cruise hotel (1 night LA)</td><td class="n">$350</td><td class="n">$350</td><td class="n">$350</td></tr>
+        <tr><td>Excursions (3 ports)</td><td class="n">$1,200</td><td class="n">$1,200</td><td class="n">$1,200</td></tr>
+        <tr><td>WiFi + insurance + onboard</td><td class="n">$1,650</td><td class="n">$1,650</td><td class="n">$1,650</td></tr>
+        <tr class="tot"><td>ESTIMATED TOTAL</td><td class="n">$13,484</td><td class="n">$13,084</td><td class="n">$12,684</td></tr>
+        <tr><td>Per person</td><td class="n">$1,926</td><td class="n">$1,869</td><td class="n">$1,812</td></tr>
+      </table>
+      <div class="amgrid">
+        <div><h3><a href="https://www.royalcaribbean.com/cruise-ships/navigator-of-the-seas">RC Navigator of the Seas</a></h3>
+          <ul class="am"><li>Tidal Wave waterslide &amp; The Blaster aqua-coaster</li><li>FlowRider surf simulator</li><li>Rock wall &amp; mini-golf</li><li>Adventure Ocean kids (3–12)</li><li>Casino Royale</li><li>Broadway-style theater</li><li>Laser tag</li><li>Specialty dining</li><li>Spa &amp; gym</li><li>Teen lounge &amp; arcade</li><li>Pools &amp; whirlpools</li><li>Live music</li></ul></div>
+        <div><h3><a href="https://www.princess.com/en-us/ships">Princess (Royal-class)</a></h3>
+          <ul class="am"><li>Movies Under the Stars</li><li>Princess Theater shows</li><li>Camp Discovery kids (3 ages)</li><li>The Sanctuary adult retreat</li><li>Lotus Spa &amp; gym</li><li>Casino</li><li>Discovery naturalist programs</li><li>Crown Grill &amp; Sabatini's</li><li>Piazza atrium &amp; live music</li><li>MedallionClass app</li><li>Art gallery &amp; classes</li><li>Pools &amp; hot tubs</li></ul></div>
+        <div><h3><a href="https://www.carnival.com/cruise-ships">Carnival (value)</a></h3>
+          <ul class="am"><li>WaterWorks slides</li><li>SkyRide / ropes (some ships)</li><li>Camp Ocean kids (2–11)</li><li>Club O2 teens</li><li>Dr. Seuss at Sea</li><li>Casino</li><li>Punchliner Comedy Club</li><li>Guy's Burgers &amp; BlueIguana (free)</li><li>Cloud 9 Spa</li><li>Serenity adult retreat</li><li>Lido pools</li><li>Live shows</li></ul></div>
+      </div>
+      <h3>Shore excursions</h3>
+      <table>
+        <tr><th>Excursion</th><th>Port</th><th class="n">~ / person</th></tr>
+        <tr><td><a href="https://www.vallarta-adventures.com/en/tour/extreme-zip-line-canopy-adventure">Extreme zipline + ATV jungle</a> <span class="wish">jungle</span></td><td>Puerto Vallarta</td><td class="n">$92</td></tr>
+        <tr><td><a href="https://canopyriver.com/en/">Canopy River zipline + river</a></td><td>Puerto Vallarta</td><td class="n">$59</td></tr>
+        <tr><td><a href="https://www.cabosanlucastours.net/Xtreme-Canopy-Tour.htm">Sierra desert canopy zipline</a></td><td>Cabo San Lucas</td><td class="n">$110</td></tr>
+        <tr><td><a href="https://en.wikipedia.org/wiki/Arch_of_Cabo_San_Lucas">Arch + sea-lion colony glass-bottom</a></td><td>Cabo San Lucas</td><td class="n">$45</td></tr>
+        <tr><td>Old Mazatlán + cliff divers <span class="wish">history</span></td><td>Mazatlán</td><td class="n">$50</td></tr>
+        <tr><td>Tequila hacienda &amp; tasting</td><td>Puerto Vallarta</td><td class="n">$70</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== 4. SOUTHERN CARIBBEAN ===================== -->
+  <div class="dest">
+    <div class="hero">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Handelskade_in_Willemstad.jpg/1280px-Handelskade_in_Willemstad.jpg" alt="Willemstad waterfront, Curaçao">
+      <span class="credit">Photo: Wikimedia Commons, CC BY-SA</span>
+      <div class="meta"><h2>4 · Southern Caribbean <span class="tag t-fly">FLY</span></h2><div class="line">7 nights from San Juan · Aruba · Bonaire · Curaçao (+ Grenada/Martinique)</div></div>
+    </div>
+    <div class="body">
+      <p class="sub">The warm, less-crowded "ABC islands." <a href="https://en.wikipedia.org/wiki/Hato_Caves">Curaçao's Hato Caves</a> <span class="wish">cave</span>, Aruba's 4x4 caves and natural pool, and some of the Caribbean's best reef snorkeling at Bonaire. Colorful UNESCO Willemstad adds history <span class="wish">history</span>. Fly CLE → <a href="https://www.royalcaribbean.com/cruise-to/san-juan-puerto-rico">San Juan</a>.</p>
+      <table>
+        <tr><th>Cost (7 people, 2 interior cabins)</th><th class="n"><a href="https://www.royalcaribbean.com/cruise-ships">Royal Caribbean</a></th><th class="n"><a href="https://www.princess.com/en-us/ships">Princess</a></th><th class="n"><a href="https://www.celebritycruises.com/cruise-ships">Celebrity</a></th></tr>
+        <tr><td>Cruise fare</td><td class="n">$5,600</td><td class="n">$5,400</td><td class="n">$6,400</td></tr>
+        <tr><td>Taxes, fees &amp; gratuities</td><td class="n">$2,034</td><td class="n">$2,034</td><td class="n">$2,034</td></tr>
+        <tr><td>Airfare CLE↔San Juan (×7) + transfer</td><td class="n">$2,950</td><td class="n">$2,950</td><td class="n">$2,950</td></tr>
+        <tr><td>Pre-cruise hotel (1 night San Juan)</td><td class="n">$300</td><td class="n">$300</td><td class="n">$300</td></tr>
+        <tr><td>Excursions (3–4 ports)</td><td class="n">$1,200</td><td class="n">$1,200</td><td class="n">$1,200</td></tr>
+        <tr><td>WiFi + insurance + onboard</td><td class="n">$1,650</td><td class="n">$1,650</td><td class="n">$1,650</td></tr>
+        <tr class="tot"><td>ESTIMATED TOTAL</td><td class="n">$13,734</td><td class="n">$13,534</td><td class="n">$14,534</td></tr>
+        <tr><td>Per person</td><td class="n">$1,962</td><td class="n">$1,933</td><td class="n">$2,076</td></tr>
+      </table>
+      <div class="amgrid">
+        <div><h3><a href="https://www.royalcaribbean.com/cruise-ships">Royal Caribbean</a></h3>
+          <ul class="am"><li>FlowRider surf simulator</li><li>Rock wall &amp; mini-golf</li><li>Adventure Ocean kids (3–12)</li><li>Splashaway Bay aqua park</li><li>Casino Royale</li><li>Broadway-style theater</li><li>Sports court &amp; arcade</li><li>Specialty dining</li><li>Spa &amp; gym</li><li>Teen lounge</li><li>Pools &amp; whirlpools</li><li>Live music</li></ul></div>
+        <div><h3><a href="https://www.princess.com/en-us/ships">Princess</a></h3>
+          <ul class="am"><li>Movies Under the Stars</li><li>Princess Theater shows</li><li>Camp Discovery kids</li><li>The Sanctuary adult retreat</li><li>Lotus Spa &amp; gym</li><li>Casino</li><li>Crown Grill &amp; Sabatini's</li><li>Piazza atrium</li><li>MedallionClass app</li><li>Discovery programs</li><li>Pools &amp; hot tubs</li><li>Live music</li></ul></div>
+        <div><h3><a href="https://www.celebritycruises.com/cruise-ships">Celebrity (premium)</a></h3>
+          <ul class="am"><li>Resort pool deck &amp; Solarium</li><li>Camp at Sea youth</li><li>Casino</li><li>Theater productions</li><li>Premium specialty dining</li><li>Rooftop Garden / Eden (Edge)</li><li>Upscale spa</li><li>Martini Bar</li><li>Art galleries</li><li>Enrichment lectures</li><li>Pools &amp; whirlpools</li><li>Live music</li></ul></div>
+      </div>
+      <h3>Shore excursions</h3>
+      <table>
+        <tr><th>Excursion</th><th>Port</th><th class="n">~ / person</th></tr>
+        <tr><td><a href="https://en.wikipedia.org/wiki/Hato_Caves">Hato Caves + city tour</a> <span class="wish">cave</span> <span class="wish">history</span></td><td>Curaçao</td><td class="n">$60</td></tr>
+        <tr><td>Tugboat shipwreck snorkel</td><td>Curaçao</td><td class="n">$70</td></tr>
+        <tr><td><a href="https://www.shoreexcursionsgroup.com/caribbean-shore-excursions">Natural pool 4x4 + caves</a></td><td>Aruba</td><td class="n">$95</td></tr>
+        <tr><td>Catamaran snorkel sail</td><td>Aruba</td><td class="n">$75</td></tr>
+        <tr><td>Klein Bonaire reef snorkel</td><td>Bonaire</td><td class="n">$65</td></tr>
+        <tr><td>Guided cave adventure <span class="wish">cave</span></td><td>Bonaire</td><td class="n">$90</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== 5. MEDITERRANEAN ===================== -->
+  <div class="dest">
+    <div class="hero">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/1280px-Colosseo_2020.jpg" alt="Colosseum, Rome">
+      <span class="credit">Photo: Wikimedia Commons, CC BY-SA</span>
+      <span class="badge">Your "cheapest Europe"</span>
+      <div class="meta"><h2>5 · Mediterranean <span class="tag t-fly">FLY</span></h2><div class="line">7 nights from Barcelona/Rome · Marseille · Genoa/Florence · Naples · Civitavecchia (Rome)</div></div>
+    </div>
+    <div class="body">
+      <p class="sub">The history splurge — and the cheapest way to cruise Europe is <a href="https://www.msccruisesusa.com/cruise/destinations/mediterranean">MSC</a> out of Barcelona (interior fares start ~$565/pp). It's also the priciest of the five once you add transatlantic airfare, so consider it the "dream/reference" option. Stops put you at the <a href="https://en.wikipedia.org/wiki/Colosseum">Colosseum</a>, <a href="https://en.wikipedia.org/wiki/Pompeii">Pompeii</a>, and Florence <span class="wish">history</span> — no jungle/caves, but unmatched ruins. A 2-night Rome or Barcelona stay is built into the estimate (your "cool city we haven't explored" idea).</p>
+      <table>
+        <tr><th>Cost (7 people, 2 interior cabins)</th><th class="n"><a href="https://www.msccruisesusa.com/cruise/destinations/mediterranean">MSC</a> (cheapest)</th><th class="n"><a href="https://www.ncl.com/cruise-destinations/europe-cruises">Norwegian</a></th><th class="n"><a href="https://www.royalcaribbean.com/cruise-ships">Royal Caribbean</a></th></tr>
+        <tr><td>Cruise fare</td><td class="n">$4,000</td><td class="n">$6,500</td><td class="n">$7,000</td></tr>
+        <tr><td>Taxes, fees &amp; gratuities</td><td class="n">$2,184</td><td class="n">$2,184</td><td class="n">$2,184</td></tr>
+        <tr><td>Airfare CLE↔Europe (×7) + transfer</td><td class="n">$6,550</td><td class="n">$6,550</td><td class="n">$6,550</td></tr>
+        <tr><td>Pre-cruise hotel (2 nights, cool city)</td><td class="n">$700</td><td class="n">$700</td><td class="n">$700</td></tr>
+        <tr><td>Excursions (4–5 ports)</td><td class="n">$1,400</td><td class="n">$1,400</td><td class="n">$1,400</td></tr>
+        <tr><td>WiFi + insurance + onboard</td><td class="n">$1,850</td><td class="n">$1,850</td><td class="n">$1,850</td></tr>
+        <tr class="tot"><td>ESTIMATED TOTAL</td><td class="n">$16,684</td><td class="n">$19,184</td><td class="n">$19,684</td></tr>
+        <tr><td>Per person</td><td class="n">$2,383</td><td class="n">$2,741</td><td class="n">$2,812</td></tr>
+      </table>
+      <div class="amgrid">
+        <div><h3><a href="https://www.msccruisesusa.com/cruise/destinations/mediterranean">MSC (Seaside/World class)</a></h3>
+          <ul class="am"><li>Aqua Park water slides</li><li>Kids clubs — LEGO &amp; Chicco (0–11)</li><li>Teens club</li><li>Formula 1 simulator</li><li>Bowling &amp; sports court</li><li>Casino</li><li>Flexible theater shows</li><li>MSC Aurea Spa &amp; thermal suite</li><li>Specialty dining (steak, sushi)</li><li>Extended-hours buffet</li><li>Promenade &amp; shops</li><li>Pools &amp; whirlpools</li></ul></div>
+        <div><h3><a href="https://www.ncl.com/cruise-destinations/europe-cruises">Norwegian</a></h3>
+          <ul class="am"><li>Aqua Park slides</li><li>Go-kart track (some ships)</li><li>Splash Academy kids (3–12)</li><li>Entourage teens</li><li>The Waterfront promenade</li><li>Casino</li><li>Broadway shows</li><li>15+ Freestyle restaurants</li><li>Mandara Spa</li><li>Galaxy Pavilion VR</li><li>Mini-golf</li><li>Pools &amp; hot tubs</li></ul></div>
+        <div><h3><a href="https://www.royalcaribbean.com/cruise-ships">Royal Caribbean</a></h3>
+          <ul class="am"><li>FlowRider surf simulator</li><li>Rock wall &amp; mini-golf</li><li>Adventure Ocean kids (3–12)</li><li>Splashaway Bay aqua park</li><li>Casino Royale</li><li>Broadway-style theater</li><li>Sports court &amp; arcade</li><li>Specialty dining</li><li>Spa &amp; gym</li><li>Teen lounge</li><li>Pools &amp; whirlpools</li><li>Live music</li></ul></div>
+      </div>
+      <h3>Shore excursions</h3>
+      <table>
+        <tr><th>Excursion</th><th>Port</th><th class="n">~ / person</th></tr>
+        <tr><td><a href="https://en.wikipedia.org/wiki/Colosseum">Colosseum + ancient Rome</a> <span class="wish">history</span></td><td>Civitavecchia (Rome)</td><td class="n">$160</td></tr>
+        <tr><td><a href="https://en.wikipedia.org/wiki/Pompeii">Pompeii ruins</a> <span class="wish">history</span></td><td>Naples</td><td class="n">$110</td></tr>
+        <tr><td>Amalfi &amp; Sorrento coast</td><td>Naples</td><td class="n">$120</td></tr>
+        <tr><td><a href="https://en.wikipedia.org/wiki/Florence">Florence &amp; Pisa</a></td><td>Livorno</td><td class="n">$130</td></tr>
+        <tr><td><a href="https://en.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia">Sagrada Família &amp; Gaudí</a></td><td>Barcelona</td><td class="n">$90</td></tr>
+        <tr><td>Aix-en-Provence countryside</td><td>Marseille</td><td class="n">$85</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h2>What I'd do with this</h2>
+  <p class="sub">If excursions truly come first and budget is secondary, <b>Western Caribbean (Carnival, ~$13.7k)</b> is the standout — Belize alone checks jungle, cave and history. <b>Bermuda (~$8.9k, no airfare)</b> is the easy, cheap, low-stress pick. <b>Mexican Riviera (~$12.7k)</b> is the best non-Caribbean adventure. The <b>Mediterranean</b> is the dream trip if you'll stretch toward the ceiling.</p>
+  <p class="sub">Tell me which one or two you want to go deeper on and I'll lock specific 2027 sailing dates, exact ships, and real-time excursion availability — and I can add balcony-cabin pricing or a drink-package line if you decide on those.</p>
 
   <div class="foot">
-    <b>How to change anything:</b> edit a cell in the Google Sheet (nights, ports, cabin type, add excursions) and tell me "re-run the cruise numbers" — I'll rebuild this page. &nbsp;·&nbsp; Photos: Wikimedia Commons (CC BY-SA). Estimates compiled June 2026 from current Royal Caribbean &amp; Carnival pricing and CLE airfare; 2027 fares to be confirmed as they open.
+    <b>How to change anything:</b> edit a cell in the Google Sheet (destinations, nights, cabin type, excursions) and tell me "re-run the cruise numbers" — I'll rebuild this page. &nbsp;·&nbsp; Underlined items link to official ship pages, excursion operators, and destination guides. Photos: Wikimedia Commons (CC BY-SA). Estimates compiled June 2026 from current Royal Caribbean, Carnival, Norwegian, Princess, Celebrity &amp; MSC pricing plus CLE airfare; 2027 fares to be confirmed as they open.
   </div>
 
 </div>
